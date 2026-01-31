@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Phone,
   Clock,
   Shield,
-  CheckCircle,
+  CheckCircle2,
   ArrowRight,
   Star,
 } from "lucide-react";
@@ -42,17 +41,20 @@ export function ServicePageLayout({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-hero text-white py-20">
-        <div className="container mx-auto px-4">
+      <section className="bg-primary text-white py-24 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary opacity-10" />
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary via-accent to-tertiary" />
+
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl">
-            <Badge variant="secondary" className="mb-6">
-              <Icon className="h-3 w-3 mr-1" />
-              {subtitle}
-            </Badge>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{title}</h1>
-            <p className="text-xl text-white/80 mb-8">{description}</p>
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-8">
+              <Icon className="h-4 w-4 text-secondary" />
+              <span className="text-white/90 text-sm font-medium">{subtitle}</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">{title}</h1>
+            <p className="text-xl text-white/70 mb-10 leading-relaxed">{description}</p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" variant="secondary" asChild>
+              <Button size="lg" className="bg-secondary hover:bg-secondary/90 h-14 px-8" asChild>
                 <Link href="/book">
                   Book This Service
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -61,7 +63,7 @@ export function ServicePageLayout({
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-primary"
+                className="border-white/30 text-white hover:bg-white hover:text-primary h-14 px-8"
                 asChild
               >
                 <a href="tel:1-800-GUARDIUM">
@@ -75,23 +77,21 @@ export function ServicePageLayout({
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-background">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-16">
             <div>
-              <Badge variant="outline" className="mb-4">
-                Service Details
-              </Badge>
-              <h2 className="text-3xl font-bold mb-6">What We Offer</h2>
+              <span className="text-secondary font-semibold text-sm uppercase tracking-wider">Service Details</span>
+              <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-8">What We Offer</h2>
               <div className="space-y-6">
                 {features.map((feature, index) => (
                   <div key={index} className="flex gap-4">
-                    <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <CheckCircle className="h-5 w-5 text-secondary" />
+                    <div className={`w-12 h-12 ${index % 3 === 0 ? 'bg-secondary' : index % 3 === 1 ? 'bg-accent' : 'bg-tertiary'} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                      <CheckCircle2 className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">{feature.title}</h3>
-                      <p className="text-sm text-muted-foreground">
+                      <h3 className="font-semibold text-lg mb-1">{feature.title}</h3>
+                      <p className="text-muted-foreground">
                         {feature.description}
                       </p>
                     </div>
@@ -102,13 +102,13 @@ export function ServicePageLayout({
 
             <div className="space-y-6">
               {/* Benefits Card */}
-              <Card>
+              <Card className="border-l-4 border-l-secondary">
                 <CardContent className="pt-6">
-                  <h3 className="text-xl font-bold mb-4">Why Choose Us</h3>
-                  <ul className="space-y-3">
+                  <h3 className="text-xl font-bold mb-6">Why Choose Us</h3>
+                  <ul className="space-y-4">
                     {benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <Star className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
+                        <Star className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
                         <span className="text-muted-foreground">{benefit}</span>
                       </li>
                     ))}
@@ -120,12 +120,12 @@ export function ServicePageLayout({
               {pricing && (
                 <Card className="bg-primary text-white">
                   <CardContent className="pt-6">
-                    <h3 className="text-xl font-bold mb-2">Pricing</h3>
-                    <div className="text-3xl font-bold text-secondary mb-2">
+                    <h3 className="text-lg font-semibold mb-2">Pricing</h3>
+                    <div className="text-4xl font-bold text-secondary mb-2">
                       {pricing.starting}
                     </div>
-                    <p className="text-white/80 text-sm mb-4">{pricing.note}</p>
-                    <Button variant="secondary" className="w-full" asChild>
+                    <p className="text-white/60 text-sm mb-6">{pricing.note}</p>
+                    <Button className="w-full bg-secondary hover:bg-secondary/90" asChild>
                       <Link href="/book">Get a Quote</Link>
                     </Button>
                   </CardContent>
@@ -137,62 +137,64 @@ export function ServicePageLayout({
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-12 bg-muted">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <Clock className="h-8 w-8 mx-auto mb-3 text-secondary" />
+              <div className="w-14 h-14 bg-secondary rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Clock className="h-7 w-7 text-white" />
+              </div>
               <div className="font-semibold">24/7 Available</div>
-              <div className="text-sm text-muted-foreground">
-                Round the clock service
-              </div>
+              <div className="text-sm text-muted-foreground">Round the clock</div>
             </div>
             <div>
-              <Shield className="h-8 w-8 mx-auto mb-3 text-secondary" />
+              <div className="w-14 h-14 bg-accent rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Shield className="h-7 w-7 text-white" />
+              </div>
               <div className="font-semibold">Fully Insured</div>
-              <div className="text-sm text-muted-foreground">
-                Complete protection
-              </div>
+              <div className="text-sm text-muted-foreground">Complete protection</div>
             </div>
             <div>
-              <Star className="h-8 w-8 mx-auto mb-3 text-secondary" />
+              <div className="w-14 h-14 bg-tertiary rounded-xl flex items-center justify-center mx-auto mb-4">
+                <Star className="h-7 w-7 text-white" />
+              </div>
               <div className="font-semibold">4.9/5 Rating</div>
-              <div className="text-sm text-muted-foreground">
-                Customer satisfaction
-              </div>
+              <div className="text-sm text-muted-foreground">Customer satisfaction</div>
             </div>
             <div>
-              <CheckCircle className="h-8 w-8 mx-auto mb-3 text-secondary" />
-              <div className="font-semibold">Licensed</div>
-              <div className="text-sm text-muted-foreground">
-                Certified professionals
+              <div className="w-14 h-14 bg-secondary rounded-xl flex items-center justify-center mx-auto mb-4">
+                <CheckCircle2 className="h-7 w-7 text-white" />
               </div>
+              <div className="font-semibold">Licensed</div>
+              <div className="text-sm text-muted-foreground">Certified pros</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-hero text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-24 bg-primary text-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary via-accent to-tertiary" />
+        <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-96 h-96 bg-secondary/20 rounded-full blur-3xl" />
+
+        <div className="container mx-auto px-4 text-center relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Need {title}?
           </h2>
-          <p className="text-white/80 max-w-2xl mx-auto mb-8">
-            Don&apos;t wait. Our professional team is ready to help you right now.
-            Book online or call us for immediate assistance.
+          <p className="text-white/70 max-w-xl mx-auto mb-10 text-lg">
+            Our professional team is ready to help you. Book online or call for immediate assistance.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="xl" variant="secondary" asChild>
+            <Button size="lg" className="bg-secondary hover:bg-secondary/90 h-14 px-10" asChild>
               <Link href="/book">
                 Book Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button
-              size="xl"
+              size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-primary"
+              className="border-white/30 text-white hover:bg-white hover:text-primary h-14 px-10"
               asChild
             >
               <a href="tel:1-800-GUARDIUM">

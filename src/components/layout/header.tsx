@@ -4,13 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Phone,
-  Menu,
-  X,
-  Truck,
-  ChevronDown,
-} from "lucide-react";
+import { Phone, Menu, X, Truck, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const services = [
@@ -27,44 +21,24 @@ export function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
-      {/* Top bar */}
-      <div className="bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between text-sm">
-          <div className="flex items-center gap-6">
-            <span className="hidden sm:inline">24/7 Emergency Service Available</span>
-            <span className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              <a href="tel:1-800-GUARDIUM" className="font-semibold hover:text-secondary transition-colors">
-                1-800-GUARDIUM
-              </a>
-            </span>
-          </div>
-          <div className="hidden md:flex items-center gap-4">
-            <span>Serving All of Canada</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main navigation */}
+    <header className="sticky top-0 z-50 w-full bg-white border-b">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="bg-secondary p-2 rounded-lg">
-              <Truck className="h-6 w-6 text-white" />
+          <Link href="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+              <Truck className="h-5 w-5 text-white" />
             </div>
-            <div>
-              <span className="text-xl font-bold text-primary">GUARDIUM</span>
-              <span className="block text-xs text-muted-foreground -mt-1">TOWING</span>
-            </div>
+            <span className="text-xl font-bold tracking-tight">
+              <span className="text-primary">GUARDIUM</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             <Link
               href="/"
-              className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
             >
               Home
             </Link>
@@ -75,18 +49,23 @@ export function Header() {
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
-              <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors">
+              <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Services
-                <ChevronDown className={cn("h-4 w-4 transition-transform", servicesOpen && "rotate-180")} />
+                <ChevronDown
+                  className={cn(
+                    "h-4 w-4 transition-transform",
+                    servicesOpen && "rotate-180"
+                  )}
+                />
               </button>
 
               {servicesOpen && (
-                <div className="absolute top-full left-0 w-64 bg-card border rounded-lg shadow-xl py-2 animate-fade-in">
+                <div className="absolute top-full left-0 w-56 bg-white border rounded-lg shadow-xl py-2 mt-1 animate-scale-in">
                   {services.map((service) => (
                     <Link
                       key={service.href}
                       href={service.href}
-                      className="block px-4 py-2 text-sm text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                      className="block px-4 py-2.5 text-sm text-foreground/80 hover:text-secondary hover:bg-secondary/5 transition-colors"
                     >
                       {service.name}
                     </Link>
@@ -97,13 +76,13 @@ export function Header() {
 
             <Link
               href="/blog"
-              className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
             >
               Blog
             </Link>
             <Link
               href="/contact"
-              className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
             >
               Contact
             </Link>
@@ -111,17 +90,21 @@ export function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button variant="outline" asChild>
-              <Link href="/contact">Get Quote</Link>
-            </Button>
-            <Button variant="secondary" asChild className="animate-pulse-glow">
+            <a
+              href="tel:1-800-GUARDIUM"
+              className="flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-secondary transition-colors"
+            >
+              <Phone className="h-4 w-4" />
+              <span>1-800-GUARDIUM</span>
+            </a>
+            <Button className="bg-secondary hover:bg-secondary/90 px-6" asChild>
               <Link href="/book">Book Now</Link>
             </Button>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 text-foreground"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -135,23 +118,25 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t bg-card animate-slide-in">
-          <div className="container mx-auto px-4 py-4 space-y-4">
+        <div className="lg:hidden border-t bg-white animate-fade-in">
+          <div className="container mx-auto px-4 py-6 space-y-4">
             <Link
               href="/"
-              className="block py-2 text-foreground hover:text-primary"
+              className="block py-2 text-foreground font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
             </Link>
 
             <div className="space-y-2">
-              <span className="block text-sm font-semibold text-muted-foreground uppercase">Services</span>
+              <span className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                Services
+              </span>
               {services.map((service) => (
                 <Link
                   key={service.href}
                   href={service.href}
-                  className="block py-2 pl-4 text-foreground hover:text-primary"
+                  className="block py-2 pl-3 text-foreground/80 border-l-2 border-transparent hover:border-secondary hover:text-secondary transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {service.name}
@@ -161,24 +146,31 @@ export function Header() {
 
             <Link
               href="/blog"
-              className="block py-2 text-foreground hover:text-primary"
+              className="block py-2 text-foreground font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               Blog
             </Link>
             <Link
               href="/contact"
-              className="block py-2 text-foreground hover:text-primary"
+              className="block py-2 text-foreground font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
             </Link>
 
-            <div className="flex flex-col gap-2 pt-4 border-t">
-              <Button variant="outline" asChild className="w-full">
-                <Link href="/contact">Get Quote</Link>
-              </Button>
-              <Button variant="secondary" asChild className="w-full">
+            <div className="pt-4 border-t space-y-3">
+              <a
+                href="tel:1-800-GUARDIUM"
+                className="flex items-center gap-2 text-sm font-medium text-secondary"
+              >
+                <Phone className="h-4 w-4" />
+                <span>1-800-GUARDIUM</span>
+              </a>
+              <Button
+                className="w-full bg-secondary hover:bg-secondary/90"
+                asChild
+              >
                 <Link href="/book">Book Now</Link>
               </Button>
             </div>
