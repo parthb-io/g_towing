@@ -1,43 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  /* Primary - Deep Navy Blue (Trust & Professionalism) */
-  --primary: 220 70% 25%;
+  /* Airbnb-inspired color system for towing */
+
+  /* Primary - Deep Charcoal (Trust & Premium) */
+  --primary: 222 47% 11%;
   --primary-foreground: 0 0% 100%;
 
-  /* Secondary - Vibrant Orange (Action & Energy) */
-  --secondary: 25 95% 53%;
+  /* Secondary - Coral Red (Action - Airbnb inspired) */
+  --secondary: 356 100% 62%;
   --secondary-foreground: 0 0% 100%;
 
-  /* Accent - Golden Yellow (Premium & Attention) */
-  --accent: 45 93% 47%;
-  --accent-foreground: 220 70% 15%;
+  /* Accent - Warm Orange (Energy & Urgency) */
+  --accent: 24 100% 50%;
+  --accent-foreground: 0 0% 100%;
 
-  /* Background & Surfaces */
-  --background: 210 40% 98%;
-  --foreground: 220 20% 15%;
+  /* Teal for trust/reliability accents */
+  --teal: 174 62% 47%;
+  --teal-foreground: 0 0% 100%;
 
-  /* Card & Muted */
+  /* Background & Surfaces - Clean whites */
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+
+  /* Card & Muted - Subtle grays */
   --card: 0 0% 100%;
-  --card-foreground: 220 20% 15%;
-  --muted: 210 30% 95%;
-  --muted-foreground: 220 10% 40%;
+  --card-foreground: 222 47% 11%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
 
-  /* Borders */
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --ring: 220 70% 25%;
+  /* Borders - Very subtle */
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 356 100% 62%;
 
-  /* Destructive */
+  /* Semantic colors */
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-
-  /* Success */
-  --success: 142 76% 36%;
+  --success: 158 64% 42%;
   --success-foreground: 0 0% 100%;
 
-  /* Radius */
-  --radius: 0.625rem;
+  /* Radius - Airbnb uses generous rounding */
+  --radius: 0.75rem;
 }
 
 @theme inline {
@@ -47,6 +51,8 @@
   --color-secondary-foreground: hsl(var(--secondary-foreground));
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-teal: hsl(var(--teal));
+  --color-teal-foreground: hsl(var(--teal-foreground));
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-card: hsl(var(--card));
@@ -63,8 +69,10 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 4px);
-  --radius-xl: calc(var(--radius) + 8px);
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --radius-xl: calc(var(--radius) + 12px);
+  --radius-2xl: calc(var(--radius) + 20px);
+  --radius-full: 9999px;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, monospace;
 }
 
@@ -75,72 +83,331 @@
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Refined scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-muted);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
-  border-radius: 5px;
+  background: hsl(220 9% 80%);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(220 70% 30%);
+  background: hsl(220 9% 60%);
 }
 
-/* Animation utilities */
+/* Airbnb-style animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideIn {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px hsla(25, 95%, 53%, 0.4); }
-  50% { box-shadow: 0 0 40px hsla(25, 95%, 53%, 0.6); }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
-.animate-slide-in {
-  animation: slideIn 0.3s ease-out forwards;
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out forwards;
 }
 
-/* Gradient utilities */
-.bg-gradient-primary {
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(220, 70%, 35%) 100%);
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out forwards;
 }
 
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+/* Staggered animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Airbnb-style gradients */
 .bg-gradient-hero {
-  background: linear-gradient(135deg, hsl(220, 70%, 20%) 0%, hsl(220, 60%, 30%) 50%, hsl(220, 70%, 25%) 100%);
+  background: linear-gradient(135deg, hsl(222, 47%, 11%) 0%, hsl(222, 35%, 18%) 50%, hsl(222, 47%, 11%) 100%);
 }
 
+.bg-gradient-warm {
+  background: linear-gradient(135deg, hsl(356, 100%, 62%) 0%, hsl(24, 100%, 50%) 100%);
+}
+
+.bg-gradient-subtle {
+  background: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(220, 14%, 96%) 100%);
+}
+
+.bg-gradient-card {
+  background: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(220, 20%, 98%) 100%);
+}
+
+/* Text gradient */
 .text-gradient {
   background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--accent)) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.text-gradient-dark {
+  background: linear-gradient(135deg, hsl(222, 47%, 11%) 0%, hsl(222, 35%, 25%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Airbnb-style shadows */
+.shadow-airbnb-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-airbnb {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-airbnb-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 10px 20px rgba(0, 0, 0, 0.07);
+}
+
+.shadow-airbnb-lg {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08), 0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-airbnb-xl {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 24px 48px rgba(0, 0, 0, 0.12);
+}
+
+/* Hover shadows */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 24px 48px rgba(0, 0, 0, 0.12);
+}
+
+/* Airbnb-style borders */
+.border-airbnb {
+  border: 1px solid hsl(220, 13%, 91%);
+}
+
+.border-airbnb-hover:hover {
+  border-color: hsl(220, 13%, 75%);
+}
+
+/* Focus states */
+.focus-airbnb:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(0, 0%, 100%), 0 0 0 4px hsl(var(--secondary));
+}
+
+/* Search bar styling */
+.search-bar {
+  background: white;
+  border-radius: 9999px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid hsl(220, 13%, 91%);
+  transition: box-shadow 0.2s ease;
+}
+
+.search-bar:hover,
+.search-bar:focus-within {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 24px 48px rgba(0, 0, 0, 0.12);
+}
+
+/* Image hover zoom */
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Typography utilities */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Emergency banner pulse */
+.emergency-pulse {
+  position: relative;
+}
+
+.emergency-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--accent)));
+  opacity: 0;
+  animation: pulse-soft 2s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(220, 13%, 85%), transparent);
+}
+
+/* Container max widths */
+.container-tight {
+  max-width: 720px;
+}
+
+.container-narrow {
+  max-width: 960px;
+}
+
+/* Pill buttons */
+.pill {
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.pill-active {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.pill-inactive {
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+}
+
+.pill-inactive:hover {
+  background: hsl(220, 14%, 92%);
+}
+
+/* Rating stars */
+.star-filled {
+  color: hsl(var(--secondary));
+  fill: hsl(var(--secondary));
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, hsl(220, 14%, 96%) 25%, hsl(220, 14%, 92%) 50%, hsl(220, 14%, 96%) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glass-dark {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Trust badge styling */
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: hsl(var(--muted));
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+/* Number counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.counter {
+  animation: countUp 0.5s ease-out forwards;
 }

@@ -9,8 +9,10 @@ import {
   Twitter,
   Instagram,
   Linkedin,
+  ArrowRight,
+  Star,
 } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 
 const services = [
   { name: "Emergency Towing", href: "/services/emergency-towing" },
@@ -21,83 +23,114 @@ const services = [
   { name: "Accident Recovery", href: "/services/accident-recovery" },
 ];
 
-const quickLinks = [
-  { name: "Home", href: "/" },
+const company = [
   { name: "About Us", href: "/contact" },
+  { name: "Our Team", href: "/contact" },
+  { name: "Careers", href: "/contact" },
   { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
-  { name: "Book a Service", href: "/book" },
+];
+
+const support = [
+  { name: "Help Center", href: "/contact" },
+  { name: "Get a Quote", href: "/contact" },
+  { name: "Book Online", href: "/book" },
+  { name: "Track My Driver", href: "/contact" },
+  { name: "Insurance Claims", href: "/contact" },
 ];
 
 const serviceAreas = [
-  "Toronto",
-  "Vancouver",
-  "Montreal",
-  "Calgary",
-  "Edmonton",
-  "Ottawa",
-  "Winnipeg",
-  "Halifax",
+  "Toronto", "Vancouver", "Montreal", "Calgary", "Edmonton", "Ottawa", "Winnipeg", "Halifax"
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-hero text-white">
+    <footer className="bg-white border-t border-border">
+      {/* Newsletter Section */}
+      <div className="border-b border-border">
+        <div className="container mx-auto px-4 py-12">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="text-center lg:text-left">
+              <h3 className="text-xl font-bold text-foreground mb-2">
+                Get roadside tips & exclusive offers
+              </h3>
+              <p className="text-muted-foreground">
+                Join 50,000+ Canadians who receive our monthly newsletter.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="px-4 py-3 rounded-full border border-border focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent w-full sm:w-80"
+              />
+              <Button variant="secondary" className="rounded-full px-6">
+                Subscribe
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company Info */}
-          <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="bg-secondary p-2 rounded-lg">
-                <Truck className="h-6 w-6 text-white" />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
+          {/* Brand Column */}
+          <div className="col-span-2 md:col-span-3 lg:col-span-2">
+            <Link href="/" className="inline-flex items-center gap-3 mb-6">
+              <div className="bg-gradient-warm p-2.5 rounded-xl">
+                <Truck className="h-5 w-5 text-white" />
               </div>
               <div>
-                <span className="text-xl font-bold text-white">GUARDIUM</span>
-                <span className="block text-xs text-white/70 -mt-1">TOWING</span>
+                <span className="text-lg font-bold text-foreground tracking-tight">Guardium</span>
+                <span className="block text-[10px] font-medium text-muted-foreground uppercase tracking-widest -mt-0.5">Towing</span>
               </div>
             </Link>
-            <p className="text-white/80 text-sm leading-relaxed">
-              Canada&apos;s leading towing service provider with over 20 years of experience.
-              We provide fast, reliable, and professional towing services across the nation.
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-xs">
+              Canada's trusted towing service since 2004. Fast, reliable, and professional roadside assistance 24/7.
             </p>
-            <div className="flex items-center gap-4">
-              <a
-                href="#"
-                className="p-2 bg-white/10 rounded-lg hover:bg-secondary transition-colors"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-white/10 rounded-lg hover:bg-secondary transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-white/10 rounded-lg hover:bg-secondary transition-colors"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-white/10 rounded-lg hover:bg-secondary transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
+
+            {/* Rating Badge */}
+            <div className="inline-flex items-center gap-2 bg-muted rounded-full px-4 py-2 mb-6">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-secondary text-secondary" />
+                ))}
+              </div>
+              <span className="text-sm font-medium text-foreground">4.9</span>
+              <span className="text-sm text-muted-foreground">· 50K+ reviews</span>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-3">
+              {[
+                { icon: Facebook, href: "#", label: "Facebook" },
+                { icon: Twitter, href: "#", label: "Twitter" },
+                { icon: Instagram, href: "#", label: "Instagram" },
+                { icon: Linkedin, href: "#", label: "LinkedIn" },
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className="w-10 h-10 rounded-full bg-muted hover:bg-secondary hover:text-white flex items-center justify-center text-muted-foreground transition-colors"
+                  aria-label={social.label}
+                >
+                  <social.icon className="h-5 w-5" />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Our Services</h3>
+            <h4 className="font-semibold text-foreground mb-4">Services</h4>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="text-white/80 hover:text-secondary transition-colors text-sm"
+                    className="text-sm text-muted-foreground hover:text-secondary transition-colors"
                   >
                     {service.name}
                   </Link>
@@ -106,103 +139,124 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Quick Links */}
+          {/* Company */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Quick Links</h3>
+            <h4 className="font-semibold text-foreground mb-4">Company</h4>
             <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
+              {company.map((item) => (
+                <li key={item.name}>
                   <Link
-                    href={link.href}
-                    className="text-white/80 hover:text-secondary transition-colors text-sm"
+                    href={item.href}
+                    className="text-sm text-muted-foreground hover:text-secondary transition-colors"
                   >
-                    {link.name}
+                    {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-
-            <h3 className="text-lg font-bold mt-8 mb-4">Service Areas</h3>
-            <div className="flex flex-wrap gap-2">
-              {serviceAreas.map((area) => (
-                <span
-                  key={area}
-                  className="text-xs bg-white/10 px-2 py-1 rounded"
-                >
-                  {area}
-                </span>
-              ))}
-            </div>
           </div>
 
-          {/* Contact Info */}
+          {/* Support */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Contact Us</h3>
+            <h4 className="font-semibold text-foreground mb-4">Support</h4>
+            <ul className="space-y-3">
+              {support.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-muted-foreground hover:text-secondary transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="col-span-2 md:col-span-1">
+            <h4 className="font-semibold text-foreground mb-4">Contact</h4>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-secondary mt-0.5" />
-                <div>
-                  <p className="text-sm font-semibold">Emergency Hotline</p>
-                  <a
-                    href="tel:1-800-GUARDIUM"
-                    className="text-white/80 hover:text-secondary transition-colors"
-                  >
-                    1-800-GUARDIUM
-                  </a>
-                </div>
+              <li>
+                <a
+                  href="tel:1-800-GUARDIUM"
+                  className="flex items-center gap-3 text-sm group"
+                >
+                  <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary transition-colors">
+                    <Phone className="h-4 w-4 text-secondary group-hover:text-white transition-colors" />
+                  </div>
+                  <div>
+                    <span className="block font-medium text-foreground">1-800-GUARDIUM</span>
+                    <span className="text-xs text-muted-foreground">24/7 Emergency Line</span>
+                  </div>
+                </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Mail className="h-5 w-5 text-secondary mt-0.5" />
-                <div>
-                  <p className="text-sm font-semibold">Email</p>
-                  <a
-                    href="mailto:info@guardiumtowing.ca"
-                    className="text-white/80 hover:text-secondary transition-colors"
-                  >
-                    info@guardiumtowing.ca
-                  </a>
-                </div>
+              <li>
+                <a
+                  href="mailto:help@guardiumtowing.ca"
+                  className="flex items-center gap-3 text-sm group"
+                >
+                  <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary transition-colors">
+                    <Mail className="h-4 w-4 text-secondary group-hover:text-white transition-colors" />
+                  </div>
+                  <span className="text-muted-foreground group-hover:text-secondary transition-colors">
+                    help@guardiumtowing.ca
+                  </span>
+                </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-secondary mt-0.5" />
-                <div>
-                  <p className="text-sm font-semibold">Headquarters</p>
-                  <p className="text-white/80 text-sm">
-                    123 Towing Drive<br />
-                    Toronto, ON M5V 1A1
-                  </p>
+              <li className="flex items-start gap-3 text-sm">
+                <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="h-4 w-4 text-secondary" />
                 </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-secondary mt-0.5" />
-                <div>
-                  <p className="text-sm font-semibold">Hours</p>
-                  <p className="text-white/80 text-sm">
-                    24/7 Emergency Service
-                  </p>
-                </div>
+                <span className="text-muted-foreground">
+                  123 Towing Drive<br />
+                  Toronto, ON M5V 1A1
+                </span>
               </li>
             </ul>
           </div>
         </div>
+
+        {/* Service Areas */}
+        <div className="mt-12 pt-8 border-t border-border">
+          <h4 className="font-semibold text-foreground mb-4 text-center">Service Areas</h4>
+          <div className="flex flex-wrap justify-center gap-2">
+            {serviceAreas.map((area) => (
+              <span
+                key={area}
+                className="px-3 py-1.5 bg-muted rounded-full text-xs font-medium text-muted-foreground hover:bg-secondary hover:text-white transition-colors cursor-pointer"
+              >
+                {area}
+              </span>
+            ))}
+            <span className="px-3 py-1.5 bg-secondary/10 rounded-full text-xs font-medium text-secondary">
+              + 100 more
+            </span>
+          </div>
+        </div>
       </div>
 
-      <Separator className="bg-white/10" />
-
-      {/* Bottom Footer */}
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/60">
-          <p>&copy; {new Date().getFullYear()} Guardium Towing. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy" className="hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="/accessibility" className="hover:text-white transition-colors">
-              Accessibility
-            </Link>
+      {/* Bottom Bar */}
+      <div className="border-t border-border">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Guardium Towing. All rights reserved.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+              <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="/accessibility" className="text-muted-foreground hover:text-foreground transition-colors">
+                Accessibility
+              </Link>
+              <Link href="/sitemap" className="text-muted-foreground hover:text-foreground transition-colors">
+                Sitemap
+              </Link>
+            </div>
           </div>
         </div>
       </div>

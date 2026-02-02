@@ -13,8 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Phone,
   Clock,
@@ -29,15 +27,17 @@ import {
   User,
   Mail,
   MessageSquare,
+  Star,
+  Truck,
 } from "lucide-react";
 
 const services = [
-  { id: "emergency-towing", name: "Emergency Towing", price: "From $89" },
-  { id: "roadside-assistance", name: "Roadside Assistance", price: "From $59" },
-  { id: "heavy-duty-towing", name: "Heavy Duty Towing", price: "From $250" },
-  { id: "long-distance-towing", name: "Long Distance Towing", price: "From $1.50/km" },
-  { id: "motorcycle-towing", name: "Motorcycle Towing", price: "From $79" },
-  { id: "accident-recovery", name: "Accident Recovery", price: "Insurance Rates" },
+  { id: "emergency-towing", name: "Emergency Towing", price: "From $89", icon: "🚨" },
+  { id: "roadside-assistance", name: "Roadside Assistance", price: "From $59", icon: "🔧" },
+  { id: "heavy-duty-towing", name: "Heavy Duty Towing", price: "From $250", icon: "🚛" },
+  { id: "long-distance-towing", name: "Long Distance Towing", price: "From $1.50/km", icon: "🛣️" },
+  { id: "motorcycle-towing", name: "Motorcycle Towing", price: "From $79", icon: "🏍️" },
+  { id: "accident-recovery", name: "Accident Recovery", price: "Insurance Rates", icon: "🚗" },
 ];
 
 const vehicleTypes = [
@@ -106,7 +106,6 @@ export default function BookingPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would send data to a server
     console.log("Booking submitted:", formData);
     setIsSubmitted(true);
   };
@@ -124,54 +123,52 @@ export default function BookingPage() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center bg-background">
-        <Card className="max-w-md w-full mx-4">
-          <CardContent className="pt-6 text-center">
+      <div className="min-h-[80vh] flex items-center justify-center bg-gradient-subtle py-20">
+        <div className="max-w-md w-full mx-4 bg-white rounded-2xl shadow-airbnb-lg p-8">
+          <div className="text-center">
             <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="h-8 w-8 text-success" />
             </div>
-            <h2 className="text-2xl font-bold mb-2">Booking Confirmed!</h2>
-            <p className="text-muted-foreground mb-6">
-              Thank you for choosing Guardium Towing. We&apos;ve received your booking
-              request and will contact you shortly to confirm the details.
+            <h2 className="text-2xl font-bold text-foreground mb-2">Booking confirmed!</h2>
+            <p className="text-muted-foreground mb-8">
+              We've received your request and will contact you shortly to confirm the details.
             </p>
-            <div className="bg-muted rounded-lg p-4 mb-6 text-left">
-              <h3 className="font-semibold mb-2">Booking Summary</h3>
-              <div className="space-y-1 text-sm">
-                <p>
-                  <span className="text-muted-foreground">Service:</span>{" "}
-                  {services.find((s) => s.id === formData.service)?.name}
+
+            <div className="bg-muted rounded-xl p-5 mb-6 text-left">
+              <h3 className="font-semibold text-foreground mb-3">Booking summary</h3>
+              <div className="space-y-2 text-sm">
+                <p className="flex justify-between">
+                  <span className="text-muted-foreground">Service</span>
+                  <span className="font-medium">{services.find((s) => s.id === formData.service)?.name}</span>
                 </p>
-                <p>
-                  <span className="text-muted-foreground">Vehicle:</span>{" "}
-                  {formData.vehicleYear} {formData.vehicleMake} {formData.vehicleModel}
+                <p className="flex justify-between">
+                  <span className="text-muted-foreground">Vehicle</span>
+                  <span className="font-medium">{formData.vehicleYear} {formData.vehicleMake} {formData.vehicleModel}</span>
                 </p>
-                <p>
-                  <span className="text-muted-foreground">Pickup:</span>{" "}
-                  {formData.pickupAddress}
-                </p>
-                <p>
-                  <span className="text-muted-foreground">When:</span>{" "}
-                  {formData.timeSlot}
+                <p className="flex justify-between">
+                  <span className="text-muted-foreground">When</span>
+                  <span className="font-medium">{formData.timeSlot}</span>
                 </p>
               </div>
             </div>
+
             <p className="text-sm text-muted-foreground mb-6">
-              A confirmation email has been sent to {formData.email}
+              Confirmation email sent to {formData.email}
             </p>
-            <div className="flex flex-col gap-3">
-              <Button asChild>
+
+            <div className="space-y-3">
+              <Button className="w-full rounded-full" asChild>
                 <Link href="/">Return Home</Link>
               </Button>
-              <Button variant="outline" asChild>
+              <Button variant="outline" className="w-full rounded-full" asChild>
                 <a href="tel:1-800-GUARDIUM">
                   <Phone className="mr-2 h-4 w-4" />
-                  Call Us: 1-800-GUARDIUM
+                  1-800-GUARDIUM
                 </a>
               </Button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     );
   }
@@ -179,494 +176,433 @@ export default function BookingPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-hero text-white py-12">
+      <section className="bg-gradient-subtle py-12">
         <div className="container mx-auto px-4">
-          <Badge variant="secondary" className="mb-4">
-            <CalendarDays className="h-3 w-3 mr-1" />
-            Book Online
-          </Badge>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Book Your Towing Service
-          </h1>
-          <p className="text-white/80 max-w-2xl">
-            Fill out the form below to request a towing service. For immediate
-            emergency assistance, call us directly at 1-800-GUARDIUM.
-          </p>
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-airbnb-sm mb-4">
+              <CalendarDays className="h-4 w-4 text-secondary" />
+              <span className="text-sm font-medium text-foreground">Book Online</span>
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3 tracking-tight">
+              Book your towing service
+            </h1>
+            <p className="text-muted-foreground">
+              Fill out the form below to request a service. For immediate emergencies, call{" "}
+              <a href="tel:1-800-GUARDIUM" className="text-secondary font-semibold hover:underline">
+                1-800-GUARDIUM
+              </a>
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Booking Form */}
-      <section className="py-12 bg-background">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Progress Steps */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="flex items-center">
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-colors ${
-                        step >= i
-                          ? "bg-secondary text-white"
-                          : "bg-muted text-muted-foreground"
-                      }`}
-                    >
-                      {step > i ? <CheckCircle className="h-5 w-5" /> : i}
-                    </div>
-                    {i < 4 && (
+            <div className="mb-10">
+              <div className="flex items-center justify-between max-w-md mx-auto">
+                {["Service", "Location", "Contact", "Confirm"].map((label, i) => (
+                  <div key={label} className="flex items-center">
+                    <div className="flex flex-col items-center">
                       <div
-                        className={`hidden sm:block w-20 md:w-32 h-1 mx-2 ${
-                          step > i ? "bg-secondary" : "bg-muted"
+                        className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all ${
+                          step > i + 1
+                            ? "bg-success text-white"
+                            : step === i + 1
+                            ? "bg-secondary text-white"
+                            : "bg-muted text-muted-foreground"
+                        }`}
+                      >
+                        {step > i + 1 ? <CheckCircle className="h-5 w-5" /> : i + 1}
+                      </div>
+                      <span className={`text-xs mt-2 ${step === i + 1 ? "text-foreground font-medium" : "text-muted-foreground"}`}>
+                        {label}
+                      </span>
+                    </div>
+                    {i < 3 && (
+                      <div
+                        className={`w-12 sm:w-16 h-0.5 mx-1 ${
+                          step > i + 1 ? "bg-success" : "bg-muted"
                         }`}
                       />
                     )}
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between mt-2 text-xs sm:text-sm">
-                <span>Service</span>
-                <span>Location</span>
-                <span>Contact</span>
-                <span>Confirm</span>
-              </div>
             </div>
 
             <div className="grid lg:grid-cols-3 gap-8">
               {/* Main Form */}
               <div className="lg:col-span-2">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>
-                      {step === 1 && "Select Your Service"}
-                      {step === 2 && "Location & Timing"}
-                      {step === 3 && "Your Information"}
-                      {step === 4 && "Review & Confirm"}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <form onSubmit={handleSubmit}>
-                      {/* Step 1: Service Selection */}
-                      {step === 1 && (
-                        <div className="space-y-6">
-                          <div className="space-y-2">
-                            <Label>Service Type *</Label>
-                            <div className="grid sm:grid-cols-2 gap-3">
-                              {services.map((service) => (
-                                <div
-                                  key={service.id}
-                                  className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                                    formData.service === service.id
-                                      ? "border-secondary bg-secondary/5"
-                                      : "border-border hover:border-secondary/50"
-                                  }`}
-                                  onClick={() =>
-                                    updateFormData("service", service.id)
-                                  }
-                                >
-                                  <div className="font-semibold">
-                                    {service.name}
-                                  </div>
-                                  <div className="text-sm text-muted-foreground">
-                                    {service.price}
+                <div className="bg-white border border-border rounded-2xl p-6 md:p-8 shadow-airbnb-sm">
+                  <h2 className="text-xl font-bold text-foreground mb-6">
+                    {step === 1 && "Select your service"}
+                    {step === 2 && "Location & timing"}
+                    {step === 3 && "Your information"}
+                    {step === 4 && "Review & confirm"}
+                  </h2>
+
+                  <form onSubmit={handleSubmit}>
+                    {/* Step 1: Service Selection */}
+                    {step === 1 && (
+                      <div className="space-y-6">
+                        <div className="space-y-3">
+                          <Label className="text-foreground font-medium">Service type</Label>
+                          <div className="grid sm:grid-cols-2 gap-3">
+                            {services.map((service) => (
+                              <div
+                                key={service.id}
+                                className={`p-4 border-2 rounded-xl cursor-pointer transition-all ${
+                                  formData.service === service.id
+                                    ? "border-secondary bg-secondary/5"
+                                    : "border-border hover:border-secondary/50"
+                                }`}
+                                onClick={() => updateFormData("service", service.id)}
+                              >
+                                <div className="flex items-start gap-3">
+                                  <span className="text-2xl">{service.icon}</span>
+                                  <div>
+                                    <div className="font-semibold text-foreground">{service.name}</div>
+                                    <div className="text-sm text-muted-foreground">{service.price}</div>
                                   </div>
                                 </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="space-y-3">
+                          <Label className="text-foreground font-medium">Vehicle type</Label>
+                          <Select
+                            value={formData.vehicleType}
+                            onValueChange={(value) => updateFormData("vehicleType", value)}
+                          >
+                            <SelectTrigger className="rounded-xl h-12">
+                              <SelectValue placeholder="Select vehicle type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {vehicleTypes.map((type) => (
+                                <SelectItem key={type} value={type}>{type}</SelectItem>
                               ))}
-                            </div>
-                          </div>
+                            </SelectContent>
+                          </Select>
+                        </div>
 
+                        <div className="grid sm:grid-cols-3 gap-4">
                           <div className="space-y-2">
-                            <Label>Vehicle Type *</Label>
-                            <Select
-                              value={formData.vehicleType}
-                              onValueChange={(value) =>
-                                updateFormData("vehicleType", value)
-                              }
-                            >
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select vehicle type" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {vehicleTypes.map((type) => (
-                                  <SelectItem key={type} value={type}>
-                                    {type}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
+                            <Label className="text-muted-foreground text-sm">Make</Label>
+                            <Input
+                              className="rounded-xl h-11"
+                              placeholder="e.g. Toyota"
+                              value={formData.vehicleMake}
+                              onChange={(e) => updateFormData("vehicleMake", e.target.value)}
+                            />
                           </div>
-
-                          <div className="grid sm:grid-cols-3 gap-4">
-                            <div className="space-y-2">
-                              <Label>Make</Label>
-                              <Input
-                                placeholder="e.g. Toyota"
-                                value={formData.vehicleMake}
-                                onChange={(e) =>
-                                  updateFormData("vehicleMake", e.target.value)
-                                }
-                              />
-                            </div>
-                            <div className="space-y-2">
-                              <Label>Model</Label>
-                              <Input
-                                placeholder="e.g. Camry"
-                                value={formData.vehicleModel}
-                                onChange={(e) =>
-                                  updateFormData("vehicleModel", e.target.value)
-                                }
-                              />
-                            </div>
-                            <div className="space-y-2">
-                              <Label>Year</Label>
-                              <Input
-                                placeholder="e.g. 2020"
-                                value={formData.vehicleYear}
-                                onChange={(e) =>
-                                  updateFormData("vehicleYear", e.target.value)
-                                }
-                              />
-                            </div>
+                          <div className="space-y-2">
+                            <Label className="text-muted-foreground text-sm">Model</Label>
+                            <Input
+                              className="rounded-xl h-11"
+                              placeholder="e.g. Camry"
+                              value={formData.vehicleModel}
+                              onChange={(e) => updateFormData("vehicleModel", e.target.value)}
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label className="text-muted-foreground text-sm">Year</Label>
+                            <Input
+                              className="rounded-xl h-11"
+                              placeholder="e.g. 2020"
+                              value={formData.vehicleYear}
+                              onChange={(e) => updateFormData("vehicleYear", e.target.value)}
+                            />
                           </div>
                         </div>
-                      )}
+                      </div>
+                    )}
 
-                      {/* Step 2: Location & Timing */}
-                      {step === 2 && (
-                        <div className="space-y-6">
-                          <div className="space-y-2">
-                            <Label>Pickup Location *</Label>
-                            <div className="relative">
-                              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                              <Input
-                                className="pl-10"
-                                placeholder="Enter pickup address"
-                                value={formData.pickupAddress}
-                                onChange={(e) =>
-                                  updateFormData("pickupAddress", e.target.value)
-                                }
-                              />
-                            </div>
+                    {/* Step 2: Location & Timing */}
+                    {step === 2 && (
+                      <div className="space-y-6">
+                        <div className="space-y-3">
+                          <Label className="text-foreground font-medium">Pickup location</Label>
+                          <div className="relative">
+                            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                            <Input
+                              className="pl-11 rounded-xl h-12"
+                              placeholder="Enter pickup address"
+                              value={formData.pickupAddress}
+                              onChange={(e) => updateFormData("pickupAddress", e.target.value)}
+                            />
                           </div>
-
-                          <div className="space-y-2">
-                            <Label>Drop-off Location</Label>
-                            <div className="relative">
-                              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                              <Input
-                                className="pl-10"
-                                placeholder="Enter drop-off address (optional)"
-                                value={formData.dropoffAddress}
-                                onChange={(e) =>
-                                  updateFormData("dropoffAddress", e.target.value)
-                                }
-                              />
-                            </div>
-                          </div>
-
-                          <div className="space-y-2">
-                            <Label>When do you need service? *</Label>
-                            <Select
-                              value={formData.timeSlot}
-                              onValueChange={(value) =>
-                                updateFormData("timeSlot", value)
-                              }
-                            >
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select timing" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {timeSlots.map((slot) => (
-                                  <SelectItem key={slot} value={slot}>
-                                    {slot}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-
-                          {formData.timeSlot === "Schedule for Later" && (
-                            <div className="grid sm:grid-cols-2 gap-4">
-                              <div className="space-y-2">
-                                <Label>Preferred Date</Label>
-                                <Input
-                                  type="date"
-                                  value={formData.scheduledDate}
-                                  onChange={(e) =>
-                                    updateFormData("scheduledDate", e.target.value)
-                                  }
-                                />
-                              </div>
-                              <div className="space-y-2">
-                                <Label>Preferred Time</Label>
-                                <Input
-                                  type="time"
-                                  value={formData.scheduledTime}
-                                  onChange={(e) =>
-                                    updateFormData("scheduledTime", e.target.value)
-                                  }
-                                />
-                              </div>
-                            </div>
-                          )}
                         </div>
-                      )}
 
-                      {/* Step 3: Contact Information */}
-                      {step === 3 && (
-                        <div className="space-y-6">
+                        <div className="space-y-3">
+                          <Label className="text-muted-foreground text-sm">Drop-off location (optional)</Label>
+                          <div className="relative">
+                            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                            <Input
+                              className="pl-11 rounded-xl h-12"
+                              placeholder="Enter drop-off address"
+                              value={formData.dropoffAddress}
+                              onChange={(e) => updateFormData("dropoffAddress", e.target.value)}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-3">
+                          <Label className="text-foreground font-medium">When do you need service?</Label>
+                          <Select
+                            value={formData.timeSlot}
+                            onValueChange={(value) => updateFormData("timeSlot", value)}
+                          >
+                            <SelectTrigger className="rounded-xl h-12">
+                              <SelectValue placeholder="Select timing" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {timeSlots.map((slot) => (
+                                <SelectItem key={slot} value={slot}>{slot}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        {formData.timeSlot === "Schedule for Later" && (
                           <div className="grid sm:grid-cols-2 gap-4">
                             <div className="space-y-2">
-                              <Label>First Name *</Label>
-                              <div className="relative">
-                                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                                <Input
-                                  className="pl-10"
-                                  placeholder="John"
-                                  value={formData.firstName}
-                                  onChange={(e) =>
-                                    updateFormData("firstName", e.target.value)
-                                  }
-                                />
-                              </div>
+                              <Label className="text-muted-foreground text-sm">Date</Label>
+                              <Input
+                                type="date"
+                                className="rounded-xl h-11"
+                                value={formData.scheduledDate}
+                                onChange={(e) => updateFormData("scheduledDate", e.target.value)}
+                              />
                             </div>
                             <div className="space-y-2">
-                              <Label>Last Name *</Label>
+                              <Label className="text-muted-foreground text-sm">Time</Label>
                               <Input
-                                placeholder="Doe"
-                                value={formData.lastName}
-                                onChange={(e) =>
-                                  updateFormData("lastName", e.target.value)
-                                }
+                                type="time"
+                                className="rounded-xl h-11"
+                                value={formData.scheduledTime}
+                                onChange={(e) => updateFormData("scheduledTime", e.target.value)}
                               />
                             </div>
                           </div>
+                        )}
+                      </div>
+                    )}
 
-                          <div className="space-y-2">
-                            <Label>Email Address *</Label>
+                    {/* Step 3: Contact Information */}
+                    {step === 3 && (
+                      <div className="space-y-6">
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          <div className="space-y-3">
+                            <Label className="text-foreground font-medium">First name</Label>
                             <div className="relative">
-                              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                              <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                               <Input
-                                type="email"
-                                className="pl-10"
-                                placeholder="john@example.com"
-                                value={formData.email}
-                                onChange={(e) =>
-                                  updateFormData("email", e.target.value)
-                                }
+                                className="pl-11 rounded-xl h-12"
+                                placeholder="John"
+                                value={formData.firstName}
+                                onChange={(e) => updateFormData("firstName", e.target.value)}
                               />
                             </div>
                           </div>
-
-                          <div className="space-y-2">
-                            <Label>Phone Number *</Label>
-                            <div className="relative">
-                              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                              <Input
-                                type="tel"
-                                className="pl-10"
-                                placeholder="(555) 123-4567"
-                                value={formData.phone}
-                                onChange={(e) =>
-                                  updateFormData("phone", e.target.value)
-                                }
-                              />
-                            </div>
-                          </div>
-
-                          <div className="space-y-2">
-                            <Label>Additional Notes</Label>
-                            <div className="relative">
-                              <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-                              <Textarea
-                                className="pl-10"
-                                placeholder="Any special instructions or details about your situation..."
-                                value={formData.notes}
-                                onChange={(e) =>
-                                  updateFormData("notes", e.target.value)
-                                }
-                              />
-                            </div>
+                          <div className="space-y-3">
+                            <Label className="text-foreground font-medium">Last name</Label>
+                            <Input
+                              className="rounded-xl h-12"
+                              placeholder="Doe"
+                              value={formData.lastName}
+                              onChange={(e) => updateFormData("lastName", e.target.value)}
+                            />
                           </div>
                         </div>
-                      )}
 
-                      {/* Step 4: Review & Confirm */}
-                      {step === 4 && (
-                        <div className="space-y-6">
-                          <div className="bg-muted rounded-lg p-6 space-y-4">
+                        <div className="space-y-3">
+                          <Label className="text-foreground font-medium">Email</Label>
+                          <div className="relative">
+                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                            <Input
+                              type="email"
+                              className="pl-11 rounded-xl h-12"
+                              placeholder="john@example.com"
+                              value={formData.email}
+                              onChange={(e) => updateFormData("email", e.target.value)}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-3">
+                          <Label className="text-foreground font-medium">Phone</Label>
+                          <div className="relative">
+                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                            <Input
+                              type="tel"
+                              className="pl-11 rounded-xl h-12"
+                              placeholder="(555) 123-4567"
+                              value={formData.phone}
+                              onChange={(e) => updateFormData("phone", e.target.value)}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-3">
+                          <Label className="text-muted-foreground text-sm">Additional notes (optional)</Label>
+                          <Textarea
+                            className="rounded-xl min-h-[100px]"
+                            placeholder="Any special instructions or details..."
+                            value={formData.notes}
+                            onChange={(e) => updateFormData("notes", e.target.value)}
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Step 4: Review & Confirm */}
+                    {step === 4 && (
+                      <div className="space-y-6">
+                        <div className="bg-muted rounded-xl p-6 space-y-4">
+                          <div className="grid sm:grid-cols-2 gap-4">
                             <div>
-                              <h4 className="text-sm font-semibold text-muted-foreground mb-1">
-                                Service
-                              </h4>
-                              <p className="font-medium">
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Service</p>
+                              <p className="font-medium text-foreground">
                                 {services.find((s) => s.id === formData.service)?.name}
                               </p>
                             </div>
-
                             <div>
-                              <h4 className="text-sm font-semibold text-muted-foreground mb-1">
-                                Vehicle
-                              </h4>
-                              <p className="font-medium">
-                                {formData.vehicleYear} {formData.vehicleMake}{" "}
-                                {formData.vehicleModel} ({formData.vehicleType})
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Vehicle</p>
+                              <p className="font-medium text-foreground">
+                                {formData.vehicleYear} {formData.vehicleMake} {formData.vehicleModel}
                               </p>
+                              <p className="text-sm text-muted-foreground">{formData.vehicleType}</p>
                             </div>
+                          </div>
 
+                          <div className="border-t border-border pt-4 grid sm:grid-cols-2 gap-4">
                             <div>
-                              <h4 className="text-sm font-semibold text-muted-foreground mb-1">
-                                Pickup Location
-                              </h4>
-                              <p className="font-medium">{formData.pickupAddress}</p>
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Pickup</p>
+                              <p className="font-medium text-foreground">{formData.pickupAddress}</p>
                             </div>
-
                             {formData.dropoffAddress && (
                               <div>
-                                <h4 className="text-sm font-semibold text-muted-foreground mb-1">
-                                  Drop-off Location
-                                </h4>
-                                <p className="font-medium">
-                                  {formData.dropoffAddress}
-                                </p>
-                              </div>
-                            )}
-
-                            <div>
-                              <h4 className="text-sm font-semibold text-muted-foreground mb-1">
-                                Timing
-                              </h4>
-                              <p className="font-medium">
-                                {formData.timeSlot}
-                                {formData.scheduledDate &&
-                                  ` - ${formData.scheduledDate}`}
-                                {formData.scheduledTime &&
-                                  ` at ${formData.scheduledTime}`}
-                              </p>
-                            </div>
-
-                            <div>
-                              <h4 className="text-sm font-semibold text-muted-foreground mb-1">
-                                Contact
-                              </h4>
-                              <p className="font-medium">
-                                {formData.firstName} {formData.lastName}
-                              </p>
-                              <p className="text-sm text-muted-foreground">
-                                {formData.email} | {formData.phone}
-                              </p>
-                            </div>
-
-                            {formData.notes && (
-                              <div>
-                                <h4 className="text-sm font-semibold text-muted-foreground mb-1">
-                                  Notes
-                                </h4>
-                                <p className="text-sm">{formData.notes}</p>
+                                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Drop-off</p>
+                                <p className="font-medium text-foreground">{formData.dropoffAddress}</p>
                               </div>
                             )}
                           </div>
 
-                          <div className="flex items-start gap-3 p-4 bg-secondary/10 rounded-lg">
-                            <Shield className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                            <div className="text-sm">
-                              <p className="font-semibold">
-                                Secure & Confidential
-                              </p>
-                              <p className="text-muted-foreground">
-                                Your information is protected and will only be
-                                used to provide you with towing services.
+                          <div className="border-t border-border pt-4 grid sm:grid-cols-2 gap-4">
+                            <div>
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">When</p>
+                              <p className="font-medium text-foreground">
+                                {formData.timeSlot}
+                                {formData.scheduledDate && ` - ${formData.scheduledDate}`}
+                                {formData.scheduledTime && ` at ${formData.scheduledTime}`}
                               </p>
                             </div>
+                            <div>
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Contact</p>
+                              <p className="font-medium text-foreground">{formData.firstName} {formData.lastName}</p>
+                              <p className="text-sm text-muted-foreground">{formData.phone}</p>
+                            </div>
+                          </div>
+
+                          {formData.notes && (
+                            <div className="border-t border-border pt-4">
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Notes</p>
+                              <p className="text-sm text-foreground">{formData.notes}</p>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="flex items-start gap-3 p-4 bg-secondary/5 border border-secondary/20 rounded-xl">
+                          <Shield className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
+                          <div className="text-sm">
+                            <p className="font-semibold text-foreground">Secure & Confidential</p>
+                            <p className="text-muted-foreground">
+                              Your information is protected and only used to provide towing services.
+                            </p>
                           </div>
                         </div>
+                      </div>
+                    )}
+
+                    {/* Navigation Buttons */}
+                    <div className="flex justify-between mt-8 pt-6 border-t border-border">
+                      {step > 1 ? (
+                        <Button type="button" variant="ghost" className="rounded-full" onClick={prevStep}>
+                          <ArrowLeft className="mr-2 h-4 w-4" />
+                          Back
+                        </Button>
+                      ) : (
+                        <div />
                       )}
 
-                      {/* Navigation Buttons */}
-                      <div className="flex justify-between mt-8 pt-6 border-t">
-                        {step > 1 ? (
-                          <Button
-                            type="button"
-                            variant="outline"
-                            onClick={prevStep}
-                          >
-                            <ArrowLeft className="mr-2 h-4 w-4" />
-                            Back
-                          </Button>
-                        ) : (
-                          <div />
-                        )}
-
-                        {step < 4 ? (
-                          <Button
-                            type="button"
-                            onClick={nextStep}
-                            disabled={
-                              (step === 1 && !canProceedStep1) ||
-                              (step === 2 && !canProceedStep2) ||
-                              (step === 3 && !canProceedStep3)
-                            }
-                          >
-                            Continue
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </Button>
-                        ) : (
-                          <Button type="submit" variant="secondary">
-                            Confirm Booking
-                            <CheckCircle className="ml-2 h-4 w-4" />
-                          </Button>
-                        )}
-                      </div>
-                    </form>
-                  </CardContent>
-                </Card>
+                      {step < 4 ? (
+                        <Button
+                          type="button"
+                          className="rounded-full"
+                          onClick={nextStep}
+                          disabled={
+                            (step === 1 && !canProceedStep1) ||
+                            (step === 2 && !canProceedStep2) ||
+                            (step === 3 && !canProceedStep3)
+                          }
+                        >
+                          Continue
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      ) : (
+                        <Button type="submit" variant="secondary" className="rounded-full">
+                          Confirm Booking
+                          <CheckCircle className="ml-2 h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
+                  </form>
+                </div>
               </div>
 
               {/* Sidebar */}
               <div className="space-y-6">
                 {/* Emergency Card */}
-                <Card className="bg-destructive/5 border-destructive/20">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <AlertTriangle className="h-6 w-6 text-destructive" />
-                      <h3 className="font-bold">Emergency?</h3>
+                <div className="bg-secondary/5 border border-secondary/20 rounded-2xl p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+                      <AlertTriangle className="h-5 w-5 text-secondary" />
                     </div>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      For immediate emergency assistance, skip the form and call
-                      us directly.
-                    </p>
-                    <Button className="w-full" variant="destructive" asChild>
-                      <a href="tel:1-800-GUARDIUM">
-                        <Phone className="mr-2 h-4 w-4" />
-                        1-800-GUARDIUM
-                      </a>
-                    </Button>
-                  </CardContent>
-                </Card>
+                    <h3 className="font-bold text-foreground">Emergency?</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    For immediate emergency assistance, skip the form and call us directly.
+                  </p>
+                  <Button className="w-full rounded-full" variant="secondary" asChild>
+                    <a href="tel:1-800-GUARDIUM">
+                      <Phone className="mr-2 h-4 w-4" />
+                      1-800-GUARDIUM
+                    </a>
+                  </Button>
+                </div>
 
                 {/* Trust Indicators */}
-                <Card>
-                  <CardContent className="pt-6">
-                    <h3 className="font-bold mb-4">Why Book With Us?</h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-center gap-3 text-sm">
-                        <CheckCircle className="h-5 w-5 text-success" />
-                        <span>No hidden fees - transparent pricing</span>
+                <div className="bg-white border border-border rounded-2xl p-6 shadow-airbnb-sm">
+                  <h3 className="font-bold text-foreground mb-4">Why book with us?</h3>
+                  <ul className="space-y-4">
+                    {[
+                      { icon: CheckCircle, text: "No hidden fees - transparent pricing", color: "text-success" },
+                      { icon: Clock, text: "Average 30-minute response time", color: "text-secondary" },
+                      { icon: Shield, text: "Fully licensed and insured", color: "text-primary" },
+                      { icon: Star, text: "4.9/5 rating from 50,000+ customers", color: "text-secondary" },
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-3 text-sm">
+                        <item.icon className={`h-5 w-5 ${item.color}`} />
+                        <span className="text-muted-foreground">{item.text}</span>
                       </li>
-                      <li className="flex items-center gap-3 text-sm">
-                        <Clock className="h-5 w-5 text-secondary" />
-                        <span>Average 30-minute response</span>
-                      </li>
-                      <li className="flex items-center gap-3 text-sm">
-                        <Shield className="h-5 w-5 text-primary" />
-                        <span>Fully licensed and insured</span>
-                      </li>
-                      <li className="flex items-center gap-3 text-sm">
-                        <Car className="h-5 w-5 text-accent" />
-                        <span>All vehicle types accepted</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
