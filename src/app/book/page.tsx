@@ -179,16 +179,16 @@ export default function BookingPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-hero text-white py-12">
+      <section className="bg-gradient-hero text-white py-16">
         <div className="container mx-auto px-4">
           <Badge variant="secondary" className="mb-4">
             <CalendarDays className="h-3 w-3 mr-1" />
             Book Online
           </Badge>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Book Your Towing Service
           </h1>
-          <p className="text-white/80 max-w-2xl">
+          <p className="text-xl text-white/80 max-w-2xl">
             Fill out the form below to request a towing service. For immediate
             emergency assistance, call us directly at 1-800-GUARDIUM.
           </p>
@@ -196,7 +196,7 @@ export default function BookingPage() {
       </section>
 
       {/* Booking Form */}
-      <section className="py-12 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Progress Steps */}

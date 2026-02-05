@@ -42,7 +42,7 @@ export function ServicePageLayout({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-hero text-white py-20">
+      <section className="bg-gradient-hero text-white py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
             <Badge variant="secondary" className="mb-6">
@@ -75,7 +75,7 @@ export function ServicePageLayout({
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
@@ -173,7 +173,7 @@ export function ServicePageLayout({
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-hero text-white">
+      <section className="py-16 bg-gradient-hero text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Need {title}?
