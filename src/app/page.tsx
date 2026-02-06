@@ -133,30 +133,30 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/hero-pattern.svg')] opacity-10" />
-        <div className="container mx-auto px-4 py-20 lg:py-32 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(220,56,44,0.08)_0%,transparent_50%)]" />
+        <div className="container mx-auto px-4 py-20 lg:py-28 relative">
           <div className="max-w-3xl">
-            <Badge variant="secondary" className="mb-6">
+            <Badge variant="accent" className="mb-6">
               <Clock className="h-3 w-3 mr-1" />
               24/7 Emergency Service
             </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
               Canada&apos;s Most Trusted{" "}
               <span className="text-gradient">Towing Service</span>
             </h1>
-            <p className="text-xl text-white/80 mb-8 max-w-2xl">
+            <p className="text-lg text-white/70 mb-8 max-w-2xl leading-relaxed">
               Fast, reliable, and professional towing services across Canada.
               From emergency roadside assistance to heavy-duty towing, we&apos;ve
               got you covered 24/7.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button size="xl" variant="secondary" asChild className="animate-pulse-glow">
+            <div className="flex flex-wrap gap-3">
+              <Button size="xl" variant="secondary" asChild>
                 <Link href="/book">
                   Book Now
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="xl" variant="outline" className="border-white text-white hover:bg-white hover:text-primary" asChild>
+              <Button size="xl" variant="outline" className="border-white/20 text-white hover:bg-white/10" asChild>
                 <a href="tel:1-800-GUARDIUM">
                   <Phone className="mr-2 h-5 w-5" />
                   1-800-GUARDIUM
@@ -165,17 +165,17 @@ export default function HomePage() {
             </div>
 
             {/* Trust indicators */}
-            <div className="mt-12 flex flex-wrap items-center gap-8">
-              <div className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-secondary" />
+            <div className="mt-12 flex flex-wrap items-center gap-6">
+              <div className="flex items-center gap-2 text-white/60">
+                <Shield className="h-4 w-4 text-secondary" />
                 <span className="text-sm">Fully Insured</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-secondary" />
+              <div className="flex items-center gap-2 text-white/60">
+                <CheckCircle className="h-4 w-4 text-secondary" />
                 <span className="text-sm">Licensed & Certified</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Star className="h-5 w-5 text-secondary" />
+              <div className="flex items-center gap-2 text-white/60">
+                <Star className="h-4 w-4 text-secondary" />
                 <span className="text-sm">4.9/5 Rating</span>
               </div>
             </div>
@@ -183,22 +183,22 @@ export default function HomePage() {
         </div>
 
         {/* Decorative element */}
-        <div className="absolute -right-20 top-1/2 -translate-y-1/2 hidden lg:block">
-          <div className="w-[500px] h-[500px] bg-secondary/20 rounded-full blur-3xl" />
+        <div className="absolute -right-32 top-1/2 -translate-y-1/2 hidden lg:block">
+          <div className="w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl" />
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-card border-b">
+      <section className="py-10 bg-card border-b">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <stat.icon className="h-8 w-8 mx-auto mb-3 text-secondary" />
-                <div className="text-3xl md:text-4xl font-bold text-primary">
+                <stat.icon className="h-6 w-6 mx-auto mb-2 text-secondary" />
+                <div className="text-2xl md:text-3xl font-bold text-foreground">
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-xs text-muted-foreground">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -209,10 +209,10 @@ export default function HomePage() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="accent" className="mb-4">
               Our Services
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
               Comprehensive Towing Solutions
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -221,28 +221,28 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((service) => (
               <Card
                 key={service.title}
-                className="group hover:border-secondary transition-all duration-300"
+                className="group hover:border-secondary/30 transition-all duration-200"
               >
                 <CardHeader>
-                  <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
-                    <service.icon className="h-6 w-6 text-secondary group-hover:text-white" />
+                  <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center mb-3 group-hover:bg-secondary transition-colors">
+                    <service.icon className="h-5 w-5 text-secondary group-hover:text-white" />
                   </div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
+                  <CardTitle>{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-sm text-muted-foreground mb-4">
                     {service.description}
                   </p>
                   <Link
                     href={service.href}
-                    className="inline-flex items-center text-sm font-semibold text-primary hover:text-secondary transition-colors"
+                    className="inline-flex items-center text-sm font-medium text-secondary hover:text-secondary/80 transition-colors"
                   >
                     Learn More
-                    <ArrowRight className="ml-1 h-4 w-4" />
+                    <ArrowRight className="ml-1 h-3.5 w-3.5" />
                   </Link>
                 </CardContent>
               </Card>
@@ -250,10 +250,10 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" asChild>
+            <Button size="lg" variant="secondary" asChild>
               <Link href="/book">
                 Book a Service Now
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
@@ -265,10 +265,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge variant="outline" className="mb-4">
+              <Badge variant="accent" className="mb-4">
                 Why Choose Us
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
                 The Guardium Difference
               </h2>
               <p className="text-muted-foreground mb-8">
@@ -277,13 +277,13 @@ export default function HomePage() {
                 name in towing services.
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-5">
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-6 w-6 text-white" />
+                  <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center flex-shrink-0">
+                    <Clock className="h-5 w-5 text-secondary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Rapid Response Time</h3>
+                    <h3 className="font-semibold mb-1 text-sm">Rapid Response Time</h3>
                     <p className="text-sm text-muted-foreground">
                       Average arrival time of 30 minutes or less in urban areas.
                     </p>
@@ -291,11 +291,11 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Shield className="h-6 w-6 text-white" />
+                  <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center flex-shrink-0">
+                    <Shield className="h-5 w-5 text-secondary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Fully Insured & Licensed</h3>
+                    <h3 className="font-semibold mb-1 text-sm">Fully Insured & Licensed</h3>
                     <p className="text-sm text-muted-foreground">
                       Complete peace of mind with comprehensive insurance coverage.
                     </p>
@@ -303,11 +303,11 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0">
-                    <ThumbsUp className="h-6 w-6 text-white" />
+                  <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center flex-shrink-0">
+                    <ThumbsUp className="h-5 w-5 text-secondary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Transparent Pricing</h3>
+                    <h3 className="font-semibold mb-1 text-sm">Transparent Pricing</h3>
                     <p className="text-sm text-muted-foreground">
                       Upfront quotes with no hidden fees. Pay only what you&apos;re quoted.
                     </p>
@@ -315,11 +315,11 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Award className="h-6 w-6 text-white" />
+                  <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center flex-shrink-0">
+                    <Award className="h-5 w-5 text-secondary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Certified Professionals</h3>
+                    <h3 className="font-semibold mb-1 text-sm">Certified Professionals</h3>
                     <p className="text-sm text-muted-foreground">
                       All drivers are trained, certified, and background checked.
                     </p>
@@ -329,13 +329,13 @@ export default function HomePage() {
             </div>
 
             <div className="relative">
-              <div className="bg-gradient-primary rounded-2xl p-8 text-white">
-                <h3 className="text-2xl font-bold mb-6">Need Help Now?</h3>
-                <p className="text-white/80 mb-6">
+              <div className="bg-gradient-primary rounded-xl p-8 text-white">
+                <h3 className="text-xl font-bold mb-4">Need Help Now?</h3>
+                <p className="text-white/60 mb-6 text-sm">
                   Our dispatch team is standing by 24/7 to assist you. Call us
                   for immediate assistance or book online for scheduled services.
                 </p>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <Button
                     size="lg"
                     variant="secondary"
@@ -350,7 +350,7 @@ export default function HomePage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="w-full border-white text-white hover:bg-white hover:text-primary"
+                    className="w-full border-white/20 text-white hover:bg-white/10"
                     asChild
                   >
                     <Link href="/book">Book Online</Link>
@@ -366,10 +366,10 @@ export default function HomePage() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="accent" className="mb-4">
               Testimonials
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
               What Our Customers Say
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -378,28 +378,28 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-5">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-card">
+              <Card key={index}>
                 <CardContent className="pt-6">
-                  <div className="flex gap-1 mb-4">
+                  <div className="flex gap-0.5 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
                         key={i}
-                        className="h-5 w-5 fill-secondary text-secondary"
+                        className="h-4 w-4 fill-secondary text-secondary"
                       />
                     ))}
                   </div>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                     &ldquo;{testimonial.text}&rdquo;
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
+                    <div className="w-9 h-9 bg-secondary/10 rounded-full flex items-center justify-center text-secondary font-semibold text-sm">
                       {testimonial.name[0]}
                     </div>
                     <div>
-                      <p className="font-semibold">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="font-medium text-sm">{testimonial.name}</p>
+                      <p className="text-xs text-muted-foreground">
                         {testimonial.location}
                       </p>
                     </div>
@@ -416,10 +416,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-4">
+              <Badge variant="accent" className="mb-4">
                 FAQ
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
                 Frequently Asked Questions
               </h2>
               <p className="text-muted-foreground">
@@ -445,14 +445,14 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-hero text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
             Ready to Experience the Best Towing Service in Canada?
           </h2>
-          <p className="text-white/80 max-w-2xl mx-auto mb-8">
+          <p className="text-white/60 max-w-2xl mx-auto mb-8">
             Whether it&apos;s an emergency or a scheduled tow, Guardium Towing is
             here for you 24/7. Book online or call us now.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             <Button size="xl" variant="secondary" asChild>
               <Link href="/book">
                 Book a Service
@@ -462,7 +462,7 @@ export default function HomePage() {
             <Button
               size="xl"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-primary"
+              className="border-white/20 text-white hover:bg-white/10"
               asChild
             >
               <Link href="/contact">Contact Us</Link>

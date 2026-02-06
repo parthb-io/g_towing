@@ -81,12 +81,12 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="bg-gradient-hero text-white py-16">
         <div className="container mx-auto px-4">
-          <Badge variant="secondary" className="mb-4">
+          <Badge variant="accent" className="mb-4">
             <MessageSquare className="h-3 w-3 mr-1" />
             Get In Touch
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-xl text-white/80 max-w-2xl">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Contact Us</h1>
+          <p className="text-lg text-white/70 max-w-2xl">
             Have questions? Need a quote? Want to partner with us? We&apos;re here
             to help. Reach out and our team will get back to you promptly.
           </p>
@@ -173,7 +173,7 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
+              <h2 className="text-2xl font-bold tracking-tight mb-6">Send Us a Message</h2>
 
               {isSubmitted ? (
                 <Card>
@@ -298,7 +298,7 @@ export default function ContactPage() {
             {/* Company Info */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold mb-6">About Guardium Towing</h2>
+                <h2 className="text-2xl font-bold tracking-tight mb-6">About Guardium Towing</h2>
                 <p className="text-muted-foreground mb-4">
                   For over 20 years, Guardium Towing has been Canada&apos;s trusted
                   name in towing and roadside assistance. Founded in Toronto in
@@ -314,7 +314,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-bold tracking-tight mb-4 flex items-center gap-2">
                   <Users className="h-5 w-5 text-secondary" />
                   Our Regional Offices
                 </h3>
@@ -339,7 +339,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-bold tracking-tight mb-4 flex items-center gap-2">
                   <Clock className="h-5 w-5 text-secondary" />
                   Business Hours
                 </h3>
@@ -377,20 +377,20 @@ export default function ContactPage() {
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold mb-2">Find Us</h2>
+            <h2 className="text-2xl font-bold tracking-tight mb-2">Find Us</h2>
             <p className="text-muted-foreground">
               Visit our headquarters in downtown Toronto
             </p>
           </div>
           <Card className="overflow-hidden">
-            <div className="bg-primary/10 h-[400px] flex items-center justify-center">
+            <div className="bg-secondary/5 h-[400px] flex items-center justify-center">
               <div className="text-center">
-                <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
+                <MapPin className="h-12 w-12 text-secondary mx-auto mb-4" />
                 <h3 className="font-bold text-lg">Guardium Towing HQ</h3>
                 <p className="text-muted-foreground">
                   123 Towing Drive, Toronto, ON M5V 1A1
                 </p>
-                <Button variant="secondary" className="mt-4" asChild>
+                <Button variant="outline" size="sm" className="mt-4 text-foreground" asChild>
                   <a
                     href="https://maps.google.com"
                     target="_blank"

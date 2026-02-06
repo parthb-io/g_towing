@@ -130,7 +130,7 @@ export default function BookingPage() {
             <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="h-8 w-8 text-success" />
             </div>
-            <h2 className="text-2xl font-bold mb-2">Booking Confirmed!</h2>
+            <h2 className="text-2xl font-bold tracking-tight mb-2">Booking Confirmed!</h2>
             <p className="text-muted-foreground mb-6">
               Thank you for choosing Guardium Towing. We&apos;ve received your booking
               request and will contact you shortly to confirm the details.
@@ -181,14 +181,14 @@ export default function BookingPage() {
       {/* Hero Section */}
       <section className="bg-gradient-hero text-white py-12">
         <div className="container mx-auto px-4">
-          <Badge variant="secondary" className="mb-4">
+          <Badge variant="accent" className="mb-4">
             <CalendarDays className="h-3 w-3 mr-1" />
             Book Online
           </Badge>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
             Book Your Towing Service
           </h1>
-          <p className="text-white/80 max-w-2xl">
+          <p className="text-white/70 max-w-2xl">
             Fill out the form below to request a towing service. For immediate
             emergency assistance, call us directly at 1-800-GUARDIUM.
           </p>
@@ -661,7 +661,7 @@ export default function BookingPage() {
                         <span>Fully licensed and insured</span>
                       </li>
                       <li className="flex items-center gap-3 text-sm">
-                        <Car className="h-5 w-5 text-accent" />
+                        <Car className="h-5 w-5 text-secondary" />
                         <span>All vehicle types accepted</span>
                       </li>
                     </ul>

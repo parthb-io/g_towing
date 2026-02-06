@@ -91,14 +91,14 @@ export default function BlogPage() {
       {/* Hero Section */}
       <section className="bg-gradient-hero text-white py-16">
         <div className="container mx-auto px-4">
-          <Badge variant="secondary" className="mb-4">
+          <Badge variant="accent" className="mb-4">
             <BookOpen className="h-3 w-3 mr-1" />
             Our Blog
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Towing Tips & Resources
           </h1>
-          <p className="text-xl text-white/80 max-w-2xl">
+          <p className="text-lg text-white/70 max-w-2xl">
             Expert advice, safety tips, and helpful guides from Canada&apos;s
             leading towing professionals.
           </p>
@@ -113,7 +113,7 @@ export default function BlogPage() {
               <Badge
                 key={category}
                 variant={category === "All" ? "default" : "outline"}
-                className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="cursor-pointer hover:bg-secondary hover:text-secondary-foreground transition-colors"
               >
                 {category}
               </Badge>
@@ -125,7 +125,7 @@ export default function BlogPage() {
       {/* Featured Posts */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8">Featured Articles</h2>
+          <h2 className="text-2xl font-bold tracking-tight mb-8">Featured Articles</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {featuredPosts.map((post) => (
               <Card
@@ -171,7 +171,7 @@ export default function BlogPage() {
       {/* Recent Posts */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8">Recent Articles</h2>
+          <h2 className="text-2xl font-bold tracking-tight mb-8">Recent Articles</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recentPosts.map((post) => (
               <Card
@@ -204,8 +204,8 @@ export default function BlogPage() {
       {/* Newsletter CTA */}
       <section className="py-16 bg-gradient-hero text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Stay Informed</h2>
-          <p className="text-white/80 max-w-xl mx-auto mb-8">
+          <h2 className="text-3xl font-bold tracking-tight mb-4">Stay Informed</h2>
+          <p className="text-white/60 max-w-xl mx-auto mb-8">
             Subscribe to our newsletter for the latest safety tips, towing
             advice, and exclusive offers.
           </p>
@@ -213,7 +213,7 @@ export default function BlogPage() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg text-foreground"
+              className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent backdrop-blur-sm"
             />
             <Button variant="secondary">
               Subscribe

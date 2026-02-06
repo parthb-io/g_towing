@@ -114,13 +114,13 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="bg-gradient-hero text-white py-16">
         <div className="container mx-auto px-4">
-          <Badge variant="secondary" className="mb-4">
+          <Badge variant="accent" className="mb-4">
             Our Services
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Comprehensive Towing Solutions
           </h1>
-          <p className="text-xl text-white/80 max-w-2xl mb-8">
+          <p className="text-lg text-white/70 max-w-2xl mb-8">
             From emergency roadside assistance to heavy-duty commercial towing,
             Guardium Towing offers a complete range of services to meet all your
             needs, 24/7.
@@ -135,7 +135,7 @@ export default function ServicesPage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-primary"
+              className="border-white/20 text-white hover:bg-white/10"
               asChild
             >
               <a href="tel:1-800-GUARDIUM">
@@ -154,11 +154,11 @@ export default function ServicesPage() {
             {services.map((service) => (
               <Card
                 key={service.title}
-                className="group hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="group hover:shadow-md transition-all duration-300 flex flex-col"
               >
                 <CardHeader>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center group-hover:bg-secondary transition-colors">
+                    <div className="w-12 h-12 bg-secondary/10 rounded-md flex items-center justify-center group-hover:bg-secondary transition-colors">
                       <service.icon className="h-7 w-7 text-secondary group-hover:text-white" />
                     </div>
                     <Badge variant="outline">{service.price}</Badge>
@@ -198,10 +198,10 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-hero text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
             Not Sure Which Service You Need?
           </h2>
-          <p className="text-white/80 max-w-2xl mx-auto mb-8">
+          <p className="text-white/60 max-w-2xl mx-auto mb-8">
             Our friendly dispatch team is available 24/7 to help you determine
             the best service for your situation. Call us or use our online
             booking form.
@@ -216,7 +216,7 @@ export default function ServicesPage() {
             <Button
               size="xl"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-primary"
+              className="border-white/20 text-white hover:bg-white/10"
               asChild
             >
               <Link href="/book">Book Online</Link>

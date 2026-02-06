@@ -42,62 +42,62 @@ const serviceAreas = [
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-hero text-white">
+    <footer className="bg-[hsl(222,47%,7%)] text-white">
       {/* Main Footer */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container mx-auto px-4 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Company Info */}
-          <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="bg-secondary p-2 rounded-lg">
-                <Truck className="h-6 w-6 text-white" />
+          <div className="space-y-5">
+            <Link href="/" className="flex items-center gap-2.5">
+              <div className="bg-secondary p-1.5 rounded-md">
+                <Truck className="h-5 w-5 text-white" />
               </div>
               <div>
-                <span className="text-xl font-bold text-white">GUARDIUM</span>
-                <span className="block text-xs text-white/70 -mt-1">TOWING</span>
+                <span className="text-lg font-bold text-white tracking-tight">GUARDIUM</span>
+                <span className="block text-[10px] uppercase tracking-widest text-white/50 -mt-0.5">Towing</span>
               </div>
             </Link>
-            <p className="text-white/80 text-sm leading-relaxed">
+            <p className="text-white/60 text-sm leading-relaxed">
               Canada&apos;s leading towing service provider with over 20 years of experience.
               We provide fast, reliable, and professional towing services across the nation.
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <a
                 href="#"
-                className="p-2 bg-white/10 rounded-lg hover:bg-secondary transition-colors"
+                className="p-2 bg-white/5 rounded-md hover:bg-secondary/20 hover:text-secondary transition-colors"
               >
-                <Facebook className="h-5 w-5" />
+                <Facebook className="h-4 w-4" />
               </a>
               <a
                 href="#"
-                className="p-2 bg-white/10 rounded-lg hover:bg-secondary transition-colors"
+                className="p-2 bg-white/5 rounded-md hover:bg-secondary/20 hover:text-secondary transition-colors"
               >
-                <Twitter className="h-5 w-5" />
+                <Twitter className="h-4 w-4" />
               </a>
               <a
                 href="#"
-                className="p-2 bg-white/10 rounded-lg hover:bg-secondary transition-colors"
+                className="p-2 bg-white/5 rounded-md hover:bg-secondary/20 hover:text-secondary transition-colors"
               >
-                <Instagram className="h-5 w-5" />
+                <Instagram className="h-4 w-4" />
               </a>
               <a
                 href="#"
-                className="p-2 bg-white/10 rounded-lg hover:bg-secondary transition-colors"
+                className="p-2 bg-white/5 rounded-md hover:bg-secondary/20 hover:text-secondary transition-colors"
               >
-                <Linkedin className="h-5 w-5" />
+                <Linkedin className="h-4 w-4" />
               </a>
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Our Services</h3>
-            <ul className="space-y-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/90 mb-5">Our Services</h3>
+            <ul className="space-y-2.5">
               {services.map((service) => (
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="text-white/80 hover:text-secondary transition-colors text-sm"
+                    className="text-white/50 hover:text-secondary transition-colors text-sm"
                   >
                     {service.name}
                   </Link>
@@ -108,13 +108,13 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Quick Links</h3>
-            <ul className="space-y-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/90 mb-5">Quick Links</h3>
+            <ul className="space-y-2.5">
               {quickLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-white/80 hover:text-secondary transition-colors text-sm"
+                    className="text-white/50 hover:text-secondary transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -122,12 +122,12 @@ export function Footer() {
               ))}
             </ul>
 
-            <h3 className="text-lg font-bold mt-8 mb-4">Service Areas</h3>
-            <div className="flex flex-wrap gap-2">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/90 mt-8 mb-3">Service Areas</h3>
+            <div className="flex flex-wrap gap-1.5">
               {serviceAreas.map((area) => (
                 <span
                   key={area}
-                  className="text-xs bg-white/10 px-2 py-1 rounded"
+                  className="text-xs bg-white/5 text-white/50 px-2 py-0.5 rounded"
                 >
                   {area}
                 </span>
@@ -137,47 +137,47 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Contact Us</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/90 mb-5">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-secondary mt-0.5" />
+                <Phone className="h-4 w-4 text-secondary mt-0.5" />
                 <div>
-                  <p className="text-sm font-semibold">Emergency Hotline</p>
+                  <p className="text-xs font-medium text-white/70">Emergency Hotline</p>
                   <a
                     href="tel:1-800-GUARDIUM"
-                    className="text-white/80 hover:text-secondary transition-colors"
+                    className="text-white/50 hover:text-secondary transition-colors text-sm"
                   >
                     1-800-GUARDIUM
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="h-5 w-5 text-secondary mt-0.5" />
+                <Mail className="h-4 w-4 text-secondary mt-0.5" />
                 <div>
-                  <p className="text-sm font-semibold">Email</p>
+                  <p className="text-xs font-medium text-white/70">Email</p>
                   <a
                     href="mailto:info@guardiumtowing.ca"
-                    className="text-white/80 hover:text-secondary transition-colors"
+                    className="text-white/50 hover:text-secondary transition-colors text-sm"
                   >
                     info@guardiumtowing.ca
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-secondary mt-0.5" />
+                <MapPin className="h-4 w-4 text-secondary mt-0.5" />
                 <div>
-                  <p className="text-sm font-semibold">Headquarters</p>
-                  <p className="text-white/80 text-sm">
+                  <p className="text-xs font-medium text-white/70">Headquarters</p>
+                  <p className="text-white/50 text-sm">
                     123 Towing Drive<br />
                     Toronto, ON M5V 1A1
                   </p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-secondary mt-0.5" />
+                <Clock className="h-4 w-4 text-secondary mt-0.5" />
                 <div>
-                  <p className="text-sm font-semibold">Hours</p>
-                  <p className="text-white/80 text-sm">
+                  <p className="text-xs font-medium text-white/70">Hours</p>
+                  <p className="text-white/50 text-sm">
                     24/7 Emergency Service
                   </p>
                 </div>
@@ -187,20 +187,20 @@ export function Footer() {
         </div>
       </div>
 
-      <Separator className="bg-white/10" />
+      <Separator className="bg-white/5" />
 
       {/* Bottom Footer */}
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/60">
+      <div className="container mx-auto px-4 py-5">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
           <p>&copy; {new Date().getFullYear()} Guardium Towing. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="hover:text-white transition-colors">
+            <Link href="/privacy" className="hover:text-secondary transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
+            <Link href="/terms" className="hover:text-secondary transition-colors">
               Terms of Service
             </Link>
-            <Link href="/accessibility" className="hover:text-white transition-colors">
+            <Link href="/accessibility" className="hover:text-secondary transition-colors">
               Accessibility
             </Link>
           </div>
