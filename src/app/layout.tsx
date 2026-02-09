@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: {
@@ -37,8 +35,8 @@ export const metadata: Metadata = {
       "24/7 professional towing and roadside assistance across Canada. Fast, reliable, and affordable.",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
   },
 };
 
@@ -50,9 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
