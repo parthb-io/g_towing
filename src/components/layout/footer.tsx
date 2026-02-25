@@ -13,31 +13,35 @@ import {
 import { Separator } from "@/components/ui/separator";
 
 const services = [
-  { name: "Emergency Towing", href: "/services/emergency-towing" },
+  { name: "Light & Medium Duty Towing", href: "/services/light-medium-duty-towing" },
+  { name: "Heavy Duty Towing & Recovery", href: "/services/heavy-duty-towing-recovery" },
+  { name: "Deck & Transportation Hauling", href: "/services/deck-transportation-hauling" },
+  { name: "Accident Towing", href: "/services/accident-towing" },
+  { name: "Flatbed Towing", href: "/services/flatbed-towing" },
+  { name: "Winching / Tow Dolly", href: "/services/winching-tow-dolly" },
   { name: "Roadside Assistance", href: "/services/roadside-assistance" },
-  { name: "Heavy Duty Towing", href: "/services/heavy-duty-towing" },
-  { name: "Long Distance Towing", href: "/services/long-distance-towing" },
-  { name: "Motorcycle Towing", href: "/services/motorcycle-towing" },
-  { name: "Accident Recovery", href: "/services/accident-recovery" },
+  { name: "Battery Boost & Jump Start", href: "/services/battery-boost-jump-start" },
+  { name: "Tire Repair & Replacement", href: "/services/tire-repair-replacement" },
+  { name: "Fuel Delivery", href: "/services/fuel-delivery" },
 ];
 
 const quickLinks = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "/contact" },
-  { name: "Blog", href: "/blog" },
+  { name: "About Us", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Locations", href: "/locations" },
   { name: "Contact", href: "/contact" },
-  { name: "Book a Service", href: "/book" },
 ];
 
 const serviceAreas = [
-  "Toronto",
-  "Vancouver",
-  "Montreal",
-  "Calgary",
-  "Edmonton",
-  "Ottawa",
-  "Winnipeg",
-  "Halifax",
+  { name: "Edmonton", href: "/locations/edmonton" },
+  { name: "Sherwood Park", href: "/locations/sherwood-park" },
+  { name: "Spruce Grove", href: "/locations/spruce-grove" },
+  { name: "Beaumont", href: "/locations/beaumont" },
+  { name: "Devon", href: "/locations/devon" },
+  { name: "Morinville", href: "/locations/morinville" },
+  { name: "Leduc", href: "/locations/leduc" },
+  { name: "St. Albert", href: "/locations/st-albert" },
 ];
 
 export function Footer() {
@@ -58,8 +62,8 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed">
-              Canada&apos;s leading towing service provider with over 20 years of experience.
-              We provide fast, reliable, and professional towing services across the nation.
+              Edmonton&apos;s trusted towing service provider. Fast, reliable, and professional
+              towing and roadside assistance across Edmonton and surrounding areas.
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -92,7 +96,7 @@ export function Footer() {
           {/* Services */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white/90 mb-5">Our Services</h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service.href}>
                   <Link
@@ -106,10 +110,10 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links + Service Areas */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white/90 mb-5">Quick Links</h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2.5 mb-8">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -122,15 +126,16 @@ export function Footer() {
               ))}
             </ul>
 
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/90 mt-8 mb-3">Service Areas</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/90 mb-3">Service Areas</h3>
             <div className="flex flex-wrap gap-1.5">
               {serviceAreas.map((area) => (
-                <span
-                  key={area}
-                  className="text-xs bg-white/5 text-white/50 px-2 py-0.5 rounded"
+                <Link
+                  key={area.name}
+                  href={area.href}
+                  className="text-xs bg-white/5 text-white/50 hover:text-secondary hover:bg-secondary/10 px-2 py-0.5 rounded transition-colors"
                 >
-                  {area}
-                </span>
+                  {area.name}
+                </Link>
               ))}
             </div>
           </div>
@@ -166,10 +171,9 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-secondary mt-0.5" />
                 <div>
-                  <p className="text-xs font-medium text-white/70">Headquarters</p>
+                  <p className="text-xs font-medium text-white/70">Based In</p>
                   <p className="text-white/50 text-sm">
-                    123 Towing Drive<br />
-                    Toronto, ON M5V 1A1
+                    Edmonton, AB
                   </p>
                 </div>
               </li>

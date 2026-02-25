@@ -14,21 +14,37 @@ import {
 import { cn } from "@/lib/utils";
 
 const services = [
-  { name: "Emergency Towing", href: "/services/emergency-towing" },
+  { name: "Light & Medium Duty Towing", href: "/services/light-medium-duty-towing" },
+  { name: "Heavy Duty Towing & Recovery", href: "/services/heavy-duty-towing-recovery" },
+  { name: "Deck & Transportation Hauling", href: "/services/deck-transportation-hauling" },
+  { name: "Accident Towing", href: "/services/accident-towing" },
+  { name: "Flatbed Towing", href: "/services/flatbed-towing" },
+  { name: "Winching / Tow Dolly", href: "/services/winching-tow-dolly" },
   { name: "Roadside Assistance", href: "/services/roadside-assistance" },
-  { name: "Heavy Duty Towing", href: "/services/heavy-duty-towing" },
-  { name: "Long Distance Towing", href: "/services/long-distance-towing" },
-  { name: "Motorcycle Towing", href: "/services/motorcycle-towing" },
-  { name: "Accident Recovery", href: "/services/accident-recovery" },
+  { name: "Battery Boost & Jump Start", href: "/services/battery-boost-jump-start" },
+  { name: "Tire Repair & Replacement", href: "/services/tire-repair-replacement" },
+  { name: "Fuel Delivery", href: "/services/fuel-delivery" },
+];
+
+const locations = [
+  { name: "Edmonton", href: "/locations/edmonton" },
+  { name: "Sherwood Park", href: "/locations/sherwood-park" },
+  { name: "Spruce Grove", href: "/locations/spruce-grove" },
+  { name: "Beaumont", href: "/locations/beaumont" },
+  { name: "Devon", href: "/locations/devon" },
+  { name: "Morinville", href: "/locations/morinville" },
+  { name: "Leduc", href: "/locations/leduc" },
+  { name: "St. Albert", href: "/locations/st-albert" },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [locationsOpen, setLocationsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80 border-b border-border/50">
-      {/* Top bar - Redis-style slim utility bar */}
+      {/* Top bar */}
       <div className="bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 py-1.5 flex items-center justify-between text-xs">
           <div className="flex items-center gap-6">
@@ -41,7 +57,7 @@ export function Header() {
             </span>
           </div>
           <div className="hidden md:flex items-center gap-4 opacity-80">
-            <span>Serving All of Canada</span>
+            <span>Serving Edmonton &amp; Surrounding Areas</span>
           </div>
         </div>
       </div>
@@ -69,19 +85,26 @@ export function Header() {
               Home
             </Link>
 
+            <Link
+              href="/about"
+              className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-secondary transition-colors"
+            >
+              About Us
+            </Link>
+
             {/* Services Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
-              <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-secondary transition-colors">
+              <Link href="/services" className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-secondary transition-colors">
                 Services
                 <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", servicesOpen && "rotate-180")} />
-              </button>
+              </Link>
 
               {servicesOpen && (
-                <div className="absolute top-full left-0 w-56 bg-card border border-border rounded-md shadow-lg py-1 animate-fade-in">
+                <div className="absolute top-full left-0 w-64 bg-card border border-border rounded-md shadow-lg py-1 animate-fade-in">
                   {services.map((service) => (
                     <Link
                       key={service.href}
@@ -95,12 +118,32 @@ export function Header() {
               )}
             </div>
 
-            <Link
-              href="/blog"
-              className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-secondary transition-colors"
+            {/* Locations Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setLocationsOpen(true)}
+              onMouseLeave={() => setLocationsOpen(false)}
             >
-              Blog
-            </Link>
+              <Link href="/locations" className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-secondary transition-colors">
+                Locations
+                <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", locationsOpen && "rotate-180")} />
+              </Link>
+
+              {locationsOpen && (
+                <div className="absolute top-full left-0 w-52 bg-card border border-border rounded-md shadow-lg py-1 animate-fade-in">
+                  {locations.map((location) => (
+                    <Link
+                      key={location.href}
+                      href={location.href}
+                      className="block px-4 py-2 text-sm text-muted-foreground hover:text-secondary hover:bg-muted transition-colors"
+                    >
+                      Towing Services in {location.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Link
               href="/contact"
               className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-secondary transition-colors"
@@ -115,7 +158,10 @@ export function Header() {
               <Link href="/contact">Get Quote</Link>
             </Button>
             <Button variant="secondary" size="sm" asChild>
-              <Link href="/book">Book Now</Link>
+              <a href="tel:1-800-GUARDIUM">
+                <Phone className="mr-1.5 h-3.5 w-3.5" />
+                Call Now
+              </a>
             </Button>
           </div>
 
@@ -144,9 +190,22 @@ export function Header() {
             >
               Home
             </Link>
+            <Link
+              href="/about"
+              className="block py-2 text-sm text-foreground hover:text-secondary transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About Us
+            </Link>
 
             <div className="space-y-1">
-              <span className="block text-xs font-medium text-muted-foreground uppercase tracking-wider">Services</span>
+              <Link
+                href="/services"
+                className="block text-xs font-medium text-muted-foreground uppercase tracking-wider py-1 hover:text-secondary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Services
+              </Link>
               {services.map((service) => (
                 <Link
                   key={service.href}
@@ -159,13 +218,26 @@ export function Header() {
               ))}
             </div>
 
-            <Link
-              href="/blog"
-              className="block py-2 text-sm text-foreground hover:text-secondary transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Blog
-            </Link>
+            <div className="space-y-1">
+              <Link
+                href="/locations"
+                className="block text-xs font-medium text-muted-foreground uppercase tracking-wider py-1 hover:text-secondary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Locations
+              </Link>
+              {locations.map((location) => (
+                <Link
+                  key={location.href}
+                  href={location.href}
+                  className="block py-1.5 pl-3 text-sm text-foreground hover:text-secondary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {location.name}
+                </Link>
+              ))}
+            </div>
+
             <Link
               href="/contact"
               className="block py-2 text-sm text-foreground hover:text-secondary transition-colors"
@@ -179,7 +251,10 @@ export function Header() {
                 <Link href="/contact">Get Quote</Link>
               </Button>
               <Button variant="secondary" asChild className="w-full">
-                <Link href="/book">Book Now</Link>
+                <a href="tel:1-800-GUARDIUM">
+                  <Phone className="mr-2 h-4 w-4" />
+                  Call Now
+                </a>
               </Button>
             </div>
           </div>

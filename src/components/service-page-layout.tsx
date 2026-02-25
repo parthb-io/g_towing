@@ -53,8 +53,8 @@ export function ServicePageLayout({
             <p className="text-lg text-white/70 mb-8">{description}</p>
             <div className="flex flex-wrap gap-3">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="/book">
-                  Book This Service
+                <Link href="/contact">
+                  Get a Free Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -126,7 +126,7 @@ export function ServicePageLayout({
                     </div>
                     <p className="text-white/60 text-sm mb-4">{pricing.note}</p>
                     <Button variant="secondary" className="w-full" asChild>
-                      <Link href="/book">Get a Quote</Link>
+                      <Link href="/contact">Get a Quote</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -184,8 +184,8 @@ export function ServicePageLayout({
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button size="xl" variant="secondary" asChild>
-              <Link href="/book">
-                Book Now
+              <Link href="/contact">
+                Get a Free Quote
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
