@@ -118,13 +118,13 @@ export function ServicePageLayout({
 
               {/* Pricing Card */}
               {pricing && (
-                <Card className="bg-primary text-white border-0">
+                <Card className="bg-primary text-primary-foreground border-0">
                   <CardContent className="pt-6">
                     <h3 className="text-lg font-semibold mb-2">Pricing</h3>
                     <div className="text-3xl font-bold text-secondary mb-2">
                       {pricing.starting}
                     </div>
-                    <p className="text-white/60 text-sm mb-4">{pricing.note}</p>
+                    <p className="text-muted-foreground text-sm mb-4">{pricing.note}</p>
                     <Button variant="secondary" className="w-full" asChild>
                       <Link href="/book">Get a Quote</Link>
                     </Button>

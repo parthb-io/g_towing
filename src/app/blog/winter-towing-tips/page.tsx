@@ -220,10 +220,10 @@ export default function WinterTowingTipsPage() {
               </Card>
 
               {/* Emergency Card */}
-              <Card className="bg-primary text-white">
+              <Card className="bg-primary text-primary-foreground border">
                 <CardContent className="pt-6">
                   <h3 className="font-bold mb-2">Need Help Now?</h3>
-                  <p className="text-white/80 text-sm mb-4">
+                  <p className="text-muted-foreground text-sm mb-4">
                     24/7 emergency towing available across Canada.
                   </p>
                   <Button variant="secondary" className="w-full" asChild>

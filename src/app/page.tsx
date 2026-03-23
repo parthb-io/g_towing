@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { HomeHeroCarousel } from "@/components/home-hero-carousel";
 import {
   Accordion,
   AccordionContent,
@@ -15,7 +16,6 @@ import {
   Shield,
   MapPin,
   Star,
-  CheckCircle,
   ArrowRight,
   Wrench,
   Car,
@@ -128,63 +128,93 @@ const faqs = [
   },
 ];
 
+const heroSlides = [
+  {
+    image: "/images/HeavyTowing1024x680.jpg",
+    badge: "24/7 Emergency Service",
+    title: "Alberta's #1 ",
+    highlight: "Trusted Towing Partner",
+    description:
+      "Fast, reliable, and professional towing services across Canada. From emergency roadside assistance to heavy-duty towing, we've got you covered 24/7.",
+  },
+  {
+    image: "/images/decktruckoldcar1024x693.jpg",
+    badge: "Nationwide Dispatch Network",
+    title: "Rapid Response ",
+    highlight: "Across Major Cities",
+    description:
+      "Our dispatch network covers urban and regional routes coast to coast, with trained operators and professional equipment available day and night.",
+  },
+  {
+    image: "/images/decktruckequipment31024x695.jpg",
+    badge: "Local Tow Specialists",
+    title: "Sedans to Trucks,",
+    highlight: "We Tow Them All",
+    description:
+      "Certified drivers and modern tow units for light, medium, and heavy-duty recovery. Safe handling, transparent pricing, and trusted service every time.",
+  },
+  {
+    image: "/images/cliffs500rotator.jpg",
+    badge: "Advanced Recovery Fleet",
+    title: "Complex/Heavy-Duty",
+    highlight: "Recoveries",
+    description:
+      "For difficult recoveries and heavy lifts, our specialized rotator units and trained operators deliver safe, controlled results in demanding conditions.",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-hero text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(220,56,44,0.08)_0%,transparent_50%)]" />
-        <div className="container mx-auto px-4 py-20 lg:py-28 relative">
-          <div className="max-w-3xl">
-            <Badge variant="accent" className="mb-6">
-              <Clock className="h-3 w-3 mr-1" />
-              24/7 Emergency Service
+      <HomeHeroCarousel slides={heroSlides} />
+
+      {/* Maintenance Hero Section */}
+      <section className="py-16 md:py-20 border-y border-border bg-primary">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge variant="secondary" className="mb-4">
+              Ongoing Website Maintenance
             </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
-              Canada&apos;s Most Trusted{" "}
-              <span className="text-gradient">Towing Service</span>
-            </h1>
-            <p className="text-lg text-white/70 mb-8 max-w-2xl leading-relaxed">
-              Fast, reliable, and professional towing services across Canada.
-              From emergency roadside assistance to heavy-duty towing, we&apos;ve
-              got you covered 24/7.
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-5">
+              We&apos;re making things way better.
+            </h2>
+            <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-8">
+              Our website is temporarily offline for scheduled improvements.
+              Our towing services remain fully operational 24/7.
             </p>
-            <div className="flex flex-wrap gap-3">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-10 text-left">
+              <div className="rounded-lg border border-border bg-card px-4 py-3">
+                <p className="text-xs text-muted-foreground mb-1">Emergency Dispatch</p>
+                <p className="text-sm font-semibold text-white">Online</p>
+              </div>
+              <div className="rounded-lg border border-border bg-card px-4 py-3">
+                <p className="text-xs text-muted-foreground mb-1">Roadside Assistance</p>
+                <p className="text-sm font-semibold text-white">Online</p>
+              </div>
+              <div className="rounded-lg border border-border bg-card px-4 py-3">
+                <p className="text-xs text-muted-foreground mb-1">Phone Support</p>
+                <p className="text-sm font-semibold text-white">Online</p>
+              </div>
+              <div className="rounded-lg border border-border bg-card px-4 py-3">
+                <p className="text-xs text-muted-foreground mb-1">Online Booking</p>
+                <p className="text-sm font-semibold text-secondary">Upgrading</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button size="xl" variant="secondary" asChild>
-                <Link href="/book">
-                  Book Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button size="xl" variant="outline" className="border-white/20 text-white hover:bg-white/10" asChild>
-                <a href="tel:1-800-GUARDIUM">
+                <a href="tel:+17809378737">
                   <Phone className="mr-2 h-5 w-5" />
-                  1-800-GUARDIUM
+                  Get Assistance Now
                 </a>
               </Button>
-            </div>
-
-            {/* Trust indicators */}
-            <div className="mt-12 flex flex-wrap items-center gap-6">
-              <div className="flex items-center gap-2 text-white/60">
-                <Shield className="h-4 w-4 text-secondary" />
-                <span className="text-sm">Fully Insured</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/60">
-                <CheckCircle className="h-4 w-4 text-secondary" />
-                <span className="text-sm">Licensed & Certified</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/60">
-                <Star className="h-4 w-4 text-secondary" />
-                <span className="text-sm">4.9/5 Rating</span>
-              </div>
+              <Button size="xl" variant="outline" className="border-white/25 text-white hover:bg-white/10" asChild>
+                <Link href="/contact">Get Directions</Link>
+              </Button>
             </div>
           </div>
-        </div>
-
-        {/* Decorative element */}
-        <div className="absolute -right-32 top-1/2 -translate-y-1/2 hidden lg:block">
-          <div className="w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl" />
         </div>
       </section>
 

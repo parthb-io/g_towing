@@ -13,6 +13,17 @@ export const metadata: Metadata = {
 
 const blogPosts = [
   {
+    slug: "guardium-acquires-cliffs-towing",
+    title: "Guardium Towing Acquires Cliffs Towing to Expand Heavy-Duty Coverage",
+    excerpt:
+      "Guardium Towing has acquired Cliffs Towing, strengthening our heavy-duty fleet, response capacity, and service footprint across Western Canada.",
+    category: "Company News",
+    author: "Guardium Editorial Team",
+    date: "March 23, 2026",
+    readTime: "4 min read",
+    featured: true,
+  },
+  {
     slug: "winter-towing-tips",
     title: "10 Essential Winter Towing Tips Every Canadian Driver Should Know",
     excerpt:
@@ -80,7 +91,7 @@ const blogPosts = [
   },
 ];
 
-const categories = ["All", "Safety Tips", "Guides", "Tips", "Maintenance"];
+const categories = ["All", "Company News", "Safety Tips", "Guides", "Tips", "Maintenance"];
 
 export default function BlogPage() {
   const featuredPosts = blogPosts.filter((post) => post.featured);
