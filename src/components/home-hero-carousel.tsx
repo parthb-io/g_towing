@@ -35,7 +35,7 @@ export function HomeHeroCarousel({ slides, intervalMs = 5500 }: HomeHeroCarousel
   const current = slides[activeIndex];
 
   return (
-    <section className="relative h-screen min-h-[100svh] overflow-hidden text-white">
+    <section className="relative lg:h-[750px]  h-[650px] md:min-h-[600px] lg:min-h-[500px] overflow-hidden text-white">
       <div className="absolute inset-0">
         {slides.map((slide, index) => (
           <Image
@@ -53,29 +53,29 @@ export function HomeHeroCarousel({ slides, intervalMs = 5500 }: HomeHeroCarousel
         ))}
       </div>
 
-      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 bg-black/80" />
      
 
       <div className="container  mx-auto px-4 relative z-10 h-full">
-        <div className="flex h-full items-center justify-center  py-18 sm:py-20">
-          <div className="max-w-5xl items-center justify-center text-center">
+        <div className="flex h-full items-center justify-center  py-20 sm:py-20">
+          <div className="max-w-7xl text-start items-start  lg:items-center lg:justify-center lg:text-center">
             <div
               key={current.image}
               className="animate-fade-in"
             >
               
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl  font-bold mb-2 leading-tight tracking-tight text-white">
-                {current.title} <span className="text-yellow-300 ">{current.highlight}</span>
+              <h1 className="text-4xl sm:text-4xl font-mono  md:text-5xl lg:text-6xl  font-bold mb-0.5 leading-tight tracking-tight text-white">
+                {current.title} <span className="text-lime-400 ">{current.highlight}</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-white mb-7 sm:mb-8 max-w-4xl leading-tight">
+              <p className="text-sm sm:text-lg font-mono lg:text-center text-start w-full text-white mb-6 sm:mb-7 max-w-6xl leading-tight">
                 {current.description}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 items-center justify-center sm:gap-4">
-                <Button size="lg" variant="secondary" asChild className="w-full sm:w-auto rounded-full">
-                  <Link href="/book">
+                <Button size="lg" variant="secondary" asChild className="w-full font-mono sm:w-auto rounded-full">
+                  <Link href="/book" >
                     Book Now
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
@@ -83,7 +83,7 @@ export function HomeHeroCarousel({ slides, intervalMs = 5500 }: HomeHeroCarousel
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto border-white/25 bg-white text-[#ce0000] hover:bg-white/10 rounded-full"
+                  className="w-full font-mono sm:w-auto border-white/25 bg-white text-[#ce0000] hover:bg-white/10 rounded-full"
                   asChild
                 >
                   <a href="tel:1-800-GUARDIUM">

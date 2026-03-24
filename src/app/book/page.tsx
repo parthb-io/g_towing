@@ -124,8 +124,8 @@ export default function BookingPage() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center bg-background">
-        <Card className="max-w-md w-full mx-4">
+      <div className="min-h-[80vh] flex items-center  justify-center bg-background">
+        <Card className="max-w-md w-full mx-4 ">
           <CardContent className="pt-6 text-center">
             <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="h-8 w-8 text-success" />
@@ -178,8 +178,12 @@ export default function BookingPage() {
 
   return (
     <>
+      
+      <div className="h-28">
+        
+      </div>
       {/* Hero Section */}
-      <section className="bg-gradient-hero text-white py-12">
+      <section className="bg-gradient-hero text-white py-16">
         <div className="container mx-auto px-4">
           <Badge variant="accent" className="mb-4">
             <CalendarDays className="h-3 w-3 mr-1" />
@@ -196,7 +200,7 @@ export default function BookingPage() {
       </section>
 
       {/* Booking Form */}
-      <section className="py-12 bg-background">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Progress Steps */}

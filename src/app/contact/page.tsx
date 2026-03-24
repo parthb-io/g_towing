@@ -297,21 +297,7 @@ export default function ContactPage() {
 
             {/* Company Info */}
             <div className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold tracking-tight mb-6">About Guardium Towing</h2>
-                <p className="text-muted-foreground mb-4">
-                  For over 20 years, Guardium Towing has been Canada&apos;s trusted
-                  name in towing and roadside assistance. Founded in Toronto in
-                  2004, we&apos;ve grown to serve communities across the nation with
-                  our commitment to fast, reliable, and professional service.
-                </p>
-                <p className="text-muted-foreground">
-                  Our mission is simple: to be there when you need us most.
-                  Whether it&apos;s a roadside emergency at 3 AM or a scheduled
-                  vehicle transport, our team of certified professionals is
-                  ready to help.
-                </p>
-              </div>
+              
 
               <div>
                 <h3 className="text-lg font-bold tracking-tight mb-4 flex items-center gap-2">
