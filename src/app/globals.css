@@ -157,3 +157,29 @@ html {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Logo Carousel Animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.scroller[data-animated="true"] .scroller-inner {
+  animation: scroll 30s linear infinite;
+}
+
+.scroller[data-animated="true"][data-speed="fast"] .scroller-inner {
+  animation-duration: 15s;
+}
+
+.scroller[data-animated="true"][data-speed="slow"] .scroller-inner {
+  animation-duration: 45s;
+}
+
+.scroller[data-animated="true"]:hover .scroller-inner {
+  animation-play-state: paused;
+}

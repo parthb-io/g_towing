@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HomeHeroCarousel } from "@/components/home-hero-carousel";
+import { PartnerLogoCarousel } from "@/components/partner-logo-carousel";
 import {
   Accordion,
   AccordionContent,
@@ -14,7 +15,6 @@ import {
   Phone,
   Clock,
   Shield,
-  MapPin,
   Star,
   ArrowRight,
   Wrench,
@@ -23,7 +23,6 @@ import {
   Bike,
   Route,
   Award,
-  Users,
   ThumbsUp,
 } from "lucide-react";
 
@@ -72,11 +71,13 @@ const services = [
   },
 ];
 
-const stats = [
-  { icon: Users, value: "50,000+", label: "Happy Customers" },
-  { icon: Truck, value: "200+", label: "Tow Trucks" },
-  { icon: MapPin, value: "100+", label: "Cities Covered" },
-  { icon: Clock, value: "20+", label: "Years Experience" },
+const partners = [
+  { name: "Guardium Towing", logo: "/images/Towing logo.png", href: "https://guardiumtowing.com" },
+  { name: "Guardium Security", logo: "/images/Towing logo.png", href: "https://guardiumsecurity.com" },
+  { name: "Guardium Logistics", logo: "/images/Towing logo.png", href: "https://guardiumlogistics.com" },
+  { name: "Guardium Auto", logo: "/images/Towing logo.png", href: "https://guardiumauto.com" },
+  { name: "Guardium Fleet", logo: "/images/Towing logo.png", href: "https://guardiumfleet.com" },
+  { name: "Guardium Transport", logo: "/images/Towing logo.png", href: "https://guardiumtransport.com" },
 ];
 
 const testimonials = [
@@ -169,8 +170,67 @@ export default function HomePage() {
       {/* Hero Section */}
       <HomeHeroCarousel slides={heroSlides} />
 
+      {/* Partners Logo Carousel */}
+      <PartnerLogoCarousel
+        partners={partners}
+        title="Part of the Guardium Group of Companies"
+      />
+
+
+      {/* Services Section */}
+      <section className="py-30 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge variant="accent" className="mb-4">
+              Our Services
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-gray-900">
+              Comprehensive Towing Solutions
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              From emergency roadside assistance to specialized heavy-duty towing,
+              we offer a complete range of services to meet all your needs.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-secondary/30 transition-all duration-200"
+              >
+                <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center mb-4 group-hover:bg-secondary transition-colors">
+                  <service.icon className="h-5 w-5 text-secondary group-hover:text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  {service.description}
+                </p>
+                <Link
+                  href={service.href}
+                  className="inline-flex items-center text-sm font-medium text-secondary hover:text-secondary/80 transition-colors"
+                >
+                  Learn More
+                  <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button size="lg" variant="secondary" asChild>
+              <Link href="/book">
+                Book a Service Now
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+
       {/* Maintenance Hero Section */}
-      <section className="py-16 md:py-20 border-y border-border bg-primary">
+      <section className="py-16 md:py-30  bg-card/10">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <Badge variant="secondary" className="mb-4">
@@ -218,77 +278,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-10 bg-card border-b">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <stat.icon className="h-6 w-6 mx-auto mb-2 text-secondary" />
-                <div className="text-2xl md:text-3xl font-bold text-foreground">
-                  {stat.value}
-                </div>
-                <div className="text-xs text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge variant="accent" className="mb-4">
-              Our Services
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-              Comprehensive Towing Solutions
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              From emergency roadside assistance to specialized heavy-duty towing,
-              we offer a complete range of services to meet all your needs.
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map((service) => (
-              <Card
-                key={service.title}
-                className="group hover:border-secondary/30 transition-all duration-200"
-              >
-                <CardHeader>
-                  <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center mb-3 group-hover:bg-secondary transition-colors">
-                    <service.icon className="h-5 w-5 text-secondary group-hover:text-white" />
-                  </div>
-                  <CardTitle>{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {service.description}
-                  </p>
-                  <Link
-                    href={service.href}
-                    className="inline-flex items-center text-sm font-medium text-secondary hover:text-secondary/80 transition-colors"
-                  >
-                    Learn More
-                    <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button size="lg" variant="secondary" asChild>
-              <Link href="/book">
-                Book a Service Now
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
 
       {/* Why Choose Us Section */}
       <section className="py-20 bg-muted">
