@@ -29,22 +29,25 @@ export const MenuItem = ({
     <div onMouseEnter={() => setActive(item)} className="relative">
       <motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer font-mono  text-gray-800 hover:text-gray-700 font-medium text-md"
+        className={cn(
+          "cursor-pointer font-mono text-gray-900 hover:text-primary font-medium text-md transition-colors",
+          active === item && "text-primary"
+        )}
       >
         {item}
       </motion.p>
       {active !== null && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.85, y: 10 }}
+          initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={transition}
         >
           {active === item && (
-            <div className="absolute top-[calc(100%_+_0.5rem)] left-1/2 transform -translate-x-1/2 pt-4">
+            <div className="absolute top-[calc(100%+0.5rem)] left-1/2 transform -translate-x-1/2 pt-4">
               <motion.div
                 transition={transition}
                 layoutId="active"
-                className="bg-white  backdrop-blur-sm rounded-2xl overflow-hidden border border-border/40 shadow-xl"
+                className="bg-white backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-200 shadow-xl"
               >
                 <motion.div layout className="w-max h-full p-4">
                   {children}
@@ -68,7 +71,7 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)}
-      className="relative  bg-none  font-mono  flex justify-center space-x-4 px-8 py-3.5"
+      className="relative bg-none font-mono flex justify-center space-x-4 px-8 py-3.5"
     >
       {children}
     </nav>
@@ -96,10 +99,10 @@ export const ProductItem = ({
         className="flex-shrink-0 rounded-md shadow-2xl object-cover"
       />
       <div>
-        <h4 className="text-xl font-mono  font-bold mb-1 text-foreground group-hover:text-primary transition-colors">
+        <h4 className="text-xl font-mono font-bold mb-1 text-gray-900 group-hover:text-primary transition-colors">
           {title}
         </h4>
-        <p className="text-muted-foreground text-sm max-w-[10rem]">
+        <p className="text-gray-500 text-sm max-w-[10rem]">
           {description}
         </p>
       </div>
@@ -111,7 +114,7 @@ export const HoveredLink = ({ children, ...rest }: React.ComponentProps<typeof L
   return (
     <Link
       {...rest}
-      className="text-muted-foreground font-mono  hover:text-foreground transition-colors"
+      className="text-gray-600 font-mono hover:text-primary transition-colors"
     >
       {children}
     </Link>

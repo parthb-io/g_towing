@@ -1,11 +1,10 @@
 import { Metadata } from "next";
 import { ServicePageLayout } from "@/components/service-page-layout";
-import { Truck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Heavy Duty Towing Services",
   description:
-    "Professional heavy-duty towing for trucks, buses, RVs, and commercial vehicles up to 50 tons. Specialized equipment and experienced operators across Canada.",
+    "Professional heavy-duty towing in Edmonton for trucks, buses, RVs, and commercial vehicles up to 50 tons. 24/7 service. Call +1 780-809-7860.",
 };
 
 const features = [
@@ -47,7 +46,7 @@ const benefits = [
   "Specialized trailers for various vehicle types",
   "24/7 dispatch for commercial emergencies",
   "Fleet account programs available",
-  "Nationwide coverage for long-haul truckers",
+  "Serving Edmonton and all of Alberta",
 ];
 
 export default function HeavyDutyTowingPage() {
@@ -56,13 +55,9 @@ export default function HeavyDutyTowingPage() {
       title="Heavy Duty Towing"
       subtitle="Commercial & Industrial"
       description="When standard tow trucks aren't enough, our heavy-duty fleet steps in. With specialized equipment and trained operators, we handle everything from semi-trucks to construction equipment with precision and care."
-      icon={Truck}
+      iconName="Truck"
       features={features}
       benefits={benefits}
-      pricing={{
-        starting: "Starting at $250",
-        note: "Pricing varies based on vehicle weight, equipment needed, and distance. Contact us for a detailed quote.",
-      }}
     />
   );
 }

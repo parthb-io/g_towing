@@ -1,18 +1,12 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Calendar,
   Clock,
   User,
   ArrowLeft,
   Phone,
-  Share2,
-  Facebook,
-  Twitter,
-  Linkedin,
   AlertTriangle,
   CheckCircle,
 } from "lucide-react";
@@ -25,366 +19,257 @@ export const metadata: Metadata = {
 
 export default function WhatToDoAfterAccidentPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="bg-gradient-hero text-white py-16">
-        <div className="container mx-auto px-4">
-          <Link
-            href="/blog"
-            className="inline-flex items-center text-white/80 hover:text-white mb-6"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
-          </Link>
-          <Badge variant="secondary" className="mb-4">
-            Guides
-          </Badge>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 max-w-4xl">
-            What to Do After a Car Accident: A Step-by-Step Guide
-          </h1>
-          <div className="flex flex-wrap items-center gap-6 text-white/80">
-            <span className="flex items-center gap-2">
-              <User className="h-4 w-4" />
-              Sarah Chen
+    <div className="min-h-screen">
+      {/* Spacer for fixed navbar */}
+      <div className="h-20" />
+
+      {/* Hero Section */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4 py-12 md:py-16">
+          <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+            <Link href="/" className="hover:text-gray-900 transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/blog" className="hover:text-gray-900 transition-colors">Blog</Link>
+            <span>/</span>
+            <span className="text-gray-900">Guides</span>
+          </nav>
+
+          <div className="max-w-3xl">
+            <span className="inline-block bg-primary text-white text-sm font-semibold px-4 py-1 rounded-full mb-6">
+              Guides
             </span>
-            <span className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              January 8, 2026
-            </span>
-            <span className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              10 min read
-            </span>
+
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              What to Do After a Car Accident: A Step-by-Step Guide
+            </h1>
+
+            <div className="flex flex-wrap items-center gap-6 text-gray-500">
+              <span className="flex items-center gap-2">
+                <User className="h-4 w-4" />
+                Sarah Chen
+              </span>
+              <span className="flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                January 8, 2026
+              </span>
+              <span className="flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                10 min read
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Article Content */}
-      <section className="py-16 bg-background">
+      <section className="py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Main Content */}
-            <article className="lg:col-span-2 prose prose-lg max-w-none">
-              <p className="lead text-xl text-muted-foreground">
-                A car accident can happen in an instant, but the steps you take
-                afterward can have lasting consequences. This guide will help you
-                navigate the immediate aftermath and the days that follow.
-              </p>
-
-              <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 my-8 not-prose">
-                <div className="flex items-start gap-3">
-                  <AlertTriangle className="h-6 w-6 text-destructive flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-destructive">
-                      If There Are Injuries
-                    </h3>
-                    <p className="text-sm mt-1">
-                      Call 911 immediately. Don&apos;t move injured people unless
-                      there&apos;s immediate danger (fire, traffic). Your safety and
-                      the safety of others is the top priority.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <h2>Immediately After the Accident</h2>
-
-              <h3>Step 1: Check for Injuries</h3>
-              <p>
-                First, check yourself for injuries. Then check on your passengers
-                and, if possible, the occupants of other vehicles involved.
-                Remember that adrenaline can mask pain - you might be injured even
-                if you don&apos;t feel it immediately.
-              </p>
-
-              <h3>Step 2: Move to Safety</h3>
-              <p>
-                If the accident is minor and your vehicle is driveable, move it to
-                the side of the road or a parking lot to prevent further accidents
-                and traffic obstruction. Turn on your hazard lights.
-              </p>
-
-              <h3>Step 3: Call for Help</h3>
-              <p>
-                Call 911 if there are any injuries, significant vehicle damage, or
-                if the accident is blocking traffic. Even for minor accidents, it&apos;s
-                often wise to have a police report for insurance purposes.
-              </p>
-
-              <h3>Step 4: Exchange Information</h3>
-              <p>Collect the following from all parties involved:</p>
-              <ul>
-                <li>Full name and contact information</li>
-                <li>Driver&apos;s license number</li>
-                <li>Insurance company and policy number</li>
-                <li>License plate number</li>
-                <li>Vehicle make, model, and color</li>
-              </ul>
-              <p>
-                Also get contact information from any witnesses. Be polite but
-                avoid admitting fault or making statements about who caused the
-                accident.
-              </p>
-
-              <h3>Step 5: Document the Scene</h3>
-              <p>Use your phone to take photos of:</p>
-              <ul>
-                <li>All vehicles involved (damage and positions)</li>
-                <li>The accident scene from multiple angles</li>
-                <li>Skid marks, debris, or road conditions</li>
-                <li>Traffic signs and signals</li>
-                <li>Weather conditions</li>
-                <li>Any visible injuries</li>
-              </ul>
-
-              <h3>Step 6: File a Police Report</h3>
-              <p>
-                If police arrive at the scene, they&apos;ll create an accident report.
-                Get the report number and the officer&apos;s badge number. If police
-                don&apos;t come to the scene, you may need to file a report at the local
-                police station, especially if there are injuries or significant
-                damage.
-              </p>
-
-              <div className="bg-success/10 border border-success/20 rounded-lg p-6 my-8 not-prose">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-6 w-6 text-success flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-success">Pro Tip</h3>
-                    <p className="text-sm mt-1">
-                      Keep a printed checklist of these steps in your glove box.
-                      In the stress of an accident, having a guide to follow can
-                      help you remember important steps.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <h2>After Leaving the Scene</h2>
-
-              <h3>Step 7: Notify Your Insurance Company</h3>
-              <p>
-                Contact your insurance company as soon as possible, ideally the
-                same day. Provide them with the details you collected and the
-                police report number. Be honest and factual in your description of
-                what happened.
-              </p>
-
-              <h3>Step 8: Seek Medical Attention</h3>
-              <p>
-                Even if you feel fine, see a doctor within 24-48 hours of the
-                accident. Some injuries, like whiplash or internal injuries, may
-                not be immediately apparent. Medical documentation is also
-                important if you need to file an injury claim later.
-              </p>
-
-              <h3>Step 9: Arrange for Vehicle Towing/Repair</h3>
-              <p>
-                If your vehicle isn&apos;t driveable, you&apos;ll need to arrange towing to
-                a repair shop or your home. Your insurance company may have
-                preferred towing services, or you can choose your own trusted
-                provider like Guardium Towing.
-              </p>
-
-              <h3>Step 10: Keep Detailed Records</h3>
-              <p>Create a file for your accident and keep:</p>
-              <ul>
-                <li>Copies of all documents (police report, insurance claims)</li>
-                <li>Medical records and receipts</li>
-                <li>Repair estimates and invoices</li>
-                <li>Records of any lost wages</li>
-                <li>A journal of how the accident has affected your daily life</li>
-              </ul>
-
-              <h2>Important Things to Avoid</h2>
-              <ul>
-                <li>
-                  <strong>Don&apos;t admit fault</strong> - Even saying &quot;I&apos;m sorry&quot;
-                  can be used against you
-                </li>
-                <li>
-                  <strong>Don&apos;t give a recorded statement</strong> to the other
-                  party&apos;s insurance without consulting your own insurer first
-                </li>
-                <li>
-                  <strong>Don&apos;t accept a quick settlement</strong> before you
-                  know the full extent of damages and injuries
-                </li>
-                <li>
-                  <strong>Don&apos;t post about the accident on social media</strong>
-                </li>
-                <li>
-                  <strong>Don&apos;t neglect your vehicle</strong> - Even if it seems
-                  minor, have it inspected for hidden damage
-                </li>
-              </ul>
-
-              <div className="bg-secondary/10 border border-secondary/20 rounded-lg p-6 my-8 not-prose">
-                <h3 className="text-secondary font-bold mb-2">
-                  Need Accident Towing?
-                </h3>
-                <p className="mb-4">
-                  Guardium Towing specializes in accident recovery. We work
-                  directly with insurance companies and can transport your vehicle
-                  to the repair shop of your choice.
+            <article className="lg:col-span-2">
+              <div className="bg-white rounded-xl border border-gray-100 p-6 md:p-10">
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                  A car accident can happen in an instant, but the steps you take
+                  afterward can have lasting consequences. This guide will help you
+                  navigate the immediate aftermath and the days that follow.
                 </p>
-                <Button variant="secondary" asChild>
-                  <a href="tel:1-800-GUARDIUM">
-                    <Phone className="mr-2 h-4 w-4" />
-                    Call 1-800-GUARDIUM
-                  </a>
-                </Button>
+
+                {/* Warning Box */}
+                <div className="bg-red-50 border border-red-100 rounded-xl p-6 mb-8">
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-bold text-red-800">If There Are Injuries</h3>
+                      <p className="text-sm text-red-700 mt-1">
+                        Call 911 immediately. Don&apos;t move injured people unless
+                        there&apos;s immediate danger (fire, traffic). Your safety and
+                        the safety of others is the top priority.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">Immediately After the Accident</h2>
+
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 1: Check for Injuries</h3>
+                <p className="text-gray-700 mb-6">
+                  First, check yourself for injuries. Then check on your passengers
+                  and, if possible, the occupants of other vehicles involved.
+                  Remember that adrenaline can mask pain.
+                </p>
+
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 2: Move to Safety</h3>
+                <p className="text-gray-700 mb-6">
+                  If the accident is minor and your vehicle is driveable, move it to
+                  the side of the road. Turn on your hazard lights.
+                </p>
+
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 3: Call for Help</h3>
+                <p className="text-gray-700 mb-6">
+                  Call 911 if there are any injuries or significant vehicle damage.
+                  Even for minor accidents, a police report helps with insurance.
+                </p>
+
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 4: Exchange Information</h3>
+                <p className="text-gray-700 mb-4">Collect the following from all parties:</p>
+                <ul className="space-y-2 mb-6 text-gray-700 ml-4">
+                  <li>• Full name and contact information</li>
+                  <li>• Driver&apos;s license number</li>
+                  <li>• Insurance company and policy number</li>
+                  <li>• License plate number</li>
+                  <li>• Vehicle make, model, and color</li>
+                </ul>
+
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 5: Document the Scene</h3>
+                <p className="text-gray-700 mb-4">Use your phone to take photos of:</p>
+                <ul className="space-y-2 mb-6 text-gray-700 ml-4">
+                  <li>• All vehicles involved (damage and positions)</li>
+                  <li>• The accident scene from multiple angles</li>
+                  <li>• Skid marks, debris, or road conditions</li>
+                  <li>• Traffic signs and signals</li>
+                  <li>• Any visible injuries</li>
+                </ul>
+
+                {/* Pro Tip Box */}
+                <div className="bg-green-50 border border-green-100 rounded-xl p-6 mb-8">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-bold text-green-800">Pro Tip</h3>
+                      <p className="text-sm text-green-700 mt-1">
+                        Keep a printed checklist of these steps in your glove box.
+                        In the stress of an accident, having a guide helps.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">After Leaving the Scene</h2>
+
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 6: Notify Your Insurance</h3>
+                <p className="text-gray-700 mb-6">
+                  Contact your insurance company as soon as possible, ideally the same day.
+                  Provide details and the police report number.
+                </p>
+
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 7: Seek Medical Attention</h3>
+                <p className="text-gray-700 mb-6">
+                  Even if you feel fine, see a doctor within 24-48 hours. Some injuries
+                  like whiplash may not be immediately apparent.
+                </p>
+
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 8: Arrange Towing</h3>
+                <p className="text-gray-700 mb-8">
+                  If your vehicle isn&apos;t driveable, arrange towing to a repair shop.
+                  Guardium Towing works directly with insurance companies.
+                </p>
+
+                {/* CTA Box */}
+                <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
+                  <h3 className="font-bold text-gray-900 mb-2">Need Accident Towing?</h3>
+                  <p className="text-gray-600 mb-4">
+                    We specialize in accident recovery and work directly with insurance
+                    companies. We can transport your vehicle to the repair shop of your choice.
+                  </p>
+                  <Button className="bg-primary hover:bg-primary/90" asChild>
+                    <a href="tel:+17808097860">
+                      <Phone className="mr-2 h-4 w-4" />
+                      Call 780-809-7860
+                    </a>
+                  </Button>
+                </div>
               </div>
 
-              <h2>Understanding Your Rights</h2>
-              <p>
-                In Canada, you have certain rights after an accident:
-              </p>
-              <ul>
-                <li>
-                  You have the right to choose your own repair shop, regardless of
-                  what the insurance company suggests
-                </li>
-                <li>
-                  You have the right to rental car coverage if it&apos;s part of your
-                  policy
-                </li>
-                <li>
-                  You have the right to dispute the insurance company&apos;s valuation
-                  of your vehicle if it&apos;s totaled
-                </li>
-                <li>
-                  You have the right to consult with a lawyer before settling,
-                  especially for serious accidents
-                </li>
-              </ul>
-
-              <h2>Conclusion</h2>
-              <p>
-                Being prepared and knowing what to do after an accident can make a
-                stressful situation more manageable. Keep this guide bookmarked on
-                your phone or printed in your car so you&apos;ll have it when you need
-                it. And remember, Guardium Towing is available 24/7 to help with
-                accident recovery and towing services.
-              </p>
+              {/* Back to Blog */}
+              <div className="flex justify-between items-center mt-8">
+                <Link
+                  href="/blog"
+                  className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Blog
+                </Link>
+              </div>
             </article>
 
             {/* Sidebar */}
             <aside className="space-y-6">
-              {/* Share */}
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-bold mb-4 flex items-center gap-2">
-                    <Share2 className="h-5 w-5" />
-                    Share This Article
-                  </h3>
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="icon">
-                      <Facebook className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Twitter className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Linkedin className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              {/* Emergency Card */}
+              <div className="bg-gray-900 text-white rounded-xl p-6">
+                <h3 className="font-bold mb-2">Need Accident Towing?</h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  24/7 accident recovery and towing services.
+                </p>
+                <Button className="w-full bg-primary hover:bg-primary/90" asChild>
+                  <a href="tel:+17808097860">
+                    <Phone className="mr-2 h-4 w-4" />
+                    780-809-7860
+                  </a>
+                </Button>
+              </div>
 
               {/* Quick Checklist */}
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-bold mb-4">Quick Checklist</h3>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-success" />
-                      Check for injuries
+              <div className="bg-white rounded-xl border border-gray-100 p-6">
+                <h3 className="font-bold text-gray-900 mb-4">Quick Checklist</h3>
+                <ul className="space-y-2 text-sm">
+                  {[
+                    "Check for injuries",
+                    "Move to safety",
+                    "Call 911 if needed",
+                    "Exchange information",
+                    "Document the scene",
+                    "File police report",
+                    "Contact insurance",
+                    "See a doctor",
+                  ].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-gray-700">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      {item}
                     </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-success" />
-                      Move to safety
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-success" />
-                      Call 911 if needed
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-success" />
-                      Exchange information
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-success" />
-                      Document the scene
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-success" />
-                      File police report
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-success" />
-                      Contact insurance
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-success" />
-                      See a doctor
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              {/* Emergency Card */}
-              <Card className="bg-primary text-primary-foreground border">
-                <CardContent className="pt-6">
-                  <h3 className="font-bold mb-2">Need Accident Towing?</h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    24/7 accident recovery and towing services.
-                  </p>
-                  <Button variant="secondary" className="w-full" asChild>
-                    <a href="tel:1-800-GUARDIUM">
-                      <Phone className="mr-2 h-4 w-4" />
-                      1-800-GUARDIUM
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
+                  ))}
+                </ul>
+              </div>
 
               {/* Related Articles */}
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-bold mb-4">Related Articles</h3>
-                  <ul className="space-y-3">
-                    <li>
-                      <Link
-                        href="/blog/winter-towing-tips"
-                        className="text-sm text-muted-foreground hover:text-secondary"
-                      >
-                        10 Essential Winter Towing Tips
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/blog"
-                        className="text-sm text-muted-foreground hover:text-secondary"
-                      >
-                        How to Choose a Reliable Towing Company
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/blog"
-                        className="text-sm text-muted-foreground hover:text-secondary"
-                      >
-                        Building the Ultimate Roadside Emergency Kit
-                      </Link>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+              <div className="bg-white rounded-xl border border-gray-100 p-6">
+                <h3 className="font-bold text-gray-900 mb-4">Related Articles</h3>
+                <ul className="space-y-3">
+                  <li>
+                    <Link
+                      href="/blog/winter-towing-tips"
+                      className="text-sm text-gray-600 hover:text-primary transition-colors"
+                    >
+                      10 Essential Winter Towing Tips
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/blog/guardium-acquires-cliffs-towing"
+                      className="text-sm text-gray-600 hover:text-primary transition-colors"
+                    >
+                      Guardium Acquires Cliffs Towing
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </aside>
           </div>
         </div>
       </section>
-    </>
+
+      {/* Emergency CTA */}
+      <section className="py-12 bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-2xl font-bold text-white mb-4">Been in an Accident?</h2>
+          <p className="text-gray-400 mb-6">We handle accident towing and work with your insurance.</p>
+          <Button size="lg" className="bg-primary hover:bg-primary/90 h-14 px-10" asChild>
+            <a href="tel:+17808097860">
+              <Phone className="mr-2 h-5 w-5" />
+              780-809-7860
+            </a>
+          </Button>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,9 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, ArrowRight, User, BookOpen } from "lucide-react";
+import { Calendar, Clock, ArrowRight, User, BookOpen, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -45,194 +43,137 @@ const blogPosts = [
     readTime: "10 min read",
     featured: true,
   },
-  {
-    slug: "choosing-towing-company",
-    title: "How to Choose a Reliable Towing Company",
-    excerpt:
-      "Not all towing companies are created equal. Here's what to look for when you need to call for help on the road.",
-    category: "Tips",
-    author: "Mike Johnson",
-    date: "December 20, 2025",
-    readTime: "6 min read",
-    featured: false,
-  },
-  {
-    slug: "roadside-emergency-kit",
-    title: "Building the Ultimate Roadside Emergency Kit",
-    excerpt:
-      "Be prepared for any roadside emergency with our comprehensive guide to building a well-stocked emergency kit for your vehicle.",
-    category: "Safety Tips",
-    author: "Lisa Park",
-    date: "December 12, 2025",
-    readTime: "7 min read",
-    featured: false,
-  },
-  {
-    slug: "battery-maintenance",
-    title: "Car Battery Maintenance: Extending the Life of Your Battery",
-    excerpt:
-      "Dead batteries are one of the most common reasons for roadside calls. Learn how to maintain your battery and avoid being stranded.",
-    category: "Maintenance",
-    author: "David Wong",
-    date: "December 5, 2025",
-    readTime: "5 min read",
-    featured: false,
-  },
-  {
-    slug: "tire-blowout-safety",
-    title: "How to Handle a Tire Blowout Safely",
-    excerpt:
-      "A tire blowout at highway speeds can be terrifying. Learn the proper techniques to safely handle this emergency situation.",
-    category: "Safety Tips",
-    author: "Sarah Chen",
-    date: "November 28, 2025",
-    readTime: "6 min read",
-    featured: false,
-  },
 ];
 
 const categories = ["All", "Company News", "Safety Tips", "Guides", "Tips", "Maintenance"];
 
 export default function BlogPage() {
-  const featuredPosts = blogPosts.filter((post) => post.featured);
-  const recentPosts = blogPosts.filter((post) => !post.featured);
-
   return (
-    <>
+    <div className="min-h-screen">
+      {/* Spacer for fixed navbar */}
+      <div className="h-20" />
+
       {/* Hero Section */}
-      <section className="bg-gradient-hero text-white py-16">
-        <div className="container mx-auto px-4">
-          <Badge variant="accent" className="mb-4">
-            <BookOpen className="h-3 w-3 mr-1" />
-            Our Blog
-          </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            Towing Tips & Resources
-          </h1>
-          <p className="text-lg text-white/70 max-w-2xl">
-            Expert advice, safety tips, and helpful guides from Canada&apos;s
-            leading towing professionals.
-          </p>
+      <section className="bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4 py-12 md:py-16">
+          <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+            <Link href="/" className="hover:text-gray-900 transition-colors">Home</Link>
+            <span>/</span>
+            <span className="text-gray-900">Blog</span>
+          </nav>
+
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <BookOpen className="h-4 w-4" />
+              Our Blog
+            </div>
+
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Towing Tips & Resources
+            </h1>
+
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Expert advice, safety tips, and helpful guides from Edmonton&apos;s
+              leading towing professionals.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Categories */}
-      <section className="py-8 bg-card border-b">
+      <section className="py-6 bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
-              <Badge
+              <button
                 key={category}
-                variant={category === "All" ? "default" : "outline"}
-                className="cursor-pointer hover:bg-secondary hover:text-secondary-foreground transition-colors"
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  category === "All"
+                    ? "bg-primary text-white"
+                    : "bg-white border border-gray-200 text-gray-600 hover:border-primary hover:text-primary"
+                }`}
               >
                 {category}
-              </Badge>
+              </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Posts */}
-      <section className="py-16 bg-background">
+      {/* Blog Posts */}
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold tracking-tight mb-8">Featured Articles</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {featuredPosts.map((post) => (
-              <Card
+          <h2 className="text-2xl font-bold text-gray-900 mb-8">Latest Articles</h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blogPosts.map((post) => (
+              <Link
                 key={post.slug}
-                className="overflow-hidden group hover:shadow-xl transition-all duration-300"
+                href={`/blog/${post.slug}`}
+                className="group bg-gray-50 rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all"
               >
-                <div className="h-48 bg-gradient-primary relative">
-                  <div className="absolute inset-0 bg-black/20" />
+                {/* Image placeholder */}
+                <div className="h-48 bg-gray-900 relative">
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
                   <div className="absolute bottom-4 left-4">
-                    <Badge variant="secondary">{post.category}</Badge>
+                    <span className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
+                      {post.category}
+                    </span>
                   </div>
                 </div>
-                <CardHeader>
-                  <CardTitle className="group-hover:text-secondary transition-colors">
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">{post.excerpt}</p>
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <div className="flex items-center gap-4">
+
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+
+                  <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                    {post.excerpt}
+                  </p>
+
+                  <div className="flex items-center justify-between text-xs text-gray-500">
+                    <div className="flex items-center gap-3">
                       <span className="flex items-center gap-1">
-                        <User className="h-4 w-4" />
-                        {post.author}
+                        <User className="h-3 w-3" />
+                        {post.author.split(" ")[0]}
                       </span>
                       <span className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
+                        <Calendar className="h-3 w-3" />
                         {post.date}
                       </span>
                     </div>
                     <span className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
+                      <Clock className="h-3 w-3" />
                       {post.readTime}
                     </span>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Recent Posts */}
-      <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold tracking-tight mb-8">Recent Articles</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentPosts.map((post) => (
-              <Card
-                key={post.slug}
-                className="group hover:shadow-lg transition-all duration-300"
-              >
-                <CardHeader>
-                  <Badge variant="outline" className="w-fit mb-2">
-                    {post.category}
-                  </Badge>
-                  <CardTitle className="text-lg group-hover:text-secondary transition-colors">
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>{post.date}</span>
-                    <span>{post.readTime}</span>
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-16 bg-gradient-hero text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">Stay Informed</h2>
-          <p className="text-white/60 max-w-xl mx-auto mb-8">
-            Subscribe to our newsletter for the latest safety tips, towing
-            advice, and exclusive offers.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent backdrop-blur-sm"
-            />
-            <Button variant="secondary">
-              Subscribe
-              <ArrowRight className="ml-2 h-4 w-4" />
+      
+
+      {/* Emergency CTA */}
+      <section className="py-12 bg-gray-50 border-t border-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-1">Need Towing Now?</h3>
+              <p className="text-gray-600">Our team is available 24/7 for emergencies.</p>
+            </div>
+            <Button size="lg" className="bg-primary hover:bg-primary/90 h-14 px-8" asChild>
+              <a href="tel:+17808097860">
+                <Phone className="mr-2 h-5 w-5" />
+                Call 780-809-7860
+              </a>
             </Button>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

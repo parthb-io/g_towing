@@ -1,0 +1,13 @@
+# Guardium Towing - robots.txt
+# https://guardiumtowing.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://guardiumtowing.com/sitemap.xml
+
+# Disallow admin/private areas (if any)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/

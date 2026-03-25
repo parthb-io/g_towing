@@ -1,11 +1,10 @@
 import { Metadata } from "next";
 import { ServicePageLayout } from "@/components/service-page-layout";
-import { Wrench } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Roadside Assistance",
   description:
-    "Comprehensive roadside assistance services including battery jump starts, flat tire changes, fuel delivery, and lockout services. Available 24/7 across Canada.",
+    "24/7 roadside assistance in Edmonton including battery jump starts, flat tire changes, fuel delivery, and lockout services. Call +1 780-809-7860.",
 };
 
 const features = [
@@ -56,13 +55,9 @@ export default function RoadsideAssistancePage() {
       title="Roadside Assistance"
       subtitle="Help When You Need It"
       description="From dead batteries to flat tires, locked keys to empty fuel tanks, our comprehensive roadside assistance services cover all your needs. Get professional help without the need for a tow."
-      icon={Wrench}
+      iconName="Wrench"
       features={features}
       benefits={benefits}
-      pricing={{
-        starting: "Starting at $59",
-        note: "Service-specific pricing. Battery jump start from $59, tire change from $69, lockout from $79.",
-      }}
     />
   );
 }

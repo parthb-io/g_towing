@@ -1,18 +1,14 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Calendar,
   Clock,
   User,
   ArrowLeft,
   Phone,
-  Share2,
-  Facebook,
-  Twitter,
-  Linkedin,
+  ArrowRight,
+  CheckCircle,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -23,254 +19,226 @@ export const metadata: Metadata = {
 
 export default function WinterTowingTipsPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="bg-gradient-hero text-white py-16">
-        <div className="container mx-auto px-4">
-          <Link
-            href="/blog"
-            className="inline-flex items-center text-white/80 hover:text-white mb-6"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
-          </Link>
-          <Badge variant="secondary" className="mb-4">
-            Safety Tips
-          </Badge>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 max-w-4xl">
-            10 Essential Winter Towing Tips Every Canadian Driver Should Know
-          </h1>
-          <div className="flex flex-wrap items-center gap-6 text-white/80">
-            <span className="flex items-center gap-2">
-              <User className="h-4 w-4" />
-              Mike Johnson
+    <div className="min-h-screen">
+      {/* Spacer for fixed navbar */}
+      <div className="h-20" />
+
+      {/* Hero Section */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4 py-12 md:py-16">
+          <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+            <Link href="/" className="hover:text-gray-900 transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/blog" className="hover:text-gray-900 transition-colors">Blog</Link>
+            <span>/</span>
+            <span className="text-gray-900">Safety Tips</span>
+          </nav>
+
+          <div className="max-w-3xl">
+            <span className="inline-block bg-primary text-white text-sm font-semibold px-4 py-1 rounded-full mb-6">
+              Safety Tips
             </span>
-            <span className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              January 15, 2026
-            </span>
-            <span className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              8 min read
-            </span>
+
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              10 Essential Winter Towing Tips Every Canadian Driver Should Know
+            </h1>
+
+            <div className="flex flex-wrap items-center gap-6 text-gray-500">
+              <span className="flex items-center gap-2">
+                <User className="h-4 w-4" />
+                Mike Johnson
+              </span>
+              <span className="flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                January 15, 2026
+              </span>
+              <span className="flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                8 min read
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Article Content */}
-      <section className="py-16 bg-background">
+      <section className="py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Main Content */}
-            <article className="lg:col-span-2 prose prose-lg max-w-none">
-              <p className="lead text-xl text-muted-foreground">
-                Canadian winters are notoriously harsh, and being stranded on the
-                road in freezing temperatures can be dangerous. Whether you&apos;re
-                driving through a blizzard or dealing with black ice, knowing how
-                to handle winter emergencies is crucial.
-              </p>
-
-              <h2>1. Keep a Winter Emergency Kit in Your Vehicle</h2>
-              <p>
-                A well-stocked emergency kit can be a lifesaver when you&apos;re
-                stranded in winter conditions. Your kit should include:
-              </p>
-              <ul>
-                <li>Warm blankets or sleeping bag</li>
-                <li>Extra winter clothing (hat, gloves, boots)</li>
-                <li>Non-perishable snacks and water</li>
-                <li>Flashlight with extra batteries</li>
-                <li>First aid kit</li>
-                <li>Ice scraper and snow brush</li>
-                <li>Small shovel</li>
-                <li>Traction aids (sand, kitty litter, or traction mats)</li>
-                <li>Jumper cables</li>
-                <li>Phone charger (portable battery pack)</li>
-              </ul>
-
-              <h2>2. Check Your Battery Before Winter</h2>
-              <p>
-                Cold weather is hard on car batteries. Have your battery tested
-                before the temperature drops. Most auto parts stores offer free
-                battery testing. If your battery is more than 3-4 years old,
-                consider replacing it before winter arrives.
-              </p>
-
-              <h2>3. Maintain Proper Tire Pressure</h2>
-              <p>
-                Tire pressure drops as temperatures fall. Check your tire pressure
-                at least monthly during winter months. Properly inflated tires
-                provide better traction and fuel efficiency. Consider investing in
-                winter tires for improved safety in snow and ice.
-              </p>
-
-              <h2>4. Keep Your Fuel Tank at Least Half Full</h2>
-              <p>
-                A fuller fuel tank helps prevent fuel line freeze-up and ensures
-                you can keep the engine running for heat if you get stranded.
-                During extreme cold snaps, fill up more frequently.
-              </p>
-
-              <h2>5. Know What to Do If You Get Stuck</h2>
-              <p>If your vehicle gets stuck in snow:</p>
-              <ul>
-                <li>Don&apos;t spin your tires - this digs you in deeper</li>
-                <li>Clear snow from around the tires</li>
-                <li>
-                  Use traction aids under the drive wheels (sand, kitty litter, or
-                  floor mats)
-                </li>
-                <li>Try rocking the vehicle gently between forward and reverse</li>
-                <li>
-                  If you can&apos;t get out, stay with your vehicle and call for help
-                </li>
-              </ul>
-
-              <h2>6. Stay in Your Vehicle If Stranded</h2>
-              <p>
-                If you become stranded and can&apos;t get help immediately, stay in
-                your vehicle. Your car provides shelter and makes you easier to
-                find. Only leave your vehicle if help is visible within walking
-                distance and you&apos;re certain you can make it safely.
-              </p>
-
-              <h2>7. Use Your Hazard Lights and Be Visible</h2>
-              <p>
-                If you&apos;re stopped on the side of the road, turn on your hazard
-                lights. If you have them, set up reflective triangles or flares
-                behind your vehicle to warn other drivers.
-              </p>
-
-              <h2>8. Run Your Engine Sparingly for Heat</h2>
-              <p>
-                If you need to run your engine for heat, do so for about 10 minutes
-                every hour. Make sure your exhaust pipe is clear of snow to prevent
-                carbon monoxide buildup. Crack a window slightly for fresh air.
-              </p>
-
-              <h2>9. Program Emergency Numbers in Your Phone</h2>
-              <p>
-                Before winter arrives, save these numbers in your phone:
-              </p>
-              <ul>
-                <li>Your preferred towing company (like Guardium: 1-800-GUARDIUM)</li>
-                <li>Your insurance company&apos;s roadside assistance number</li>
-                <li>Local police non-emergency line</li>
-                <li>AAA or CAA if you&apos;re a member</li>
-              </ul>
-
-              <h2>10. Know When to Call for Professional Help</h2>
-              <p>
-                Don&apos;t wait too long to call for professional towing assistance.
-                If you&apos;re stuck in a dangerous location, conditions are
-                worsening, or you don&apos;t have the tools to get unstuck safely,
-                call for help immediately. Professional tow truck operators have
-                the equipment and expertise to handle winter recoveries safely.
-              </p>
-
-              <div className="bg-secondary/10 border border-secondary/20 rounded-lg p-6 my-8">
-                <h3 className="text-secondary font-bold mb-2">
-                  Need Winter Towing Help?
-                </h3>
-                <p className="mb-4">
-                  Guardium Towing operates 24/7, even in the worst winter
-                  conditions. Our drivers are trained in winter recovery techniques
-                  and equipped with the right tools for Canadian winters.
+            <article className="lg:col-span-2">
+              <div className="bg-white rounded-xl border border-gray-100 p-6 md:p-10">
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                  Canadian winters are notoriously harsh, and being stranded on the
+                  road in freezing temperatures can be dangerous. Whether you&apos;re
+                  driving through a blizzard or dealing with black ice, knowing how
+                  to handle winter emergencies is crucial.
                 </p>
-                <Button variant="secondary" asChild>
-                  <a href="tel:1-800-GUARDIUM">
-                    <Phone className="mr-2 h-4 w-4" />
-                    Call 1-800-GUARDIUM
-                  </a>
-                </Button>
+
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Keep a Winter Emergency Kit in Your Vehicle</h2>
+                <p className="text-gray-700 mb-4">
+                  A well-stocked emergency kit can be a lifesaver when you&apos;re
+                  stranded in winter conditions. Your kit should include:
+                </p>
+                <ul className="space-y-2 mb-8 text-gray-700 ml-4">
+                  <li>• Warm blankets or sleeping bag</li>
+                  <li>• Extra winter clothing (hat, gloves, boots)</li>
+                  <li>• Non-perishable snacks and water</li>
+                  <li>• Flashlight with extra batteries</li>
+                  <li>• First aid kit</li>
+                  <li>• Ice scraper and snow brush</li>
+                  <li>• Small shovel</li>
+                  <li>• Traction aids (sand, kitty litter)</li>
+                  <li>• Jumper cables</li>
+                  <li>• Phone charger (portable battery pack)</li>
+                </ul>
+
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Check Your Battery Before Winter</h2>
+                <p className="text-gray-700 mb-8">
+                  Cold weather is hard on car batteries. Have your battery tested
+                  before the temperature drops. Most auto parts stores offer free
+                  battery testing. If your battery is more than 3-4 years old,
+                  consider replacing it before winter arrives.
+                </p>
+
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Maintain Proper Tire Pressure</h2>
+                <p className="text-gray-700 mb-8">
+                  Tire pressure drops as temperatures fall. Check your tire pressure
+                  at least monthly during winter months. Properly inflated tires
+                  provide better traction and fuel efficiency. Consider investing in
+                  winter tires for improved safety.
+                </p>
+
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Keep Your Fuel Tank at Least Half Full</h2>
+                <p className="text-gray-700 mb-8">
+                  A fuller fuel tank helps prevent fuel line freeze-up and ensures
+                  you can keep the engine running for heat if you get stranded.
+                  During extreme cold snaps, fill up more frequently.
+                </p>
+
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Know What to Do If You Get Stuck</h2>
+                <p className="text-gray-700 mb-4">If your vehicle gets stuck in snow:</p>
+                <ul className="space-y-2 mb-8 text-gray-700 ml-4">
+                  <li>• Don&apos;t spin your tires - this digs you in deeper</li>
+                  <li>• Clear snow from around the tires</li>
+                  <li>• Use traction aids under the drive wheels</li>
+                  <li>• Try rocking the vehicle gently between forward and reverse</li>
+                  <li>• If you can&apos;t get out, stay with your vehicle and call for help</li>
+                </ul>
+
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Stay in Your Vehicle If Stranded</h2>
+                <p className="text-gray-700 mb-8">
+                  If you become stranded and can&apos;t get help immediately, stay in
+                  your vehicle. Your car provides shelter and makes you easier to
+                  find. Only leave your vehicle if help is visible within walking
+                  distance.
+                </p>
+
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">7-10. More Essential Tips</h2>
+                <ul className="space-y-2 mb-8 text-gray-700 ml-4">
+                  <li>• Use your hazard lights and be visible when stopped</li>
+                  <li>• Run your engine sparingly for heat (10 min/hour)</li>
+                  <li>• Program emergency numbers in your phone before winter</li>
+                  <li>• Know when to call for professional help - don&apos;t wait too long</li>
+                </ul>
+
+                {/* CTA Box */}
+                <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mt-8">
+                  <h3 className="font-bold text-gray-900 mb-2">Need Winter Towing Help?</h3>
+                  <p className="text-gray-600 mb-4">
+                    Guardium Towing operates 24/7, even in the worst winter conditions.
+                    Our drivers are trained in winter recovery techniques.
+                  </p>
+                  <Button className="bg-primary hover:bg-primary/90" asChild>
+                    <a href="tel:+17808097860">
+                      <Phone className="mr-2 h-4 w-4" />
+                      Call 780-809-7860
+                    </a>
+                  </Button>
+                </div>
               </div>
 
-              <h2>Conclusion</h2>
-              <p>
-                Winter driving in Canada requires extra preparation and caution.
-                By following these tips and keeping emergency supplies in your
-                vehicle, you&apos;ll be better prepared to handle whatever winter
-                throws your way. Remember, if you ever find yourself in a winter
-                emergency, Guardium Towing is available 24/7 to help get you home
-                safely.
-              </p>
+              {/* Back to Blog */}
+              <div className="flex justify-between items-center mt-8">
+                <Link
+                  href="/blog"
+                  className="flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Blog
+                </Link>
+              </div>
             </article>
 
             {/* Sidebar */}
             <aside className="space-y-6">
-              {/* Share */}
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-bold mb-4 flex items-center gap-2">
-                    <Share2 className="h-5 w-5" />
-                    Share This Article
-                  </h3>
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="icon">
-                      <Facebook className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Twitter className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Linkedin className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
               {/* Emergency Card */}
-              <Card className="bg-primary text-primary-foreground border">
-                <CardContent className="pt-6">
-                  <h3 className="font-bold mb-2">Need Help Now?</h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    24/7 emergency towing available across Canada.
-                  </p>
-                  <Button variant="secondary" className="w-full" asChild>
-                    <a href="tel:1-800-GUARDIUM">
-                      <Phone className="mr-2 h-4 w-4" />
-                      1-800-GUARDIUM
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
+              <div className="bg-gray-900 text-white rounded-xl p-6">
+                <h3 className="font-bold mb-2">Need Help Now?</h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  24/7 emergency towing available in Edmonton area.
+                </p>
+                <Button className="w-full bg-primary hover:bg-primary/90" asChild>
+                  <a href="tel:+17808097860">
+                    <Phone className="mr-2 h-4 w-4" />
+                    780-809-7860
+                  </a>
+                </Button>
+              </div>
 
               {/* Related Articles */}
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-bold mb-4">Related Articles</h3>
-                  <ul className="space-y-3">
-                    <li>
-                      <Link
-                        href="/blog/what-to-do-after-accident"
-                        className="text-sm text-muted-foreground hover:text-secondary"
-                      >
-                        What to Do After a Car Accident
-                      </Link>
+              <div className="bg-white rounded-xl border border-gray-100 p-6">
+                <h3 className="font-bold text-gray-900 mb-4">Related Articles</h3>
+                <ul className="space-y-3">
+                  <li>
+                    <Link
+                      href="/blog/what-to-do-after-accident"
+                      className="text-sm text-gray-600 hover:text-primary transition-colors"
+                    >
+                      What to Do After a Car Accident
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/blog/guardium-acquires-cliffs-towing"
+                      className="text-sm text-gray-600 hover:text-primary transition-colors"
+                    >
+                      Guardium Acquires Cliffs Towing
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Quick Checklist */}
+              <div className="bg-white rounded-xl border border-gray-100 p-6">
+                <h3 className="font-bold text-gray-900 mb-4">Winter Kit Checklist</h3>
+                <ul className="space-y-2 text-sm">
+                  {["Blankets", "Extra clothes", "Flashlight", "First aid kit", "Jumper cables", "Phone charger"].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-gray-700">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      {item}
                     </li>
-                    <li>
-                      <Link
-                        href="/blog"
-                        className="text-sm text-muted-foreground hover:text-secondary"
-                      >
-                        Building the Ultimate Roadside Emergency Kit
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/blog"
-                        className="text-sm text-muted-foreground hover:text-secondary"
-                      >
-                        Car Battery Maintenance Tips
-                      </Link>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+                  ))}
+                </ul>
+              </div>
             </aside>
           </div>
         </div>
       </section>
-    </>
+
+      {/* Emergency CTA */}
+      <section className="py-12 bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-2xl font-bold text-white mb-4">Stranded This Winter?</h2>
+          <p className="text-gray-400 mb-6">We&apos;re available 24/7, even in the worst conditions.</p>
+          <Button size="lg" className="bg-primary hover:bg-primary/90 h-14 px-10" asChild>
+            <a href="tel:+17808097860">
+              <Phone className="mr-2 h-5 w-5" />
+              780-809-7860
+            </a>
+          </Button>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -25,14 +27,15 @@ import {
   Award,
   ThumbsUp,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const services = [
   {
-    icon: AlertTriangle,
-    title: "Emergency Towing",
+    icon: Truck,
+    title: "Light & Medium Duty Towing",
     description:
-      "24/7 rapid response emergency towing. We're there when you need us most, day or night.",
-    href: "/services/emergency-towing",
+      "24/7 towing for cars, SUVs, pickups, and vans. Fast response across Edmonton and area.",
+    href: "/services/light-medium-duty-towing",
   },
   {
     icon: Wrench,
@@ -49,55 +52,55 @@ const services = [
     href: "/services/heavy-duty-towing",
   },
   {
-    icon: Route,
-    title: "Long Distance Towing",
-    description:
-      "Safe and secure long-distance vehicle transport anywhere in Canada and the USA.",
-    href: "/services/long-distance-towing",
-  },
-  {
-    icon: Bike,
-    title: "Motorcycle Towing",
-    description:
-      "Gentle handling with specialized motorcycle trailers and experienced operators.",
-    href: "/services/motorcycle-towing",
-  },
-  {
     icon: Car,
-    title: "Accident Recovery",
+    title: "Flatbed Towing",
+    description:
+      "Safe flatbed transport for luxury vehicles, lowered cars, and all-wheel drive vehicles.",
+    href: "/services/flatbed-towing",
+  },
+  {
+    icon: AlertTriangle,
+    title: "Accident Towing",
     description:
       "Professional accident scene cleanup and vehicle recovery with insurance coordination.",
-    href: "/services/accident-recovery",
+    href: "/services/accident-towing",
+  },
+  {
+    icon: Route,
+    title: "Fuel Delivery",
+    description:
+      "Ran out of gas? We'll deliver fuel to your location so you can get back on the road.",
+    href: "/services/fuel-delivery",
   },
 ];
 
 const partners = [
+  { name: "Guardium Group", logo: "/images/partners/gc_logo.png", href: "https://guardiumgroup.com" },
   { name: "Guardium Towing", logo: "/images/Towing logo.png", href: "https://guardiumtowing.com" },
-  { name: "Guardium Security", logo: "/images/Towing logo.png", href: "https://guardiumsecurity.com" },
-  { name: "Guardium Logistics", logo: "/images/Towing logo.png", href: "https://guardiumlogistics.com" },
-  { name: "Guardium Auto", logo: "/images/Towing logo.png", href: "https://guardiumauto.com" },
-  { name: "Guardium Fleet", logo: "/images/Towing logo.png", href: "https://guardiumfleet.com" },
-  { name: "Guardium Transport", logo: "/images/Towing logo.png", href: "https://guardiumtransport.com" },
+  { name: "Guardium Security", logo: "/images/partners/security_logo.png", href: "https://guardiumsecurity.com" },
+  { name: "Guardium Logistics", logo: "/images/partners/logistics_logo.png", href: "https://guardiumlogistics.com" },
+  { name: "Guardium Courier", logo: "/images/partners/courier_logo.png", href: "https://guardiumcourier.com" },
+  { name: "Guardium Tech", logo: "/images/partners/tech_logo.png", href: "https://guardiumtech.com" },
 ];
 
 const testimonials = [
   {
     name: "Sarah M.",
-    location: "Toronto, ON",
+    location: "Edmonton, AB",
     rating: 5,
-    text: "Guardium Towing saved my day when my car broke down on the 401. They arrived in under 30 minutes and were incredibly professional. Highly recommend!",
+    text: "Guardium Towing saved my day when my car broke down on the Henday. They arrived in under 30 minutes and were incredibly professional. Highly recommend!",
   },
   {
     name: "Michael R.",
-    location: "Vancouver, BC",
+    location: "Sherwood Park, AB",
     rating: 5,
     text: "Best towing service I've ever used. Fair pricing, fast response, and the driver was super friendly. Will definitely use them again.",
   },
   {
     name: "Jennifer L.",
-    location: "Calgary, AB",
+    location: "Spruce Grove, AB",
     rating: 5,
-    text: "Had to tow my motorcycle after an accident. They used proper equipment and handled it with care. Professional service from start to finish.",
+    text: "Needed a tow late at night and they came right away. Professional service from start to finish. Great experience.",
   },
 ];
 
@@ -133,18 +136,18 @@ const heroSlides = [
   {
     image: "/images/HeavyTowing1024x680.jpg",
     badge: "24/7 Emergency Service",
-    title: "Alberta's #1 ",
+    title: "Edmonton's #1 ",
     highlight: "Trusted Towing Partner",
     description:
-      "Fast, reliable, and professional towing services across Canada. From emergency roadside assistance to heavy-duty towing, we've got you covered 24/7.",
+      "Fast, reliable, and professional towing services across Edmonton and surrounding areas. From emergency roadside assistance to heavy-duty towing, we've got you covered 24/7.",
   },
   {
     image: "/images/decktruckoldcar1024x693.jpg",
-    badge: "Nationwide Dispatch Network",
+    badge: "Edmonton Area Coverage",
     title: "Rapid Response ",
-    highlight: "Across Major Cities",
+    highlight: "Across Edmonton & Area",
     description:
-      "Our dispatch network covers urban and regional routes coast to coast, with trained operators and professional equipment available day and night.",
+      "Serving Edmonton, Sherwood Park, Spruce Grove, Beaumont, Devon, Morinville, and Leduc with fast, professional towing service.",
   },
   {
     image: "/images/decktruckequipment31024x695.jpg",
@@ -164,6 +167,25 @@ const heroSlides = [
   },
 ];
 
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" as const } },
+};
+
 export default function HomePage() {
   return (
     <>
@@ -176,11 +198,16 @@ export default function HomePage() {
         title="Part of the Guardium Group of Companies"
       />
 
-
       {/* Services Section */}
-      <section className="py-30 bg-white">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+          >
             <Badge variant="accent" className="mb-4">
               Our Services
             </Badge>
@@ -191,16 +218,24 @@ export default function HomePage() {
               From emergency roadside assistance to specialized heavy-duty towing,
               we offer a complete range of services to meet all your needs.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+          >
             {services.map((service) => (
-              <div
+              <motion.div
                 key={service.title}
-                className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-secondary/30 transition-all duration-200"
+                variants={fadeInUp}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300"
               >
-                <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center mb-4 group-hover:bg-secondary transition-colors">
-                  <service.icon className="h-5 w-5 text-secondary group-hover:text-white" />
+                <div className="w-10 h-10 bg-primary/10 rounded-md flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-300">
+                  <service.icon className="h-5 w-5 text-primary group-hover:text-white transition-colors duration-300" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
                 <p className="text-sm text-gray-600 mb-4">
@@ -208,149 +243,150 @@ export default function HomePage() {
                 </p>
                 <Link
                   href={service.href}
-                  className="inline-flex items-center text-sm font-medium text-secondary hover:text-secondary/80 transition-colors"
+                  className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors"
                 >
                   Learn More
-                  <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                  <ArrowRight className="ml-1 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-200" />
                 </Link>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="text-center mt-12">
-            <Button size="lg" variant="secondary" asChild>
+          <motion.div
+            className="text-center mt-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <Button size="lg" variant="default" asChild>
               <Link href="/book">
                 Book a Service Now
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-
       {/* Maintenance Hero Section */}
-      <section className="py-16 md:py-30  bg-card/10">
+      {/* <section className="py-16 md:py-24 bg-gray-900">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="secondary" className="mb-4">
+          <motion.div
+            className="max-w-4xl mx-auto text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <Badge className="mb-4 bg-primary text-white border-none">
               Ongoing Website Maintenance
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-5">
               We&apos;re making things way better.
             </h2>
-            <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-8">
+            <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-8">
               Our website is temporarily offline for scheduled improvements.
               Our towing services remain fully operational 24/7.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-10 text-left">
-              <div className="rounded-lg border border-border bg-card px-4 py-3">
-                <p className="text-xs text-muted-foreground mb-1">Emergency Dispatch</p>
-                <p className="text-sm font-semibold text-white">Online</p>
-              </div>
-              <div className="rounded-lg border border-border bg-card px-4 py-3">
-                <p className="text-xs text-muted-foreground mb-1">Roadside Assistance</p>
-                <p className="text-sm font-semibold text-white">Online</p>
-              </div>
-              <div className="rounded-lg border border-border bg-card px-4 py-3">
-                <p className="text-xs text-muted-foreground mb-1">Phone Support</p>
-                <p className="text-sm font-semibold text-white">Online</p>
-              </div>
-              <div className="rounded-lg border border-border bg-card px-4 py-3">
-                <p className="text-xs text-muted-foreground mb-1">Online Booking</p>
-                <p className="text-sm font-semibold text-secondary">Upgrading</p>
-              </div>
-            </div>
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-10 text-left"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {[
+                { label: "Emergency Dispatch", status: "Online", active: true },
+                { label: "Roadside Assistance", status: "Online", active: true },
+                { label: "Phone Support", status: "Online", active: true },
+                { label: "Online Booking", status: "Upgrading", active: false },
+              ].map((item) => (
+                <motion.div
+                  key={item.label}
+                  variants={scaleIn}
+                  className="rounded-lg border border-gray-700 bg-gray-800 px-4 py-3"
+                >
+                  <p className="text-xs text-gray-400 mb-1">{item.label}</p>
+                  <p className={`text-sm font-semibold ${item.active ? "text-green-400" : "text-primary"}`}>
+                    {item.status}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Button size="xl" variant="secondary" asChild>
-                <a href="tel:+17809378737">
+              <Button size="lg" variant="default" asChild>
+                <a href="tel:+17808097860">
                   <Phone className="mr-2 h-5 w-5" />
                   Get Assistance Now
                 </a>
               </Button>
-              <Button size="xl" variant="outline" className="border-white/25 text-white hover:bg-white/10" asChild>
+              <Button size="lg" variant="outline" className="border-white/25 text-white hover:bg-white/10" asChild>
                 <Link href="/contact">Get Directions</Link>
               </Button>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
-
-
-
+      </section> */}
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-muted">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
               <Badge variant="accent" className="mb-4">
                 Why Choose Us
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-gray-900">
                 The Guardium Difference
               </h2>
-              <p className="text-muted-foreground mb-8">
+              <p className="text-gray-600 mb-8">
                 With over two decades of experience and a commitment to
                 excellence, Guardium Towing has become Canada&apos;s most trusted
                 name in towing services.
               </p>
 
-              <div className="space-y-5">
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-5 w-5 text-secondary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1 text-sm">Rapid Response Time</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Average arrival time of 30 minutes or less in urban areas.
-                    </p>
-                  </div>
-                </div>
+              <motion.div
+                className="space-y-5"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {[
+                  { icon: Clock, title: "Rapid Response Time", desc: "Average arrival time of 30 minutes or less in urban areas." },
+                  { icon: Shield, title: "Fully Insured & Licensed", desc: "Complete peace of mind with comprehensive insurance coverage." },
+                  { icon: ThumbsUp, title: "Transparent Pricing", desc: "Upfront quotes with no hidden fees. Pay only what you're quoted." },
+                  { icon: Award, title: "Certified Professionals", desc: "All drivers are trained, certified, and background checked." },
+                ].map((item) => (
+                  <motion.div key={item.title} variants={fadeInUp} className="flex gap-4">
+                    <div className="w-10 h-10 bg-primary/10 rounded-md flex items-center justify-center flex-shrink-0">
+                      <item.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1 text-sm text-gray-900">{item.title}</h3>
+                      <p className="text-sm text-gray-600">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
 
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center flex-shrink-0">
-                    <Shield className="h-5 w-5 text-secondary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1 text-sm">Fully Insured & Licensed</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Complete peace of mind with comprehensive insurance coverage.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center flex-shrink-0">
-                    <ThumbsUp className="h-5 w-5 text-secondary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1 text-sm">Transparent Pricing</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Upfront quotes with no hidden fees. Pay only what you&apos;re quoted.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-secondary/10 rounded-md flex items-center justify-center flex-shrink-0">
-                    <Award className="h-5 w-5 text-secondary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1 text-sm">Certified Professionals</h3>
-                    <p className="text-sm text-muted-foreground">
-                      All drivers are trained, certified, and background checked.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="bg-gradient-primary rounded-xl p-8 text-white">
+            <motion.div
+              className="relative"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={scaleIn}
+            >
+              <div className="bg-gray-900 rounded-xl p-8 text-white">
                 <h3 className="text-xl font-bold mb-4">Need Help Now?</h3>
                 <p className="text-white/60 mb-6 text-sm">
                   Our dispatch team is standing by 24/7 to assist you. Call us
@@ -359,13 +395,13 @@ export default function HomePage() {
                 <div className="space-y-3">
                   <Button
                     size="lg"
-                    variant="secondary"
+                    variant="default"
                     className="w-full"
                     asChild
                   >
-                    <a href="tel:1-800-GUARDIUM">
+                    <a href="tel:+17808097860">
                       <Phone className="mr-2 h-5 w-5" />
-                      Call 1-800-GUARDIUM
+                      Call +1 780-809-7860
                     </a>
                   </Button>
                   <Button
@@ -378,119 +414,239 @@ export default function HomePage() {
                   </Button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
             <Badge variant="accent" className="mb-4">
               Testimonials
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-gray-900">
               What Our Customers Say
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto">
               Join thousands of satisfied customers who trust Guardium Towing
               for their roadside emergencies.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-5">
+          <motion.div
+            className="grid md:grid-cols-3 gap-5"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {testimonials.map((testimonial, index) => (
-              <Card key={index}>
-                <CardContent className="pt-6">
-                  <div className="flex gap-0.5 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-4 w-4 fill-secondary text-secondary"
-                      />
-                    ))}
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    &ldquo;{testimonial.text}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-secondary/10 rounded-full flex items-center justify-center text-secondary font-semibold text-sm">
-                      {testimonial.name[0]}
+              <motion.div key={index} variants={fadeInUp}>
+                <Card className="h-full bg-white border-gray-200 hover:shadow-lg transition-shadow duration-300">
+                  <CardContent className="pt-6">
+                    <div className="flex gap-0.5 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="h-4 w-4 fill-primary text-primary"
+                        />
+                      ))}
                     </div>
-                    <div>
-                      <p className="font-medium text-sm">{testimonial.name}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {testimonial.location}
-                      </p>
+                    <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                      &ldquo;{testimonial.text}&rdquo;
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 bg-primary/10 rounded-full flex items-center justify-center text-primary font-semibold text-sm">
+                        {testimonial.name[0]}
+                      </div>
+                      <div>
+                        <p className="font-medium text-sm text-gray-900">{testimonial.name}</p>
+                        <p className="text-xs text-gray-500">
+                          {testimonial.location}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-muted">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
+            <motion.div
+              className="text-center mb-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
               <Badge variant="accent" className="mb-4">
                 FAQ
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-gray-900">
                 Frequently Asked Questions
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-gray-600">
                 Got questions? We&apos;ve got answers. If you can&apos;t find what
                 you&apos;re looking for, contact our team.
               </p>
-            </div>
+            </motion.div>
 
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent>{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <Accordion type="single" collapsible className="w-full">
+                {faqs.map((faq, index) => (
+                  <AccordionItem key={index} value={`item-${index}`} className="border-gray-200">
+                    <AccordionTrigger className="text-left text-gray-900 hover:text-primary">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-gray-600">{faq.answer}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-hero text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-            Ready to Experience the Best Towing Service in Canada?
-          </h2>
-          <p className="text-white/60 max-w-2xl mx-auto mb-8">
-            Whether it&apos;s an emergency or a scheduled tow, Guardium Towing is
-            here for you 24/7. Book online or call us now.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button size="xl" variant="secondary" asChild>
-              <Link href="/book">
-                Book a Service
-                <ArrowRight className="ml-2 h-5 w-5" />
+      {/* Service Areas Section */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-10"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <Badge variant="accent" className="mb-4">
+              Service Areas
+            </Badge>
+            <h2 className="text-3xl font-bold mb-4 tracking-tight text-gray-900">
+              Serving Edmonton & Surrounding Areas
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Fast, professional towing service throughout the greater Edmonton metropolitan area.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="flex flex-wrap justify-center gap-3 mb-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            {["Edmonton", "Sherwood Park", "Spruce Grove", "Beaumont", "Devon", "Morinville", "Leduc"].map((area) => (
+              <motion.div key={area} variants={fadeInUp}>
+                <Link
+                  href={`/locations/${area.toLowerCase().replace(" ", "-")}`}
+                  className="inline-block px-5 py-2.5 bg-gray-100 hover:bg-primary hover:text-white rounded-full text-sm font-medium text-gray-700 transition-colors"
+                >
+                  {area}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <div className="text-center">
+            <Button variant="outline" asChild>
+              <Link href="/locations">
+                View All Locations
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button
-              size="xl"
-              variant="outline"
-              className="border-white/20 text-white hover:bg-white/10"
-              asChild
-            >
-              <Link href="/contact">Contact Us</Link>
-            </Button>
           </div>
         </div>
       </section>
+
+      {/* Trust Indicators */}
+      {/* <section className="py-12 bg-gray-50 border-y border-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Clock className="h-5 w-5 text-green-600" />
+              </div>
+              <div>
+                <div className="font-semibold text-gray-900">24/7 Emergency</div>
+                <div className="text-sm text-gray-600">Always available</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Truck className="h-5 w-5 text-blue-600" />
+              </div>
+              <div>
+                <div className="font-semibold text-gray-900">Fast Response</div>
+                <div className="text-sm text-gray-600">30 min average</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <Shield className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <div className="font-semibold text-gray-900">Transparent Pricing</div>
+                <div className="text-sm text-gray-600">No hidden fees</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      {/* CTA Section */}
+      {/* <section className="py-20 bg-gray-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
+              Ready to Experience the Best Towing Service in Edmonton?
+            </h2>
+            <p className="text-white/60 max-w-2xl mx-auto mb-8">
+              Whether it&apos;s an emergency or a scheduled tow, Guardium Towing is
+              here for you 24/7. Book online or call us now.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button size="lg" variant="default" asChild>
+                <Link href="/book">
+                  Book a Service
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/20 text-white hover:bg-white/10"
+                asChild
+              >
+                <Link href="/contact">Contact Us</Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section> */}
     </>
   );
 }

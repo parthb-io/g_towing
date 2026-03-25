@@ -2,39 +2,42 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://guardiumtowing.com"),
   title: {
-    default: "Guardium Towing | Canada's #1 Towing Service Provider",
+    default: "Guardium Towing | Edmonton & Area 24/7 Towing Service",
     template: "%s | Guardium Towing",
   },
   description:
-    "Guardium Towing provides 24/7 professional towing and roadside assistance across Canada. Emergency towing, heavy-duty towing, accident recovery, and more. Call 1-800-GUARDIUM.",
+    "Guardium Towing provides 24/7 professional towing and roadside assistance in Edmonton, Sherwood Park, Spruce Grove, Beaumont, Devon, Morinville, and Leduc. Call +1 780-809-7860.",
   keywords: [
-    "towing service",
-    "emergency towing",
-    "roadside assistance",
+    "towing service Edmonton",
+    "emergency towing Alberta",
+    "roadside assistance Edmonton",
     "heavy duty towing",
-    "Canada towing",
-    "24/7 towing",
+    "24/7 towing Edmonton",
     "accident recovery",
-    "motorcycle towing",
+    "flatbed towing",
+    "Sherwood Park towing",
+    "Spruce Grove towing",
   ],
   authors: [{ name: "Guardium Towing" }],
   openGraph: {
     type: "website",
     locale: "en_CA",
-    url: "https://guardiumtowing.ca",
+    url: "https://guardiumtowing.com",
     siteName: "Guardium Towing",
-    title: "Guardium Towing | Canada's #1 Towing Service Provider",
+    title: "Guardium Towing | Edmonton & Area 24/7 Towing Service",
     description:
-      "24/7 professional towing and roadside assistance across Canada. Fast, reliable, and affordable.",
+      "24/7 professional towing and roadside assistance in Edmonton and surrounding areas. Fast, reliable, and affordable. Call +1 780-809-7860.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Guardium Towing | Canada's #1 Towing Service Provider",
+    title: "Guardium Towing | Edmonton & Area 24/7 Towing Service",
     description:
-      "24/7 professional towing and roadside assistance across Canada. Fast, reliable, and affordable.",
+      "24/7 professional towing and roadside assistance in Edmonton and surrounding areas. Fast, reliable, and affordable.",
   },
   robots: {
     index: true,
@@ -48,8 +51,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased min-h-screen flex flex-col">
+    <html lang="en-CA">
+      <body className="antialiased min-h-screen flex flex-col px-4">
+        <JsonLd />
         <Header />
         <main className="flex-1 ">{children}</main>
         <Footer />
