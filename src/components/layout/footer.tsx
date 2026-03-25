@@ -162,18 +162,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Company Info - Spans 2 columns */}
           <div className="lg:col-span-2 space-y-6">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="bg-primary p-2 rounded-lg">
-                <Truck className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <span className="text-xl font-bold tracking-tight text-gray-900">
-                  GUARDIUM
-                </span>
-                <span className="block text-xs uppercase tracking-widest text-gray-500">
-                  Towing
-                </span>
-              </div>
+            <Link href="/" className="inline-flex items-center">
+              <Image
+                src="/images/Towing logo.png"
+                alt="Guardium Towing"
+                width={140}
+                height={64}
+                className="h-12 w-auto"
+              />
             </Link>
 
             <p className="text-gray-600 text-sm leading-relaxed">
@@ -373,11 +369,11 @@ export function Footer() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
             <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-gray-500">
               <p>
-                &copy; {new Date().getFullYear()} Guardium Towing. All rights
+                &copy; {new Date().getFullYear()} Guardium Towing Ltd. All rights
                 reserved.
               </p>
               <span className="hidden sm:block">•</span>
-              <p>A Guardium Group Company</p>
+              <p>Designed and Developed by Guardium Technologies</p>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
