@@ -52,7 +52,7 @@ const services = [
     icon: AlertTriangle,
     title: "Accident Towing",
     description:
-      "Complete accident recovery services including vehicle retrieval, scene cleanup, and insurance coordination.",
+      "Complete accident recovery services including vehicle retrieval, scene cleanup, and secure storage.",
     href: "/services/accident-towing",
     features: ["Scene cleanup", "Documentation", "Photos provided", "Secure storage"],
   },

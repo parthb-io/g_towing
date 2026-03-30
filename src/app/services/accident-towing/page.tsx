@@ -4,7 +4,7 @@ import { ServicePageLayout } from "@/components/service-page-layout";
 export const metadata: Metadata = {
   title: "Accident Towing & Recovery",
   description:
-    "24/7 accident towing and recovery services in Edmonton. Professional scene cleanup, insurance coordination, and secure storage. Call +1 780-809-7860.",
+    "24/7 accident towing and recovery services in Edmonton. Professional scene cleanup, documentation, and secure storage. Call +1 780-809-7860.",
 };
 
 const features = [
@@ -24,28 +24,23 @@ const features = [
       "Complete debris cleanup and fluid containment to restore the roadway and ensure safety for other motorists.",
   },
   {
-    title: "Insurance Documentation",
-    description:
-      "We work directly with all major insurance companies. We provide photos and documentation to support your claim.",
-  },
-  {
     title: "Photo Documentation",
     description:
-      "Detailed photographic documentation of the accident scene and vehicle condition for insurance claims.",
+      "Detailed photographic documentation of the accident scene and vehicle condition for your records.",
   },
   {
     title: "Secure Storage",
     description:
-      "Safe, secure storage facilities for your vehicle while insurance claims are processed or repairs are arranged.",
+      "Safe, secure storage facilities for your vehicle while repairs are arranged or you decide next steps.",
   },
 ];
 
 const benefits = [
   "24/7 emergency dispatch",
-  "Work with all insurance providers",
   "Professional scene management",
   "Secure storage facilities",
   "Complete documentation",
+  "Photo records provided",
   "Compassionate, professional service",
 ];
 
@@ -54,7 +49,7 @@ export default function AccidentTowingPage() {
     <ServicePageLayout
       title="Accident Towing & Recovery"
       subtitle="Emergency Accident Response"
-      description="Being in an accident is stressful. Our professional team handles everything from vehicle recovery to insurance coordination, so you can focus on what matters. We respond quickly, work with your insurance, and treat you with care during a difficult time."
+      description="Being in an accident is stressful. Our professional team handles everything from vehicle recovery to scene cleanup, so you can focus on what matters. We respond quickly, provide documentation, and treat you with care during a difficult time."
       iconName="AlertTriangle"
       features={features}
       benefits={benefits}

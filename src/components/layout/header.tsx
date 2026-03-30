@@ -117,8 +117,8 @@ export function Header() {
   return (
     <>
       {/* Fixed announcement bar */}
-      <div className="fixed top-0 inset-x-0 z-60 bg-linear-to-b from-blue-500 to-blue-600 backdrop-blur-2xl shadow-xs border-b border-blue-700 px-4 ">
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between gap-3 font-mono text-xs">
+      <div className="fixed top-0 inset-x-0 z-60 bg-linear-to-b from-blue-500 to-blue-600 backdrop-blur-2xl shadow-xs border-b border-blue-700 px-2 ">
+        <div className="container mx-auto px-2 py-2 flex items-center justify-between gap-3 font-mono text-xs">
           <AnnouncementFeed />
 
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -158,15 +158,7 @@ export function Header() {
             >
               <Youtube className="h-3.5 w-3.5" strokeWidth={2} />
             </a>
-            <a
-              href="https://www.linkedin.com/company/guardium-group-of-companies/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Guardium Towing on LinkedIn"
-              className="text-white hover:text-blue-300 transition-colors"
-            >
-              <Linkedin className="h-3.5 w-3.5" strokeWidth={1.5} />
-            </a>
+           
             
           </div>
         </div>

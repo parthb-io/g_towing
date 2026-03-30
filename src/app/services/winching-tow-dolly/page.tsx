@@ -46,7 +46,7 @@ const benefits = [
   "Available 24/7",
   "All weather conditions",
   "Safe extraction techniques",
-  "Insurance documentation provided",
+  "Receipts and documentation provided",
 ];
 
 export default function WinchingTowDollyPage() {

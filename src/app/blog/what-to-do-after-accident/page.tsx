@@ -161,15 +161,15 @@ export default function WhatToDoAfterAccidentPage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Step 8: Arrange Towing</h3>
                 <p className="text-gray-700 mb-8">
                   If your vehicle isn&apos;t driveable, arrange towing to a repair shop.
-                  Guardium Towing works directly with insurance companies.
+                  Guardium Towing provides 24/7 accident recovery services.
                 </p>
 
                 {/* CTA Box */}
                 <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
                   <h3 className="font-bold text-gray-900 mb-2">Need Accident Towing?</h3>
                   <p className="text-gray-600 mb-4">
-                    We specialize in accident recovery and work directly with insurance
-                    companies. We can transport your vehicle to the repair shop of your choice.
+                    We specialize in accident recovery and provide complete documentation.
+                    We can transport your vehicle to the repair shop of your choice.
                   </p>
                   <Button className="bg-primary hover:bg-primary/90" asChild>
                     <a href="tel:+17808097860">
@@ -261,7 +261,7 @@ export default function WhatToDoAfterAccidentPage() {
       <section className="py-12 bg-gray-900">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl font-bold text-white mb-4">Been in an Accident?</h2>
-          <p className="text-gray-400 mb-6">We handle accident towing and work with your insurance.</p>
+          <p className="text-gray-400 mb-6">We handle accident towing with professional care 24/7.</p>
           <Button size="lg" className="bg-primary hover:bg-primary/90 h-14 px-10" asChild>
             <a href="tel:+17808097860">
               <Phone className="mr-2 h-5 w-5" />

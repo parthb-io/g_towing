@@ -66,7 +66,7 @@ export default function PrivacyPolicyPage() {
                   <li>• Vehicle information (make, model, year, license plate)</li>
                   <li>• Location information (pickup and drop-off addresses)</li>
                   <li>• Payment information (credit card details, billing address)</li>
-                  <li>• Insurance information when applicable</li>
+                  <li>• Service-related notes and special instructions</li>
                   <li>• Communications with our dispatch team</li>
                 </ul>
 
@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
                   <li>• Provide towing and roadside assistance services</li>
                   <li>• Process payments and billing</li>
                   <li>• Communicate with you about your service requests</li>
-                  <li>• Coordinate with insurance companies on your behalf</li>
+                  <li>• Provide documentation and receipts for your records</li>
                   <li>• Improve our services and customer experience</li>
                   <li>• Send service updates and promotional communications (with your consent)</li>
                   <li>• Comply with legal obligations</li>
@@ -92,7 +92,7 @@ export default function PrivacyPolicyPage() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Information Sharing</h2>
                 <p className="text-gray-700 mb-4">We may share your information with:</p>
                 <ul className="space-y-2 mb-6 text-gray-700 ml-4">
-                  <li>• Insurance companies (when you authorize us to coordinate claims)</li>
+                  <li>• Third parties you authorize us to share information with</li>
                   <li>• Repair shops (when you request vehicle delivery)</li>
                   <li>• Payment processors (to process transactions)</li>
                   <li>• Law enforcement (when required by law)</li>

@@ -63,8 +63,8 @@ const faqs = [
     answer: "Our average response time is 30 minutes or less in the Edmonton area. For emergencies, we prioritize rapid dispatch and will give you an accurate ETA when you call.",
   },
   {
-    question: "Do you work with insurance companies?",
-    answer: "Yes, we work directly with all major insurance providers. We can provide documentation to support your claim, making it easier for you during a stressful time.",
+    question: "What payment methods do you accept?",
+    answer: "We accept cash, all major credit cards (Visa, Mastercard, American Express), debit cards, and e-transfer. Payment is collected upon service completion.",
   },
   {
     question: "What areas do you service?",
@@ -92,7 +92,7 @@ const testimonials = [
   {
     name: "James K.",
     location: "Spruce Grove",
-    text: "Used Guardium after an accident. They handled everything with my insurance and made a bad day much easier.",
+    text: "Used Guardium after an accident. They handled everything professionally and made a bad day much easier.",
     rating: 5,
   },
 ];
@@ -122,7 +122,7 @@ const relatedServices = [
   {
     icon: AlertTriangle,
     title: "Accident Towing",
-    description: "Complete accident recovery with insurance coordination.",
+    description: "Complete accident recovery and scene cleanup.",
     features: ["Scene cleanup", "Documentation", "Secure storage"],
     href: "/services/accident-towing",
   },
@@ -238,7 +238,7 @@ export function ServicePageLayout({
                 </div>
                 <div className="flex items-center gap-3 text-gray-700">
                   <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
-                  <span>Insurance documentation provided</span>
+                  <span>Fully licensed and insured</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-700">
                   <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />

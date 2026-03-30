@@ -36,7 +36,7 @@ export function HomeHeroCarousel({ slides, intervalMs = 5500 }: HomeHeroCarousel
   const current = slides[activeIndex];
 
   return (
-    <section className="relative lg:h-[100vh] h-[650px] md:min-h-[600px] lg:min-h-[500px] overflow-hidden text-white">
+    <section className="relative lg:h-[100vh] h-[700px] md:min-h-[600px] lg:min-h-[500px] overflow-hidden text-white">
       {/* Background Images with Crossfade */}
       <div className="absolute inset-0">
         {slides.map((slide, index) => (

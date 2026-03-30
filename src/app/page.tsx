@@ -63,7 +63,7 @@ const services = [
     icon: AlertTriangle,
     title: "Accident Towing",
     description:
-      "Professional accident scene cleanup and vehicle recovery with insurance coordination.",
+      "Professional accident scene cleanup and vehicle recovery services available 24/7.",
     href: "/services/accident-towing",
   },
   {
@@ -112,9 +112,9 @@ const faqs = [
       "Our average response time is 30 minutes or less in urban areas. We have dispatch centers across Canada ensuring rapid response 24/7, 365 days a year.",
   },
   {
-    question: "Do you work with insurance companies?",
+    question: "Do you provide documentation?",
     answer:
-      "Yes, we work directly with all major insurance providers in Canada. We provide documentation and photos to support your claim and make the process easier for you.",
+      "Yes, we provide detailed receipts, photos, and documentation for all services. This helps you keep records of the service provided.",
   },
   {
     question: "What types of vehicles can you tow?",
