@@ -60,7 +60,7 @@ function AnnouncementFeed() {
         : "View offer";
 
   const linkClass =
-    "hidden sm:inline-flex items-center gap-1 font-medium text-blue-100 hover:text-blue-300 transition-colors";
+    "hidden sm:inline-flex drop-shadow-md items-center gap-1 font-medium text-blue-100 hover:text-blue-300 transition-colors";
 
   return (
     <div className="flex min-w-0 items-center lg:gap-2 gap-3">
@@ -72,7 +72,7 @@ function AnnouncementFeed() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
-          className="truncate text-[12px] sm:text-sm  font-medium text-blue-100"
+          className="truncate text-[12px] sm:text-sm  drop-shadow-md font-medium text-blue-100"
         >
           {item.label}
         </motion.span>
@@ -117,7 +117,7 @@ export function Header() {
   return (
     <>
       {/* Fixed announcement bar */}
-      <div className="fixed top-0 inset-x-0 z-60 bg-blue-700/90 backdrop-blur-2xl shadow-xs border-b border-blue-400 px-4 ">
+      <div className="fixed top-0 inset-x-0 z-60 bg-linear-to-b from-blue-500 to-blue-600 backdrop-blur-2xl shadow-xs border-b border-blue-700 px-4 ">
         <div className="container mx-auto px-4 py-2 flex items-center justify-between gap-3 font-mono text-xs">
           <AnnouncementFeed />
 
@@ -136,7 +136,7 @@ export function Header() {
               target="_blank"
               rel="noreferrer"
               aria-label="Guardium Towing on Instagram"
-              className="text-white hover:text-blue-300 transition-colors"
+              className="text-white  hover:text-blue-300 transition-colors"
             >
               <Instagram className="h-3.5 w-3.5" strokeWidth={2} />
             </a>

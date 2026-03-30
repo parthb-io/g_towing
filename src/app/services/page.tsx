@@ -165,7 +165,7 @@ export default function ServicesPage() {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Star className="h-5 w-5 text-yellow-500" />
-                  <span>4.9 Rating</span>
+                  <span>Trusted Service</span>
                 </div>
               </div>
             </div>

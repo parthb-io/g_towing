@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HomeHeroCarousel } from "@/components/home-hero-carousel";
 import { PartnerLogoCarousel } from "@/components/partner-logo-carousel";
+import { ProcessBanner } from "@/components/process-banner";
 import {
   Accordion,
   AccordionContent,
@@ -192,11 +193,14 @@ export default function HomePage() {
       {/* Hero Section */}
       <HomeHeroCarousel slides={heroSlides} />
 
-      {/* Partners Logo Carousel */}
+      {/* Process Steps Banner */}
+      <ProcessBanner />
+
+      {/* Partners Logo Carousel
       <PartnerLogoCarousel
         partners={partners}
         title="Part of the Guardium Group of Companies"
-      />
+      /> */}
 
       {/* Services Section */}
       <section className="py-24 bg-white">
@@ -332,7 +336,7 @@ export default function HomePage() {
       </section> */}
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-gray-50">
+      {/* <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -417,7 +421,7 @@ export default function HomePage() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white">

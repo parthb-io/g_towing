@@ -161,8 +161,8 @@ export function LocationPageLayout({
                   <div className="text-sm text-gray-500">Availability</div>
                 </div>
                 <div className="text-center sm:text-left">
-                  <div className="text-2xl font-bold text-gray-900">4.9★</div>
-                  <div className="text-sm text-gray-500">Rating</div>
+                  <div className="text-2xl font-bold text-gray-900">20+</div>
+                  <div className="text-sm text-gray-500">Fleet Vehicles</div>
                 </div>
               </div>
             </div>
@@ -329,7 +329,7 @@ export function LocationPageLayout({
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Trusted Service</div>
-                    <div className="text-gray-600 text-sm">4.9 rating from {city} customers</div>
+                    <div className="text-gray-600 text-sm">Trusted by {city} customers</div>
                   </div>
                 </div>
 

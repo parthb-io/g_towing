@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { FormField } from "@/components/ui/form-field";
+import { Turnstile } from "@/components/ui/turnstile";
 import {
   Select,
   SelectContent,
@@ -22,32 +25,126 @@ import {
   CheckCircle,
   MessageSquare,
   ArrowRight,
+  AlertTriangle,
+  Loader2,
+  Shield,
+  User,
 } from "lucide-react";
+import {
+  contactReasons,
+  contactSchema,
+  type ContactFormData,
+} from "@/lib/validations/contact";
+import { submitContact, type ContactSubmission } from "@/lib/actions/contact";
+import { cn } from "@/lib/utils";
 
-const contactReasons = [
-  "General Inquiry",
-  "Request a Quote",
-  "Service Feedback",
-  "Business Partnership",
-  "Fleet Services",
-  "Careers",
-  "Other",
-];
+// Turnstile site key (public)
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
+
+// Generate form security token
+function generateFormToken(): { token: string; timestamp: number } {
+  const timestamp = Date.now();
+  const token = btoa(`${timestamp}:${Math.random().toString(36).slice(2)}`);
+  return { token, timestamp };
+}
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    reason: "",
-    message: "",
-  });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Contact form submitted:", formData);
-    setIsSubmitted(true);
+  // Security state
+  const [formSecurity, setFormSecurity] = useState<{
+    token: string;
+    timestamp: number;
+  } | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState("");
+
+  // Initialize form security on mount
+  useEffect(() => {
+    setFormSecurity(generateFormToken());
+  }, []);
+
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    mode: "onChange",
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      reason: "",
+      message: "",
+    },
+  });
+
+  const {
+    register,
+    setValue,
+    watch,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = form;
+
+  // Handle Turnstile verification
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
+
+  const handleTurnstileError = useCallback(() => {
+    setTurnstileToken(null);
+    setSubmitError("Security verification failed. Please refresh and try again.");
+  }, []);
+
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null);
+  }, []);
+
+  const onSubmit = async (data: ContactFormData) => {
+    // Check if Turnstile is required and verified
+    if (!!TURNSTILE_SITE_KEY && !turnstileToken) {
+      setSubmitError("Please complete the security verification.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      // Build submission with security data
+      const submission: ContactSubmission = {
+        ...data,
+        _honeypot: honeypot,
+        _formToken: formSecurity?.token,
+        _timestamp: formSecurity?.timestamp,
+        _turnstileToken: turnstileToken || undefined,
+      };
+
+      const result = await submitContact(submission);
+
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        setSubmitError(result.message);
+        // Refresh form token on error
+        setFormSecurity(generateFormToken());
+      }
+    } catch {
+      setSubmitError("An unexpected error occurred. Please try again.");
+      setFormSecurity(generateFormToken());
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleReset = () => {
+    reset();
+    setIsSubmitted(false);
+    setSubmitError(null);
+    setTurnstileToken(null);
+    setHoneypot("");
+    setFormSecurity(generateFormToken());
   };
 
   return (
@@ -59,7 +156,9 @@ export default function ContactPage() {
       <section className="bg-white border-b border-gray-100">
         <div className="container mx-auto px-4 py-12 md:py-16">
           <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-            <Link href="/" className="hover:text-gray-900 transition-colors">Home</Link>
+            <Link href="/" className="hover:text-gray-900 transition-colors">
+              Home
+            </Link>
             <span>/</span>
             <span className="text-gray-900">Contact</span>
           </nav>
@@ -75,8 +174,9 @@ export default function ContactPage() {
             </h1>
 
             <p className="text-lg text-gray-600 leading-relaxed">
-              Have questions? Need a quote? Want to partner with us? We&apos;re here
-              to help. Reach out and our team will get back to you promptly.
+              Have questions? Need a quote? Want to partner with us? We&apos;re
+              here to help. Reach out and our team will get back to you
+              promptly.
             </p>
           </div>
         </div>
@@ -90,7 +190,9 @@ export default function ContactPage() {
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Phone className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-1">Emergency Line</h3>
+              <h3 className="font-semibold text-gray-900 mb-1">
+                Emergency Line
+              </h3>
               <a
                 href="tel:+17808097860"
                 className="text-primary hover:underline font-medium"
@@ -111,7 +213,9 @@ export default function ContactPage() {
               >
                 dispatch@guardiumtowing.com
               </a>
-              <p className="text-sm text-gray-500 mt-1">We reply within 24 hours</p>
+              <p className="text-sm text-gray-500 mt-1">
+                We reply within 24 hours
+              </p>
             </div>
 
             <div className="bg-white p-6 rounded-xl border border-gray-100 text-center">
@@ -141,91 +245,129 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-3">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                Send Us a Message
+              </h2>
 
               {isSubmitted ? (
                 <div className="bg-gray-50 rounded-xl border border-gray-100 p-8 text-center">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="h-8 w-8 text-green-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    Message Sent!
+                  </h3>
                   <p className="text-gray-600 mb-6">
                     Thank you for reaching out. Our team will get back to you
                     within 24 hours.
                   </p>
-                  <Button
-                    variant="outline"
-                    onClick={() => {
-                      setIsSubmitted(false);
-                      setFormData({
-                        name: "",
-                        email: "",
-                        phone: "",
-                        reason: "",
-                        message: "",
-                      });
-                    }}
-                  >
+                  <Button variant="outline" onClick={handleReset}>
                     Send Another Message
                   </Button>
                 </div>
               ) : (
                 <div className="bg-gray-50 rounded-xl border border-gray-100 p-6 md:p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          placeholder="John Doe"
-                          value={formData.name}
-                          onChange={(e) =>
-                            setFormData({ ...formData, name: e.target.value })
-                          }
-                          required
-                          className="bg-white"
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    {/* Honeypot field - hidden from users */}
+                    <div
+                      aria-hidden="true"
+                      style={{
+                        position: "absolute",
+                        left: "-9999px",
+                        width: "1px",
+                        height: "1px",
+                        overflow: "hidden",
+                      }}
+                    >
+                      <label htmlFor="contact_website">
+                        Leave this field empty
+                        <input
+                          type="text"
+                          id="contact_website"
+                          name="contact_website"
+                          tabIndex={-1}
+                          autoComplete="off"
+                          value={honeypot}
+                          onChange={(e) => setHoneypot(e.target.value)}
                         />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email Address *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="john@example.com"
-                          value={formData.email}
-                          onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                          }
-                          required
-                          className="bg-white"
-                        />
-                      </div>
+                      </label>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          placeholder="(780) 123-4567"
-                          value={formData.phone}
-                          onChange={(e) =>
-                            setFormData({ ...formData, phone: e.target.value })
-                          }
-                          className="bg-white"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="reason">Reason for Contact *</Label>
+                      <FormField
+                        label="Full Name"
+                        required
+                        error={errors.name?.message}
+                      >
+                        <div className="relative">
+                          <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                          <Input
+                            placeholder="John Doe"
+                            {...register("name")}
+                            className={cn(
+                              "pl-10 bg-white",
+                              errors.name && "border-red-500"
+                            )}
+                          />
+                        </div>
+                      </FormField>
+
+                      <FormField
+                        label="Email Address"
+                        required
+                        error={errors.email?.message}
+                      >
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                          <Input
+                            type="email"
+                            placeholder="john@example.com"
+                            {...register("email")}
+                            className={cn(
+                              "pl-10 bg-white",
+                              errors.email && "border-red-500"
+                            )}
+                          />
+                        </div>
+                      </FormField>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <FormField
+                        label="Phone Number"
+                        error={errors.phone?.message}
+                      >
+                        <div className="relative">
+                          <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                          <Input
+                            type="tel"
+                            placeholder="(780) 123-4567"
+                            {...register("phone")}
+                            className={cn(
+                              "pl-10 bg-white",
+                              errors.phone && "border-red-500"
+                            )}
+                          />
+                        </div>
+                      </FormField>
+
+                      <FormField
+                        label="Reason for Contact"
+                        required
+                        error={errors.reason?.message}
+                      >
                         <Select
-                          value={formData.reason}
+                          value={watch("reason")}
                           onValueChange={(value) =>
-                            setFormData({ ...formData, reason: value })
+                            setValue("reason", value, { shouldValidate: true })
                           }
-                          required
                         >
-                          <SelectTrigger className="bg-white">
+                          <SelectTrigger
+                            className={cn(
+                              "bg-white",
+                              errors.reason && "border-red-500"
+                            )}
+                          >
                             <SelectValue placeholder="Select a reason" />
                           </SelectTrigger>
                           <SelectContent>
@@ -236,27 +378,74 @@ export default function ContactPage() {
                             ))}
                           </SelectContent>
                         </Select>
-                      </div>
+                      </FormField>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Message *</Label>
+                    <FormField
+                      label="Message"
+                      required
+                      error={errors.message?.message}
+                    >
                       <Textarea
-                        id="message"
                         placeholder="Tell us how we can help..."
-                        className="min-h-[150px] bg-white"
-                        value={formData.message}
-                        onChange={(e) =>
-                          setFormData({ ...formData, message: e.target.value })
-                        }
-                        required
+                        className={cn(
+                          "min-h-[150px] bg-white",
+                          errors.message && "border-red-500"
+                        )}
+                        {...register("message")}
                       />
-                    </div>
+                    </FormField>
 
-                    <Button type="submit" size="lg" className="w-full h-12 bg-primary hover:bg-primary/90">
-                      <Send className="mr-2 h-5 w-5" />
-                      Send Message
+                    {/* Turnstile CAPTCHA */}
+                    {TURNSTILE_SITE_KEY && (
+                      <div className="flex justify-center">
+                        <Turnstile
+                          siteKey={TURNSTILE_SITE_KEY}
+                          onVerify={handleTurnstileVerify}
+                          onError={handleTurnstileError}
+                          onExpire={handleTurnstileExpire}
+                          theme="light"
+                        />
+                      </div>
+                    )}
+
+                    {/* Error Message */}
+                    {submitError && (
+                      <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+                        <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-medium text-red-800">
+                            Unable to Send
+                          </p>
+                          <p className="text-sm text-red-600">{submitError}</p>
+                        </div>
+                      </div>
+                    )}
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full h-12 bg-primary hover:bg-primary/90"
+                      disabled={isSubmitting || (!!TURNSTILE_SITE_KEY && !turnstileToken)}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="mr-2 h-5 w-5" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
+
+                    {/* Security Note */}
+                    <p className="text-center text-xs text-gray-500 flex items-center justify-center gap-1">
+                      <Shield className="h-3 w-3" />
+                      Your information is secure and protected
+                    </p>
                   </form>
                 </div>
               )}
@@ -270,7 +459,11 @@ export default function ContactPage() {
                 <p className="text-gray-400 text-sm mb-4">
                   For emergencies, call our 24/7 dispatch line directly.
                 </p>
-                <Button size="lg" className="w-full bg-primary hover:bg-primary/90 h-12" asChild>
+                <Button
+                  size="lg"
+                  className="w-full bg-primary hover:bg-primary/90 h-12"
+                  asChild
+                >
                   <a href="tel:+17808097860">
                     <Phone className="mr-2 h-5 w-5" />
                     Call 780-809-7860
@@ -311,15 +504,17 @@ export default function ContactPage() {
                   Service Areas
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {["Edmonton", "Sherwood Park", "Spruce Grove", "Leduc"].map((area) => (
-                    <Link
-                      key={area}
-                      href={`/locations/${area.toLowerCase().replace(" ", "-")}`}
-                      className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-primary hover:text-primary transition-colors"
-                    >
-                      {area}
-                    </Link>
-                  ))}
+                  {["Edmonton", "Sherwood Park", "Spruce Grove", "Leduc"].map(
+                    (area) => (
+                      <Link
+                        key={area}
+                        href={`/locations/${area.toLowerCase().replace(" ", "-")}`}
+                        className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-primary hover:text-primary transition-colors"
+                      >
+                        {area}
+                      </Link>
+                    )
+                  )}
                 </div>
                 <Link
                   href="/locations"
@@ -329,7 +524,6 @@ export default function ContactPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
-
             </div>
           </div>
         </div>
@@ -363,7 +557,9 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-bold text-gray-900">Guardium Towing</h3>
                     <p className="text-sm text-gray-600 mb-3">
-                      Unit 206, 4918 Roper Rd NW<br />Edmonton, AB T6B3T7
+                      Unit 206, 4918 Roper Rd NW
+                      <br />
+                      Edmonton, AB T6B3T7
                     </p>
                     <Button variant="outline" size="sm" asChild>
                       <a
@@ -392,7 +588,11 @@ export default function ContactPage() {
           <p className="text-gray-400 max-w-xl mx-auto mb-8">
             Our dispatch team is available 24/7. Call us for immediate service.
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 h-14 px-10 text-base" asChild>
+          <Button
+            size="lg"
+            className="bg-primary hover:bg-primary/90 h-14 px-10 text-base"
+            asChild
+          >
             <a href="tel:+17808097860">
               <Phone className="mr-2 h-5 w-5" />
               Call 780-809-7860

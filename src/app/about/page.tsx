@@ -117,7 +117,7 @@ export default function AboutPage() {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Star className="h-5 w-5 text-yellow-500" />
-                  <span>4.9 Rating</span>
+                  <span>Trusted Service</span>
                 </div>
               </div>
             </div>
@@ -133,8 +133,8 @@ export default function AboutPage() {
                 <div className="text-sm text-gray-600">Min Avg Response</div>
               </div>
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 text-center">
-                <div className="text-4xl font-bold text-primary mb-2">4.9</div>
-                <div className="text-sm text-gray-600">Customer Rating</div>
+                <div className="text-4xl font-bold text-primary mb-2">20+</div>
+                <div className="text-sm text-gray-600">Fleet Vehicles</div>
               </div>
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 text-center">
                 <div className="text-4xl font-bold text-primary mb-2">7</div>

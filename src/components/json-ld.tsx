@@ -87,11 +87,6 @@ export function JsonLd() {
       },
     ],
     priceRange: "$$",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "150",
-    },
   };
 
   const webSiteSchema = {
