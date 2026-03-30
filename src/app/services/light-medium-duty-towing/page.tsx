@@ -45,7 +45,7 @@ const benefits = [
   "24/7 dispatch available",
   "Modern, well-maintained fleet",
   "GPS tracking for accurate ETAs",
-  "Direct insurance billing",
+  "Insurance documentation provided",
   "Serving Edmonton and surrounding areas",
 ];
 

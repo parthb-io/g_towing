@@ -114,7 +114,7 @@ const faqs = [
   {
     question: "Do you work with insurance companies?",
     answer:
-      "Yes, we work directly with all major insurance providers in Canada. We can handle the paperwork and billing directly with your insurer to make the process seamless for you.",
+      "Yes, we work directly with all major insurance providers in Canada. We provide documentation and photos to support your claim and make the process easier for you.",
   },
   {
     question: "What types of vehicles can you tow?",

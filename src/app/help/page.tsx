@@ -64,9 +64,9 @@ const faqs = [
           "Towing costs depend on factors like vehicle type, distance, and time of service. Call us for an accurate quote based on your specific situation. We provide upfront quotes before any work begins - no surprises.",
       },
       {
-        question: "Do you accept insurance?",
+        question: "Do you work with insurance companies?",
         answer:
-          "Yes, we work with all major insurance companies and can bill them directly in many cases. For accident towing, we typically handle all the insurance paperwork on your behalf.",
+          "Yes, we work with all major insurance companies and can provide documentation to support your claim. For accident towing, we provide photos and paperwork you can submit to your insurer.",
       },
       {
         question: "What payment methods do you accept?",

@@ -64,7 +64,7 @@ const faqs = [
   },
   {
     question: "Do you work with insurance companies?",
-    answer: "Yes, we work directly with all major insurance providers. We can handle the documentation and billing process, making it easier for you during a stressful time.",
+    answer: "Yes, we work directly with all major insurance providers. We can provide documentation to support your claim, making it easier for you during a stressful time.",
   },
   {
     question: "What areas do you service?",
@@ -123,7 +123,7 @@ const relatedServices = [
     icon: AlertTriangle,
     title: "Accident Towing",
     description: "Complete accident recovery with insurance coordination.",
-    features: ["Scene cleanup", "Insurance billing", "Secure storage"],
+    features: ["Scene cleanup", "Documentation", "Secure storage"],
     href: "/services/accident-towing",
   },
   {
@@ -238,7 +238,7 @@ export function ServicePageLayout({
                 </div>
                 <div className="flex items-center gap-3 text-gray-700">
                   <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
-                  <span>Direct insurance billing available</span>
+                  <span>Insurance documentation provided</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-700">
                   <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />

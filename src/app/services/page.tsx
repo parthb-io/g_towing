@@ -54,7 +54,7 @@ const services = [
     description:
       "Complete accident recovery services including vehicle retrieval, scene cleanup, and insurance coordination.",
     href: "/services/accident-towing",
-    features: ["Scene cleanup", "Insurance billing", "Documentation", "Secure storage"],
+    features: ["Scene cleanup", "Documentation", "Photos provided", "Secure storage"],
   },
   {
     icon: Wrench,

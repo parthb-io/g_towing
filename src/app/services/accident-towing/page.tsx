@@ -24,9 +24,9 @@ const features = [
       "Complete debris cleanup and fluid containment to restore the roadway and ensure safety for other motorists.",
   },
   {
-    title: "Insurance Coordination",
+    title: "Insurance Documentation",
     description:
-      "We work directly with all major insurance companies. We can handle the paperwork and billing on your behalf.",
+      "We work directly with all major insurance companies. We provide photos and documentation to support your claim.",
   },
   {
     title: "Photo Documentation",
