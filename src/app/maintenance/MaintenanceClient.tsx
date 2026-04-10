@@ -6,10 +6,8 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { gsap } from "gsap";
 import { Phone, Mail, Clock, MapPin, Navigation, Facebook, Instagram, Twitter, Truck, Headphones } from "lucide-react";
 
-// TODO: update GOOGLE_MAPS_EMBED_URL for Cliffs Towing location
 const GOOGLE_MAPS_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2589.7847183583226!2d-113.4189796232592!3d53.49607917233303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f131!3m3!1m2!1s0x53a0197c2ac9a557%3A0x10698418c091ee96!2sGuardium%20Towing%20Services!5e1!3m2!1sen!2sca!4v1770702802667!5m2!1sen!2sca";
-// TODO: update GOOGLE_MAPS_DIRECTIONS_URL for Cliffs Towing location
-const GOOGLE_MAPS_DIRECTIONS_URL = "https://maps.google.com/?q=Guardium+Towing+Edmonton+Canada";
+const GOOGLE_MAPS_DIRECTIONS_URL = "https://maps.google.com/?q=4918+Roper+Rd+NW+Edmonton+AB+T6B+3T7";
 
 const statusItems = [
   { name: "Emergency Dispatch", icon: Phone, online: true },
@@ -144,7 +142,6 @@ export default function MaintenanceClient() {
               className="flex items-center gap-3 lg:gap-4"
             >
               {/* Social Media - Desktop */}
-              {/* TODO: update social media hrefs for Cliffs Towing */}
               <div className="hidden lg:flex items-center gap-0.5">
                 {[
                   { href: "https://facebook.com/cliffstowing", Icon: Facebook },
@@ -371,9 +368,8 @@ export default function MaintenanceClient() {
                           <MapPin className="h-4 w-4 lg:h-5 lg:w-5 text-[#ce0000]" />
                         </motion.div>
                         <div>
-                          {/* TODO: update location name and address for Cliffs Towing */}
                           <p className="font-semibold text-neutral-900 text-sm lg:text-base">Cliffs Towing</p>
-                          <p className="text-neutral-500 text-xs lg:text-sm">Edmonton, AB</p>
+                          <p className="text-neutral-500 text-xs lg:text-sm">4918 Roper Rd NW, Edmonton, AB T6B 3T7</p>
                         </div>
                       </motion.div>
 
@@ -417,7 +413,6 @@ export default function MaintenanceClient() {
                           >
                             <Mail className="h-4 w-4 lg:h-5 lg:w-5 text-blue-600" />
                           </motion.div>
-                          {/* TODO: update email for Cliffs Towing */}
                           <motion.a
                             href="mailto:dispatch@cliffstowing.com"
                             className="font-semibold text-[11px] lg:text-sm text-neutral-900 hover:text-[#ce0000] transition-colors"
@@ -485,7 +480,6 @@ export default function MaintenanceClient() {
               </p>
 
               {/* Social Media - Mobile */}
-              {/* TODO: update social media hrefs for Cliffs Towing */}
               <div className="flex items-center gap-3 lg:hidden">
                 {[
                   { href: "https://facebook.com/cliffstowing", Icon: Facebook },
